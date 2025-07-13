@@ -250,7 +250,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 202364688, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.3129
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 202364688, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 202364688, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 202364688, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503725, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_Name
@@ -341,8 +353,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 629c5ffa5c8721b4daf0abdf514cc74a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bow: {fileID: 1631632514}
-  leftIndexTriggerAction: {fileID: -3529239887829762332, guid: cdd3f927009247343af541c62fe4e566, type: 3}
+  _bow: {fileID: 1631632514}
+  _leftIndexTriggerAction: {fileID: -3529239887829762332, guid: cdd3f927009247343af541c62fe4e566, type: 3}
 --- !u!1 &756192406
 GameObject:
   m_ObjectHideFlags: 0
