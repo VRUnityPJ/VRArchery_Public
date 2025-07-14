@@ -1,0 +1,34 @@
+{
+    "name": "LeftIndexTriggerPress",
+    "maps": [
+        {
+            "name": "LeftHandButtonInput",
+            "id": "ff759a50-46bd-4b9f-b103-e89c8fa90060",
+            "actions": [
+                {
+                    "name": "LeftHandButton",
+                    "type": "Button",
+                    "id": "5bd4fdc1-b80f-4a74-962b-e1872c80438a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "100edf15-4dca-4a12-9fb2-afe3a43ed81f",
+                    "path": "<XRController>{LeftHand}/triggerButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftHandButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
