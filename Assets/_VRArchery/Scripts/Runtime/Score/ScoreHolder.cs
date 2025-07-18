@@ -1,6 +1,6 @@
 using R3;
 
-namespace _VRArchery.Scripts.Score
+namespace _VRArchery.Scripts.Runtime.Score
 {
     /// <summary>
     /// スコアを管理するクラス
@@ -17,19 +17,19 @@ namespace _VRArchery.Scripts.Score
         /// <summary>
         /// スコアを初期化　
         /// </summary>
-        public void InitializePoint() => _score.Value = 0;
+        public void InitializeScore() => _score.Value = 0;
 
         /// <summary>
         /// 加算
         /// </summary>
         /// <param name="value"></param>
-        public void AddPoint(int value) => _score.Value += value;
+        public void AddScore(int value) => _score.Value += value;
 
         /// <summary>
         /// 減算
         /// </summary>
         /// <param name="value"></param>
-        public void SubPoint(int value)
+        public void SubScore(int value)
         {
             if (_score.Value < value)
             {
