@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 3822952497194684812}
   - component: {fileID: 3514730141483867631}
   m_Layer: 0
-  m_Name: "\u77E2_Grabbable"
+  m_Name: "\u77E2_Grabbable_trash"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
