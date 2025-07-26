@@ -53,7 +53,7 @@ public class YaVR : MonoBehaviour
     {
         if (nockAction == null) return;
         nockAction.Enable();
-        
+
         nockAction.performed += OnTriggerRightPressed;
         nockAction.canceled += OnTriggerRightReleased;
         Debug.Log("nockAction enabled");
@@ -94,6 +94,7 @@ public class YaVR : MonoBehaviour
         }
         _isFlying = false;
         _rb.isKinematic = true;
+        _rb.useGravity = false;
         _boxCollider.isTrigger = true;
     }
 
@@ -148,7 +149,7 @@ public class YaVR : MonoBehaviour
             {
                 Debug.LogError("No Arrow Grip");
             }
-            
+
         }
     }
 
@@ -159,9 +160,9 @@ public class YaVR : MonoBehaviour
         {
             _grabInteract.interactionManager.SelectExit(interactor, _grabInteract);
         }
-            
+
         Debug.Log("Force Release");
     }
-    
-    
+
+
 }
