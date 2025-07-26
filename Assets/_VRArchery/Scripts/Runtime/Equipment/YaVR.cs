@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using _VRArchery.Scripts.Utility;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -86,16 +87,13 @@ public class YaVR : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Target"))
         {
-            GameManager.instance.SetTargetModleMarker(collision.GetContact(0).point - collision.transform.position);
+            //GameManager.instance.SetTargetModleMarker(collision.GetContact(0).point - collision.transform.position);
         }
         else
         {
             GameManager.instance.SetTargetModleMarker(Vector3.one * -1);
         }
-        _isFlying = false;
-        _rb.isKinematic = true;
-        _rb.useGravity = false;
-        _boxCollider.isTrigger = true;
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -104,6 +102,15 @@ public class YaVR : MonoBehaviour
         {
             Debug.Log(" Can Nock");
             _canNock = true;
+        }
+        else if (other.gameObject.CompareTag("Target"))
+        {
+            //GameManager.instance.SetTargetModleMarker(collision.GetContact(0).point - collision.transform.position);
+            _isFlying = false;
+            _rb.isKinematic = true;
+            _rb.useGravity = false;
+            CustomDebug.Log($"刺さった:{_rb.isKinematic}");
+            //_boxCollider.isTrigger = true;
         }
     }
 
