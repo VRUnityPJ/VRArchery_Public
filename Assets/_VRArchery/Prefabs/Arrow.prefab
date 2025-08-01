@@ -61,6 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _arrow: {fileID: 2595377709587373617}
+  _arrowFeatherPoint: {fileID: 3276631479541202822}
   _speed: 10
   ArrowGrip: {fileID: 0}
   yaFlyingManager: {fileID: 68846529471585332}
@@ -246,6 +247,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5302667747962408324}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1 &3276631479541202822
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4413409150197443956}
+  m_Layer: 0
+  m_Name: feather
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4413409150197443956
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3276631479541202822}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.35355332, y: -0.6123725, z: 0.61237246, w: 0.35355327}
+  m_LocalPosition: {x: -0.0002, y: -0.0007, z: -0.0001}
+  m_LocalScale: {x: 0.3115265, y: 0.31152648, z: 0.31152648}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5302667747962408324}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3941863692467485084
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,6 +431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _arrow: {fileID: 6104487565087410486}
+  _arrowFeatherPoint: {fileID: 0}
   _speed: 5
   ArrowGrip: {fileID: 0}
   yaFlyingManager: {fileID: 9206853495990351115}
@@ -441,6 +474,7 @@ Transform:
   - {fileID: 8452814984202590706}
   - {fileID: 8042892817047928175}
   - {fileID: 1163973668669153390}
+  - {fileID: 4413409150197443956}
   m_Father: {fileID: 1875841258054943605}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4078193924255941464
@@ -544,6 +578,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _arrow: {fileID: 6104487565087410486}
+  _arrowFeatherPoint: {fileID: 0}
   _speed: 40
   ArrowGrip: {fileID: 0}
   yaFlyingManager: {fileID: 9206853495990351115}
