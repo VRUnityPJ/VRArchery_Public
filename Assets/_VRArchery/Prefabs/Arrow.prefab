@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &931186616556519366
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7091752533535441673}
+  m_Layer: 0
+  m_Name: ArrowFeatherPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7091752533535441673
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931186616556519366}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.00104, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5302667747962408324}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2595377709587373617
 GameObject:
   m_ObjectHideFlags: 0
@@ -63,6 +94,7 @@ MonoBehaviour:
   _arrow: {fileID: 2595377709587373617}
   _speed: 40
   ArrowGrip: {fileID: 0}
+  _arrowFeatherPoint: {fileID: 931186616556519366}
   yaFlyingManager: {fileID: 68846529471585332}
   _actionAsset: {fileID: -944628639613478452, guid: 4a223f89f8b456d4ab0d3c07be765882, type: 3}
   _grabInteract: {fileID: 1559665658159011878}
@@ -401,6 +433,7 @@ MonoBehaviour:
   _arrow: {fileID: 6104487565087410486}
   _speed: 5
   ArrowGrip: {fileID: 0}
+  _arrowFeatherPoint: {fileID: 0}
   yaFlyingManager: {fileID: 9206853495990351115}
   _actionAsset: {fileID: -944628639613478452, guid: 4a223f89f8b456d4ab0d3c07be765882, type: 3}
   _grabInteract: {fileID: 0}
@@ -441,6 +474,7 @@ Transform:
   - {fileID: 8452814984202590706}
   - {fileID: 8042892817047928175}
   - {fileID: 1163973668669153390}
+  - {fileID: 7091752533535441673}
   m_Father: {fileID: 1875841258054943605}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4078193924255941464
@@ -546,6 +580,7 @@ MonoBehaviour:
   _arrow: {fileID: 6104487565087410486}
   _speed: 40
   ArrowGrip: {fileID: 0}
+  _arrowFeatherPoint: {fileID: 931186616556519366}
   yaFlyingManager: {fileID: 9206853495990351115}
   _actionAsset: {fileID: -944628639613478452, guid: 4a223f89f8b456d4ab0d3c07be765882, type: 3}
   _grabInteract: {fileID: 0}

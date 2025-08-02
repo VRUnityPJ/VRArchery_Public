@@ -20,10 +20,13 @@ public class YaVR : MonoBehaviour
     /// 矢をつがえる位置の当たり判定
     /// </summary>
     [SerializeField] private GameObject ArrowGrip;
+    [SerializeField] private GameObject _arrowFeatherPoint;
     [SerializeField] YaFlyingManager yaFlyingManager;
     [SerializeField] private InputActionAsset _actionAsset;
     [SerializeField] private XRGrabInteractable _grabInteract;
     private InputAction nockAction;
+    private GameObject _bowString;
+    private IBow _bow;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -57,29 +60,24 @@ public class YaVR : MonoBehaviour
 
         nockAction.performed += OnTriggerRightPressed;
         nockAction.canceled += OnTriggerRightReleased;
-        Debug.Log("nockAction enabled");
+        CustomDebug.Log("nockAction enabled");
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*if(_isFlying)//進行方向に回転
-        {
-            Debug.Log("flying away");
-            Vector3 velocity = transform.position - _prePosition;
-            if(velocity.magnitude > 0.01f)
-            {
-                Debug.Log("flying away");
-                transform.rotation = Quaternion.LookRotation(velocity);
-            }
-            _prePosition = transform.position;
-        }*/
-
         if (_isNocking)
         {
             Vector3 direction = ArrowGrip.transform.position - this.transform.position;
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             _rb.rotation = targetRotation;
+            transform.localRotation = Quaternion.identity;
+            transform.LookAt(ArrowGrip.transform);
+            if (_bowString != null)
+            {
+                _bowString.transform.position = _arrowFeatherPoint.transform.position;
+                CustomDebug.Log("つかみ中！");
+            }
         }
     }
 
@@ -93,6 +91,12 @@ public class YaVR : MonoBehaviour
         {
             GameManager.instance.SetTargetModleMarker(Vector3.one * -1);
         }
+        if (collision.gameObject.TryGetComponent(out IBow bow))
+        {
+            _bowString = bow.GetWirePointObject();
+            _bow = bow;
+            CustomDebug.Log("つかみ中！");
+        }
 
     }
 
@@ -100,7 +104,7 @@ public class YaVR : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Nock"))
         {
-            Debug.Log(" Can Nock");
+            CustomDebug.Log(" Can Nock");
             _canNock = true;
         }
         else if (other.gameObject.CompareTag("Target"))
@@ -112,24 +116,30 @@ public class YaVR : MonoBehaviour
             CustomDebug.Log($"刺さった:{_rb.isKinematic}");
             //_boxCollider.isTrigger = true;
         }
+        if (other.gameObject.TryGetComponent(out IBow bow))
+        {
+            _bowString = bow.GetWirePointObject();
+            _bow = bow;
+            CustomDebug.Log("つかみ中！");
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Nock"))
         {
-            Debug.Log("Cannot Nock");
+            CustomDebug.Log("Cannot Nock");
             _canNock = false;
-            _grabInteract.trackRotation = true;
+            //_grabInteract.trackRotation = true;
         }
     }
 
     private void OnTriggerRightPressed(InputAction.CallbackContext ctx)
     {
-        Debug.Log("OnTriggerRightPressed");
+        CustomDebug.Log("OnTriggerRightPressed");
         if (_canNock)
         {
-            Debug.Log("An Arrow Is Nocking");
+            CustomDebug.Log("An Arrow Is Nocking");
             _isNocking = true;
             _grabInteract.trackRotation = false;
             _rb.useGravity = false;
@@ -139,24 +149,28 @@ public class YaVR : MonoBehaviour
 
     private void OnTriggerRightReleased(InputAction.CallbackContext ctx)
     {
-        Debug.Log("OnTriggerRightReleased");
+        CustomDebug.Log("OnTriggerRightReleased");
         if (_isNocking)
         {
-            Debug.Log("An Arrow is Shooted");
+            CustomDebug.Log("An Arrow is Shooted");
+            _grabInteract.trackRotation = true;
             _isNocking = false;
             ForceRelease();
             yaFlyingManager.IsFlying = true;
             _rb.useGravity = true;
             if (ArrowGrip.transform.position != null)
             {
-                Debug.Log($"Vector: {ArrowGrip.transform.position- this.transform.position}");
+                Debug.Log($"Vector: {ArrowGrip.transform.position - this.transform.position}");
                 _rb.AddForce((ArrowGrip.transform.position - this.transform.position) * _speed, ForceMode.Impulse);
             }
             else
             {
                 Debug.LogError("No Arrow Grip");
             }
-
+            if (_bow != null)
+            {
+                _bow.ResetWirePointObject();
+            }
         }
     }
 

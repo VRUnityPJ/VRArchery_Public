@@ -12302,6 +12302,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1683995448}
   m_CullTransparentMesh: 1
+--- !u!1 &1684297124 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 931186616556519366, guid: 65f76eb9f0f4af64f98127793e5bcb29, type: 3}
+  m_PrefabInstance: {fileID: 5444441425526485928}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1702963519
 GameObject:
   m_ObjectHideFlags: 0
@@ -17953,6 +17958,10 @@ PrefabInstance:
       propertyPath: ArrowGrip
       value: 
       objectReference: {fileID: 593717774}
+    - target: {fileID: 2117177901420931687, guid: 65f76eb9f0f4af64f98127793e5bcb29, type: 3}
+      propertyPath: _arrowFeatherPoint
+      value: 
+      objectReference: {fileID: 1684297124}
     - target: {fileID: 2244822084769370136, guid: 65f76eb9f0f4af64f98127793e5bcb29, type: 3}
       propertyPath: ArrowGrip
       value: 
