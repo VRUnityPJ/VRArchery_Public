@@ -765,7 +765,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 953696653}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!4 &953696657
 Transform:
   m_ObjectHideFlags: 0
@@ -975,6 +975,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1874144979}
+  - component: {fileID: 1874144980}
   m_Layer: 0
   m_Name: Blur
   m_TagString: Untagged
@@ -999,6 +1000,19 @@ Transform:
   - {fileID: 1167983137}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1874144980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874144978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b98991c2430cc645b52dbd32f6fffa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _volume: {fileID: 1167983136}
 --- !u!1 &2141401277
 GameObject:
   m_ObjectHideFlags: 0
