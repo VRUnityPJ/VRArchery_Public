@@ -7,6 +7,14 @@ namespace _VRArchery.Scripts.Runtime.Score
     /// </summary>
     public sealed class ScoreHolder
     {
+        /// <summary>
+        /// スコアランク
+        /// </summary>
+        public enum Rank {C, B, A,}
+
+        private const int AThreshold = 100; // Aランクのしきい値
+        private const int BThreshold = 50;  // Bランクのしきい値
+
         private readonly ReactiveProperty<int> _score = new();
 
         /// <summary>
@@ -15,7 +23,7 @@ namespace _VRArchery.Scripts.Runtime.Score
         public ReadOnlyReactiveProperty<int> Score => _score;
 
         /// <summary>
-        /// スコアを初期化　
+        /// スコアを初期化
         /// </summary>
         public void InitializeScore() => _score.Value = 0;
 
@@ -38,6 +46,16 @@ namespace _VRArchery.Scripts.Runtime.Score
             }
 
             _score.Value -= value;
+        }
+
+        /// <summary>
+        /// 現在スコアに対するランクを取得
+        /// </summary>
+        public Rank GetRank()
+        {
+            if (_score.Value >= AThreshold) return Rank.A;
+            if (_score.Value >= BThreshold) return Rank.B;
+            return Rank.C;
         }
     }
 }
