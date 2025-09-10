@@ -1,11 +1,12 @@
 using R3;
+using UnityEngine;
 
 namespace _VRArchery.Scripts.Runtime.Score
 {
     /// <summary>
     /// スコアを管理するクラス
     /// </summary>
-    public sealed class ScoreHolder
+    public sealed class ScoreHolder:MonoBehaviour
     {
         private readonly ReactiveProperty<int> _score = new();
 
