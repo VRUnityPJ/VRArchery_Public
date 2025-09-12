@@ -10,10 +10,10 @@ namespace _VRArchery.Scripts.Runtime.Score
         /// <summary>
         /// スコアランク
         /// </summary>
-        public enum Rank {C, B, A,}
+        public enum Rank { A, B, C }
 
-        private const int AThreshold = 100; // Aランクのしきい値
-        private const int BThreshold = 50;  // Bランクのしきい値
+        private const int ARankThreshold = 100;
+        private const int BRankThreshold = 50;
 
         private readonly ReactiveProperty<int> _score = new();
 
@@ -53,8 +53,10 @@ namespace _VRArchery.Scripts.Runtime.Score
         /// </summary>
         public Rank GetRank()
         {
-            if (_score.Value >= AThreshold) return Rank.A;
-            if (_score.Value >= BThreshold) return Rank.B;
+            if (_score.Value >= ARankThreshold)
+                return Rank.A;
+            if (_score.Value >= BRankThreshold)
+                return Rank.B;
             return Rank.C;
         }
     }

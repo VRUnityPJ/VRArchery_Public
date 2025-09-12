@@ -22,17 +22,18 @@ namespace _VRArchery.Scripts.Runtime.Score.Debugging
             if (_score != _lastScore)
             {
                 _scoreHolder.InitializeScore();
-                if (_score > 0) _scoreHolder.AddScore(_score);
-                LogScoreAndRank();
+                if (_score > 0)
+                    _scoreHolder.AddScore(_score);
+                LogRank();
                 _lastScore = _score;
             }
         }
 
-        private void LogScoreAndRank()
+        private void LogRank()
         {
             var score = _scoreHolder.Score.CurrentValue;
             var rank = _scoreHolder.GetRank().ToString();
-            Debug.Log($"スコア：{score}\nランク：{rank}");
+            Debug.Log($"ランク：{rank}");
         }
     }
 }
