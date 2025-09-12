@@ -11,11 +11,11 @@ namespace _VRArchery.Scripts.Runtime.Score
         /// <summary>
         /// スコアランク
         /// </summary>
-        public Rank Rank => _rank;
+        public Rank CurrentRank => _currentRank;
 
         private const int ARankThreshold = 100;
         private const int BRankThreshold = 50;
-        private Rank _rank;
+        private Rank _currentRank;
 
         private readonly ReactiveProperty<int> _score = new();
 
