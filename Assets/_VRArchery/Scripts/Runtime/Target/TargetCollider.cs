@@ -1,6 +1,7 @@
 using System;
 using _VRArchery.Scripts.Runtime.Score;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace _VRArchery.Scripts.Runtime.Target
 {
@@ -11,7 +12,12 @@ namespace _VRArchery.Scripts.Runtime.Target
 
         private void OnTriggerEnter(Collider other)
         {
-            _scoreHolder.AddScore(100);
+            //敵にぶつかったとき
+            if(other.gameObject.CompareTag("Arrow"))
+            {
+                _scoreHolder.AddScore(100);
+                Debug.Log(_scoreHolder.Score);
+            }
         }
     }
 }
