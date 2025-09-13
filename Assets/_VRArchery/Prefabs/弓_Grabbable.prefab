@@ -291,6 +291,7 @@ GameObject:
   - component: {fileID: 7691287207263180303}
   - component: {fileID: 8160284671388190408}
   - component: {fileID: 9015911217663954745}
+  - component: {fileID: 1427792309013563790}
   m_Layer: 6
   m_Name: "\u5F13_Grabbable"
   m_TagString: Untagged
@@ -488,6 +489,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 16.01287, z: 2.7945533}
   m_Center: {x: 0, y: -0.22834875, z: 4.3331428}
+--- !u!114 &1427792309013563790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5363036201520807440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d52e469e11f623d4c8d8b2563e894742, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5450314065810793998
 GameObject:
   m_ObjectHideFlags: 0
