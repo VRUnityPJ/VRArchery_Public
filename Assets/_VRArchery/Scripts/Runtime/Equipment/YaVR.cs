@@ -19,7 +19,7 @@ public class YaVR : MonoBehaviour
     /// <summary>
     /// 矢をつがえる位置の当たり判定
     /// </summary>
-    [SerializeField] private GameObject ArrowGrip;
+    [SerializeField] public GameObject ArrowGrip;
     [SerializeField] private GameObject _arrowFeatherPoint;
     [SerializeField] YaFlyingManager yaFlyingManager;
     [SerializeField] private InputActionAsset _actionAsset;

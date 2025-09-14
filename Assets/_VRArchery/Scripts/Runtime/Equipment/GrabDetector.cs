@@ -7,6 +7,9 @@ public class GrabDetector : MonoBehaviour
 {
     private XRGrabInteractable _interactable;
 
+    [SerializeField]
+    private ArrowGrabber _arrowGrabber;
+
     void Awake()
     {
         _interactable = GetComponent<XRGrabInteractable>();
@@ -39,10 +42,13 @@ public class GrabDetector : MonoBehaviour
             if (interactor.handedness == InteractorHandedness.Left)
             {
                 Debug.Log("左手で掴まれました。");
+                _arrowGrabber.GrabArrow(Hand.Right);
+
             }
             else if (interactor.handedness == InteractorHandedness.Right)
             {
                 Debug.Log("右手で掴まれました。");
+                _arrowGrabber.GrabArrow(Hand.Left);
             }
             else
             {
