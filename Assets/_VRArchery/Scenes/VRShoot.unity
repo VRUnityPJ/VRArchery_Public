@@ -1594,6 +1594,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1674518432}
   - component: {fileID: 1674518431}
+  - component: {fileID: 1674518433}
   m_Layer: 0
   m_Name: ArrowGrabber
   m_TagString: Untagged
@@ -1617,6 +1618,7 @@ MonoBehaviour:
   _rightHand: {fileID: 696530564}
   _arrowPrefab: {fileID: 2595377709587373617, guid: 65f76eb9f0f4af64f98127793e5bcb29, type: 3}
   _bowObject: {fileID: 593717774}
+  _arrowCounter: {fileID: 1674518433}
 --- !u!4 &1674518432
 Transform:
   m_ObjectHideFlags: 0
@@ -1632,6 +1634,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1674518433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674518430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a407814a16d1274db530a6d8c33d70d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxArrow: 5
 --- !u!1 &1682038676
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,7 +27,7 @@ public class YaVR : MonoBehaviour
     private InputAction nockAction;
     private GameObject _bowString;
     private IBow _bow;
-
+    public ArrowCounter ArrowCounter;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -89,7 +89,7 @@ public class YaVR : MonoBehaviour
         }
         else
         {
-            GameManager.instance.SetTargetModleMarker(Vector3.one * -1);
+            //GameManager.instance.SetTargetModleMarker(Vector3.one * -1);
         }
         if (collision.gameObject.TryGetComponent(out IBow bow))
         {
@@ -158,6 +158,7 @@ public class YaVR : MonoBehaviour
             ForceRelease();
             yaFlyingManager.IsFlying = true;
             _rb.useGravity = true;
+            ArrowCounter.AddArrowCount();
             if (ArrowGrip.transform.position != null)
             {
                 Debug.Log($"Vector: {ArrowGrip.transform.position - this.transform.position}");
