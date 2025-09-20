@@ -43,12 +43,14 @@ public class GrabDetector : MonoBehaviour
             {
                 Debug.Log("左手で掴まれました。");
                 _arrowGrabber.GrabArrow(Hand.Right);
+                _arrowGrabber.ArrowGrabHand = Hand.Right;
 
             }
             else if (interactor.handedness == InteractorHandedness.Right)
             {
                 Debug.Log("右手で掴まれました。");
                 _arrowGrabber.GrabArrow(Hand.Left);
+                _arrowGrabber.ArrowGrabHand = Hand.Left;
             }
             else
             {

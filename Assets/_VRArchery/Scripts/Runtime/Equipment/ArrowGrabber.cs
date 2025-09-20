@@ -24,6 +24,8 @@ public class ArrowGrabber : MonoBehaviour
     [SerializeField]
     private ArrowCounter _arrowCounter;
 
+    public Hand ArrowGrabHand;
+
     public void GrabArrow(Hand hand)
     {
         if (_arrowPrefab == null)
@@ -59,6 +61,7 @@ public class ArrowGrabber : MonoBehaviour
         {
             yaVR.ArrowGrip = _bowObject;
             yaVR.ArrowCounter = _arrowCounter;
+            yaVR.ArrowGrabber = this;
         }
         XRGrabInteractable newInteractable = newArrowObj.GetComponent<XRGrabInteractable>();
 

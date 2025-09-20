@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using _VRArchery.Scripts.Utility;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -8,7 +9,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class YaVR : MonoBehaviour
 {
-    private bool _isFlying ;
+    private bool _isFlying;
     private bool _isNocking = false;
     private bool _canNock = false;
     private Vector3 _prePosition;
@@ -28,6 +29,8 @@ public class YaVR : MonoBehaviour
     private GameObject _bowString;
     private IBow _bow;
     public ArrowCounter ArrowCounter;
+
+    public ArrowGrabber ArrowGrabber;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -55,7 +58,8 @@ public class YaVR : MonoBehaviour
 
     void OnEnable()
     {
-        if (nockAction == null) return;
+        if (nockAction == null)
+            return;
         nockAction.Enable();
 
         nockAction.performed += OnTriggerRightPressed;
@@ -147,7 +151,7 @@ public class YaVR : MonoBehaviour
         }
     }
 
-    private void OnTriggerRightReleased(InputAction.CallbackContext ctx)
+    async private void OnTriggerRightReleased(InputAction.CallbackContext ctx)
     {
         CustomDebug.Log("OnTriggerRightReleased");
         if (_isNocking)
@@ -172,6 +176,8 @@ public class YaVR : MonoBehaviour
             {
                 _bow.ResetWirePointObject();
             }
+
+            await ReloadArrow();
         }
     }
 
@@ -182,8 +188,13 @@ public class YaVR : MonoBehaviour
         {
             _grabInteract.interactionManager.SelectExit(interactor, _grabInteract);
         }
+    }
 
-        Debug.Log("Force Release");
+
+    async UniTask ReloadArrow()
+    {
+        await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
+        ArrowGrabber.GrabArrow(ArrowGrabber.ArrowGrabHand);
     }
 
 

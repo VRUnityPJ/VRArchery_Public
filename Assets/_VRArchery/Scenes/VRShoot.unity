@@ -1619,6 +1619,7 @@ MonoBehaviour:
   _arrowPrefab: {fileID: 2595377709587373617, guid: 65f76eb9f0f4af64f98127793e5bcb29, type: 3}
   _bowObject: {fileID: 593717774}
   _arrowCounter: {fileID: 1674518433}
+  ArrowGrabHand: 0
 --- !u!4 &1674518432
 Transform:
   m_ObjectHideFlags: 0
