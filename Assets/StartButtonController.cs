@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro; // ← これを追加
+using TMPro; 
 using DG.Tweening;
-using System.Collections; // ← これが必要！
+using System.Collections; 
 
 public class StartButtonController : MonoBehaviour
 {
@@ -33,7 +33,7 @@ public class StartButtonController : MonoBehaviour
             });
 
         // 色変更（例：赤に変化） → これはすぐに始めてOK
-        Color targetColor = Color.green;
+        Color targetColor = Color.white;
         startButton.image.DOColor(targetColor, 0.5f);
     }
 
@@ -41,7 +41,7 @@ public class StartButtonController : MonoBehaviour
     {
         countdownText.gameObject.SetActive(true);
 
-        string[] countdown = { "3", "2", "1", "START" };
+        string[] countdown = { "参", "弐", "壱", "始め" };
         foreach (string count in countdown)
         {
             countdownText.text = count;
