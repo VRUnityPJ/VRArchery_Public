@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _arrow: {fileID: 2595377709587373617}
-  _speed: 40
+  _speed: 55
   ArrowGrip: {fileID: 0}
   _arrowFeatherPoint: {fileID: 931186616556519366}
   yaFlyingManager: {fileID: 68846529471585332}
