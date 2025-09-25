@@ -1,5 +1,4 @@
 using System;
-using System.Runtime.InteropServices;
 using System.Threading;
 using _VRArchery.Scripts.Runtime.Target;
 using Cysharp.Threading.Tasks;
@@ -38,7 +37,7 @@ namespace _VRArchery.Scripts.Runtime.Stage
 
                 target.MoveAsync(token).Forget();
 
-                await UniTask.Delay(TimeSpan.FromSeconds(3), cancellationToken: token);
+                await UniTask.Delay(TimeSpan.FromSeconds(2), cancellationToken: token);
             }
         }
     }

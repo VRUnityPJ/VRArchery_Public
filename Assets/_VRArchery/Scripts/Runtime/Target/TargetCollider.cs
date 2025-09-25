@@ -1,5 +1,6 @@
 using System.Threading;
 using _VRArchery.Scripts.Runtime.Score;
+using _VRArchery.Scripts.Utility;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
@@ -36,7 +37,7 @@ namespace _VRArchery.Scripts.Runtime.Target
             }
             finally
             {
-                Debug.Log("動作停止");
+                CustomDebug.Log("動作停止");
                 Destroy(gameObject);
             }
         }

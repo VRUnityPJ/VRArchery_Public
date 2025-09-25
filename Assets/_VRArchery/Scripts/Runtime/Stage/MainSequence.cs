@@ -14,8 +14,7 @@ namespace _VRArchery.Scripts.Runtime.Stage
         [SerializeField] private StartButtonController _startButtonController;
         [SerializeField] private TargetSpawner _targetSpawner;
         [SerializeField] private TimeController _timeController;
-
-        private readonly CancellationTokenSource _cts = new();
+        [SerializeField] private ScorePresenter _scorePresenter;
 
         private async UniTaskVoid Start() => GameStartAsync().Forget();
 
@@ -24,7 +23,8 @@ namespace _VRArchery.Scripts.Runtime.Stage
             //ループ開始
             while (!destroyCancellationToken.IsCancellationRequested)
             {
-                var cts = CancellationTokenSource.CreateLinkedTokenSource(destroyCancellationToken, _cts.Token);
+                using var cts = CancellationTokenSource.CreateLinkedTokenSource(destroyCancellationToken);
+
                 _startButtonController.Init();
 
                 //ボタンが押されてカウントダウンが終わるまで待機
@@ -38,6 +38,8 @@ namespace _VRArchery.Scripts.Runtime.Stage
 
                 CustomDebug.Log("ゲーム終了");
                 cts.Cancel();
+
+                await _scorePresenter.OnShowScoreAnimationAsync(destroyCancellationToken);
             }
         }
 
