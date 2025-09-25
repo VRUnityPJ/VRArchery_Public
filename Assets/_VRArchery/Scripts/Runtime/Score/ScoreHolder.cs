@@ -6,7 +6,7 @@ namespace _VRArchery.Scripts.Runtime.Score
     /// <summary>
     /// スコアを管理するクラス
     /// </summary>
-    public sealed class ScoreHolder:MonoBehaviour
+    public sealed class ScoreHolder
     {
         /// <summary>
         /// スコアランク
