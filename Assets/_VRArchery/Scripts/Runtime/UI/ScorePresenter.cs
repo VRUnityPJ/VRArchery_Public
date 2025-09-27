@@ -20,11 +20,11 @@ namespace _VRArchery.Scripts.Runtime.UI
             _scoreText.rectTransform.localScale = Vector2.zero;
 
             _scoreHolder.Score
-                .Subscribe(value =>
+                .Subscribe(_scoreText, static (value, scoreText) =>
                 {
-                    _scoreText.text = value.ToString();
+                    scoreText.text = $"Score : {value}";
                 })
-                .AddTo(this);
+                .AddTo(destroyCancellationToken);
         }
 
         /// <summary>

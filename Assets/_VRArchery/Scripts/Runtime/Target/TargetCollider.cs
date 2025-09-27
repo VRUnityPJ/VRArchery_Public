@@ -31,8 +31,12 @@ namespace _VRArchery.Scripts.Runtime.Target
             {
                 while (!cts.IsCancellationRequested)
                 {
-                    await transform.DOMoveX(transform.position.x + 5, 3f).ToUniTask(cancellationToken: cts.Token);
-                    await transform.DOMoveX(transform.position.x - 5, 3f).ToUniTask(cancellationToken: cts.Token);
+                    var seq = DOTween.Sequence();
+
+                    await seq
+                        .Append(transform.DOMoveX(transform.position.x + 5, 3f))
+                        .Append(transform.DOMoveX(transform.position.x - 5, 3f))
+                        .ToUniTask(cancellationToken: token);
                 }
             }
             finally
