@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using _VRArchery.Scripts.Runtime.Target;
 using Cysharp.Threading.Tasks;
+using R3.Triggers;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -38,6 +39,7 @@ namespace _VRArchery.Scripts.Runtime.Stage
                 target.MoveAsync(token).Forget();
 
                 await UniTask.Delay(TimeSpan.FromSeconds(2), cancellationToken: token);
+
             }
         }
     }
