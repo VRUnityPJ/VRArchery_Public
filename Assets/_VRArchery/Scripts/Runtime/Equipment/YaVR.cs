@@ -4,6 +4,7 @@ using _VRArchery.Scripts.Utility;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Scripting;
 using UnityEngine.UIElements;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
@@ -198,4 +199,22 @@ public class YaVR : MonoBehaviour
     }
 
 
+}
+
+public class hoge
+{
+    private int aaa;
+    private string bbb = "aiueo";
+
+    private float AAA()
+    {
+        aaa++;
+        return aaa;
+
+    }
+    private void fgfg()
+    {
+     var a=   AAA();
+
+    }
 }
