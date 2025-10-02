@@ -1,4 +1,3 @@
-using Ranking.Demo.Scripts.DemoGame;
 using UnityEngine;
 
 namespace RankingSystem.Scripts
@@ -15,7 +14,6 @@ namespace RankingSystem.Scripts
             if(!TryGetComponent<PlayerScoreHolder>(out _holder))
                 Debug.LogError("ScoreHolderが取得できません");
         }
-
 
         public void AddScore(int num)
         {

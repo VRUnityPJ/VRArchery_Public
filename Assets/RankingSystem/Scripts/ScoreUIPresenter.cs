@@ -1,5 +1,4 @@
 using R3;
-using Ranking.Demo.Scripts.DemoGame;
 using UnityEngine;
 
 namespace RankingSystem.Scripts
