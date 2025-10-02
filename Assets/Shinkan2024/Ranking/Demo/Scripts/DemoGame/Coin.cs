@@ -1,3 +1,4 @@
+using RankingSystem.Scripts;
 using UnityEngine;
 
 namespace Ranking.Demo.Scripts.DemoGame 

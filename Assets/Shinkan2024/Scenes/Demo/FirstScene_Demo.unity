@@ -955,7 +955,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d700fad37ddac804d830df57a6f7918c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneName: VoxelTest
+  _sceneName: SampleScene
 --- !u!1 &140501656
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,7 +997,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 140501656}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1b7308f000e5b940aa71e815e57f252, type: 3}
+  m_Script: {fileID: 11500000, guid: 8bed010237b7c9c4587f5b8e6442710e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _initializeSceneNames:
@@ -1590,7 +1590,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4220fe4cc9b94a745aff829363ed7ff4, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 4220fe4cc9b94a745aff829363ed7ff4, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.1
@@ -3964,7 +3964,7 @@ GameObject:
   - component: {fileID: 616041553}
   - component: {fileID: 616041556}
   - component: {fileID: 616041558}
-  - component: {fileID: 616041557}
+  - component: {fileID: 616041559}
   m_Layer: 0
   m_Name: KeyBoard
   m_TagString: Untagged
@@ -4058,18 +4058,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb113f5688622db4d8a71eccad23f08a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &616041557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 616041551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39ba9d14a2cb1fa4fb663dae21256090, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &616041558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4082,9 +4070,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc262e1332da4af5bde90b306a7af216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameScene: RankingRegisteringTest
+  _gameScene: RankingRegisterTest
   _enter: {fileID: 126046622}
   _inputcol: {fileID: 616041555}
+--- !u!114 &616041559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616041551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7135fbd19e58bb9408f339c8ff2230b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &631418573
 GameObject:
   m_ObjectHideFlags: 0

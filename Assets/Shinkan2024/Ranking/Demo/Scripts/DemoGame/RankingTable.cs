@@ -1,6 +1,7 @@
 ﻿using System;
 using Ranking.Scripts;
 using Ranking.Scripts.DataBase;
+using RankingSystem.Scripts;
 using TMPro;
 using UnityEngine;
 
