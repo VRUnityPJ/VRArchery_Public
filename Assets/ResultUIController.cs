@@ -11,6 +11,8 @@ namespace _VRArchery.Scripts.Runtime.UI
     {
         [SerializeField] private TextMeshProUGUI _finalScoreText;
         [SerializeField] private TextMeshProUGUI _rankText;
+        [SerializeField] private TextMeshProUGUI _endText;
+
 
         private void Start() => Init();
 
@@ -21,6 +23,7 @@ namespace _VRArchery.Scripts.Runtime.UI
         {
             _finalScoreText.gameObject.SetActive(false);
             _rankText.gameObject.SetActive(false);
+            _endText.gameObject.SetActive(false);
         }
 
         /// <summary>
@@ -28,6 +31,19 @@ namespace _VRArchery.Scripts.Runtime.UI
         /// </summary>
         public async UniTask ShowResultAsync(int score, CancellationToken token)
         {
+            // 「やめ」表示
+            _endText.gameObject.SetActive(true);
+            _endText.text = "やめ";
+            _endText.rectTransform.localScale = Vector3.one * 0.5f;
+            _endText.rectTransform
+                .DOScale(5f, 0.5f)
+                .SetEase(Ease.OutBack);
+
+            await UniTask.Delay(TimeSpan.FromSeconds(2f), cancellationToken: token);
+
+            // 「やめ」非表示
+            _endText.gameObject.SetActive(false);
+
             ShowScore(score); // View更新
             await UniTask.Delay(TimeSpan.FromSeconds(1f), cancellationToken: token);
             ShowRank(score);  // View更新
