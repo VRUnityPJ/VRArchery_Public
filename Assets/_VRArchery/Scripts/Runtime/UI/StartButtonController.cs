@@ -6,11 +6,13 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using R3;
 
 namespace _VRArchery.Scripts.Runtime.UI
 {
     public class StartButtonController : MonoBehaviour
     {
+        [SerializeField] private UiAudioPlayer _audioPlayer;
         [SerializeField]
         private Button _startButton;
 
@@ -70,7 +72,17 @@ namespace _VRArchery.Scripts.Runtime.UI
                 // スケールをリセットしてからアニメーション
                 _countdownText.rectTransform.localScale = Vector3.one * 0.5f; // 小さくして
 
-                await _countdownText.rectTransform
+                if (count == "始め")
+                {
+                    _audioPlayer.PlayCountDownShellSound();
+                }
+                else
+                {
+                    _audioPlayer.PlayCountDownSound();
+                }
+
+
+            await _countdownText.rectTransform
                     .DOScale(1f, 0.3f)
                     .ToUniTask(cancellationToken:token); // ふわっと大きく
 
