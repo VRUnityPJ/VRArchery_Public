@@ -13,17 +13,23 @@ namespace _VRArchery.Scripts.Runtime.Target
     {
         [Inject]
         private ScoreHolder _scoreHolder;
+        [Tooltip("ヒットストップさせる時間（秒）")]
+        [SerializeField] private float _hitStopDuration = 0.1f;
+        
+        [Tooltip("ヒットストップ中のTime.timeScale")]
+        [SerializeField] private float _hitStopTimeScale = 0.1f;
 
         private const float LifeTimeSec = 10f;
 
         private void OnTriggerEnter(Collider other)
         {
-            //矢にぶつかったとき
-            if(other.gameObject.CompareTag("Arrow"))
+            //敵にぶつかったとき
+            if (other.gameObject.CompareTag("Arrow"))
             {
                 _scoreHolder.AddScore(100);
+                HitStopManager.Apply(_hitStopDuration, _hitStopTimeScale);
                 Destroy(gameObject);
-                CustomDebug.Log(_scoreHolder.Score);
+                Debug.Log(_scoreHolder.Score);
             }
         }
 

@@ -151,3 +151,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be06102ca96a7e84a94a375901b7a95d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hitStopDuration: 2
+  _hitStopTimeScale: 0.3

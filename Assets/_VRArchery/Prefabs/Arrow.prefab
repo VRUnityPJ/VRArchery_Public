@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7091752533535441673}
   m_Layer: 0
   m_Name: ArrowFeatherPoint
-  m_TagString: Untagged
+  m_TagString: Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,12 +42,12 @@ GameObject:
   - component: {fileID: 1875841258054943605}
   - component: {fileID: 68846529471585332}
   - component: {fileID: 2117177901420931687}
-  - component: {fileID: 2336468280044468224}
-  - component: {fileID: 1559665658159011878}
-  - component: {fileID: -5435805867786594485}
+  - component: {fileID: 7366904164874558922}
+  - component: {fileID: 1323765635166232602}
+  - component: {fileID: 8194743572323301917}
   m_Layer: 0
   m_Name: Arrow
-  m_TagString: Untagged
+  m_TagString: Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,10 +98,31 @@ MonoBehaviour:
   _arrowFeatherPoint: {fileID: 931186616556519366}
   yaFlyingManager: {fileID: 68846529471585332}
   _actionAsset: {fileID: -944628639613478452, guid: 4a223f89f8b456d4ab0d3c07be765882, type: 3}
-  _grabInteract: {fileID: 1559665658159011878}
+  _grabInteract: {fileID: 8194743572323301917}
   ArrowCounter: {fileID: 0}
   ArrowGrabber: {fileID: 0}
---- !u!54 &2336468280044468224
+--- !u!65 &7366904164874558922
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2595377709587373617}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.087198615, y: 0.08757301, z: 1.072917}
+  m_Center: {x: 0.00038152933, y: -0.008577682, z: 0.5216371}
+--- !u!54 &1323765635166232602
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,7 +149,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1559665658159011878
+--- !u!114 &8194743572323301917
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -200,7 +221,7 @@ MonoBehaviour:
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
-  m_AttachTransform: {fileID: 8452814984202590706}
+  m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
   m_UseDynamicAttach: 0
   m_MatchAttachPosition: 1
@@ -377,7 +398,7 @@ GameObject:
   - component: {fileID: 8452814984202590706}
   m_Layer: 0
   m_Name: AttachPosition
-  m_TagString: Untagged
+  m_TagString: Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -408,7 +429,7 @@ GameObject:
   - component: {fileID: 1163973668669153390}
   m_Layer: 0
   m_Name: Arrow
-  m_TagString: Untagged
+  m_TagString: Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -443,7 +464,7 @@ GameObject:
   - component: {fileID: 2244822084769370136}
   m_Layer: 0
   m_Name: NockRange
-  m_TagString: Untagged
+  m_TagString: Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -569,12 +590,11 @@ GameObject:
   - component: {fileID: 5302667747962408324}
   - component: {fileID: 4078193924255941464}
   - component: {fileID: 3163465316188016228}
-  - component: {fileID: 4899064218905003927}
   - component: {fileID: 9206853495990351115}
   - component: {fileID: 6561218450549625315}
   m_Layer: 0
   m_Name: "\u77E2_Grabbable (1)"
-  m_TagString: Untagged
+  m_TagString: Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -653,27 +673,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4899064218905003927
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6104487565087410486}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.021653658, y: 0.3322152, z: 0.019000981}
-  m_Center: {x: -0.00013676359, y: 0.16324794, z: 0.0029703875}
 --- !u!114 &9206853495990351115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -698,8 +697,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 028c8b79e53048f4eadffce0faf03bf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _arrow: {fileID: 6104487565087410486}
-  _speed: 40
+  _arrow: {fileID: 2595377709587373617}
+  _speed: 55
   ArrowGrip: {fileID: 0}
   _arrowFeatherPoint: {fileID: 931186616556519366}
   yaFlyingManager: {fileID: 9206853495990351115}
