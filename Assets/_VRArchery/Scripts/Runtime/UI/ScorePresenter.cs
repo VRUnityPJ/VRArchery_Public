@@ -13,8 +13,6 @@ namespace _VRArchery.Scripts.Runtime.UI
         private ResultUIController _resultUIController; //追加
         [SerializeField] private int _finalScore; // 最終スコア保存用
 
-
-
         /// <summary>
         /// ゲーム終了時にスコアをアニメーションさせて表示する
         /// </summary>

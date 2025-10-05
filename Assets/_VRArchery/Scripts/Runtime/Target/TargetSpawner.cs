@@ -1,15 +1,14 @@
 using System;
 using System.Threading;
-using _VRArchery.Scripts.Runtime.Target;
+using _VRArchery.Scripts.Runtime.Stage;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 using Random = UnityEngine.Random;
 
-namespace _VRArchery.Scripts.Runtime.Stage
+namespace _VRArchery.Scripts.Runtime.Target
 {
-
     public class TargetSpawner : MonoBehaviour
     {
         [SerializeField] private TargetCollider _targetPrefab;

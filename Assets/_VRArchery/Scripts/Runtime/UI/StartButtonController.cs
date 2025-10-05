@@ -1,5 +1,6 @@
 using System;
 using System.Threading;
+using _VRArchery.Scripts.Runtime.Sound;
 using _VRArchery.Scripts.Utility;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
@@ -55,7 +56,7 @@ namespace _VRArchery.Scripts.Runtime.UI
             // 色変更（例：赤に変化） → これはすぐに始めてOK
             Color targetColor = Color.white;
 
-            _startButton.image
+            await _startButton.image
                 .DOColor(targetColor, 0.5f)
                 .ToUniTask(cancellationToken: token);
         }
@@ -82,7 +83,7 @@ namespace _VRArchery.Scripts.Runtime.UI
                 }
 
 
-            await _countdownText.rectTransform
+                await _countdownText.rectTransform
                     .DOScale(1f, 0.3f)
                     .ToUniTask(cancellationToken:token); // ふわっと大きく
 
