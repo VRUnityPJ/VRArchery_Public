@@ -2,7 +2,6 @@ using System;
 using System.Threading;
 using _VRArchery.Scripts.Runtime.Target;
 using Cysharp.Threading.Tasks;
-using R3.Triggers;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
