@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using _VRArchery.Scripts.Runtime.Score;
 using _VRArchery.Scripts.Utility;
@@ -18,6 +19,8 @@ namespace _VRArchery.Scripts.Runtime.Target
         [Tooltip("ヒットストップ中のTime.timeScale")]
         [SerializeField] private float _hitStopTimeScale = 0.1f;
 
+        private const float LifeTimeSec = 10f;
+
         private void OnTriggerEnter(Collider other)
         {
             //敵にぶつかったとき
@@ -25,32 +28,41 @@ namespace _VRArchery.Scripts.Runtime.Target
             {
                 _scoreHolder.AddScore(100);
                 HitStopManager.Apply(_hitStopDuration, _hitStopTimeScale);
+                Destroy(gameObject);
                 Debug.Log(_scoreHolder.Score);
-                CustomDebug.Log("矢が刺さった");
             }
         }
 
+        /// <summary>
+        /// 的のアニメーションを行う
+        /// </summary>
+        /// <param name="token"></param>
         public async UniTask MoveAsync(CancellationToken token)
         {
+            //受け取ったキャンセルトークンとdestroyCancellationTokenをくっつけて
+            //どちらかがキャンセルされたら発火するキャンセルトークンを新たに生成
             using var cts = CancellationTokenSource.CreateLinkedTokenSource(token, destroyCancellationToken);
+            DestroyAsync(LifeTimeSec, cts.Token).Forget();
 
             try
             {
-                while (!cts.IsCancellationRequested)
-                {
-                    var seq = DOTween.Sequence();
-
-                    await seq
-                        .Append(transform.DOMoveX(transform.position.x + 5, 3f))
-                        .Append(transform.DOMoveX(transform.position.x - 5, 3f))
-                        .ToUniTask(cancellationToken: token);
-                }
+                var seq = DOTween.Sequence();
+                await seq
+                    .Append(transform.DOMoveX(transform.position.x + 5, 3f))
+                    .SetLoops(-1, LoopType.Yoyo)
+                    .ToUniTask(cancellationToken: cts.Token);
             }
             finally
             {
                 CustomDebug.Log("動作停止");
                 Destroy(gameObject);
             }
+        }
+
+        private async UniTask DestroyAsync(float timeSec , CancellationToken token)
+        {
+            await UniTask.Delay(TimeSpan.FromSeconds(timeSec), cancellationToken: token);
+            Destroy(gameObject);
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Threading;
 using _VRArchery.Scripts.Runtime.Target;
+using _VRArchery.Scripts.Runtime.Tutorial;
 using _VRArchery.Scripts.Runtime.UI;
 using _VRArchery.Scripts.Utility;
 using Cysharp.Threading.Tasks;
@@ -16,9 +17,13 @@ namespace _VRArchery.Scripts.Runtime.Stage
         [SerializeField] private TargetSpawner _targetSpawner;
         [SerializeField] private TimeController _timeController;
         [SerializeField] private ScorePresenter _scorePresenter;
+        [SerializeField] private TutorialPresenter _tutorialPresenter;
 
         private async UniTaskVoid Start() => GameStartAsync().Forget();
 
+        /// <summary>
+        /// メインゲームを進行する
+        /// </summary>
         private async UniTask GameStartAsync()
         {
             //ループ開始
@@ -27,6 +32,16 @@ namespace _VRArchery.Scripts.Runtime.Stage
                 using var cts = CancellationTokenSource.CreateLinkedTokenSource(destroyCancellationToken);
 
                 _startButtonController.Init();
+                _tutorialPresenter.Init();
+
+                //チュートリアルを開始するか選択する
+                var isTutorialStart = await _tutorialPresenter.TryTutorialAsync(cts.Token);
+
+                if (isTutorialStart)
+                {
+                    // チュートリアルを開始する
+                    await _tutorialPresenter.StartTutorialAsync(cts.Token);
+                }
 
                 //ボタンが押されてカウントダウンが終わるまで待機
                 await _startButtonController.OnStartButtonClickedAsync(cts.Token);
