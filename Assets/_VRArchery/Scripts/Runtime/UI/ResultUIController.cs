@@ -13,7 +13,6 @@ namespace _VRArchery.Scripts.Runtime.UI
         [SerializeField] private TextMeshProUGUI _rankText;
         [SerializeField] private TextMeshProUGUI _endText;
 
-
         private void Start() => Init();
 
         /// <summary>
