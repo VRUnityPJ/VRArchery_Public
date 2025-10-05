@@ -9,20 +9,20 @@ public class FixingBowWhenTriggered : MonoBehaviour
     private Vector3 _initialLocalBowPosition;
     private Quaternion _initialLocalBowRotation;
 
-    void Start()
+    private void Start()
     {
         // Bowの初期位置と回転を保存
         _initialLocalBowPosition = _bow.transform.localPosition;
         _initialLocalBowRotation = _bow.transform.localRotation;
     }
 
-    void Update()
+    private void Update()
     {
         // Left Triggerが押されっぱなしの時
         if (_leftIndexTriggerAction.action.IsPressed())
         {
             // Bowがまだ子オブジェクトの場合、親子関係を一度だけ解除して位置を固定
-            if (_bow.transform.parent != null)
+            if (_bow.transform.parent)
             {
                 _bow.transform.parent = null;
             }
@@ -34,12 +34,11 @@ public class FixingBowWhenTriggered : MonoBehaviour
         else
         {
             // Bowが親子関係にない場合、関係を再設定する
-            if (_bow.transform.parent == null)
-            {
-                _bow.transform.parent = this.transform;
-                _bow.transform.localPosition = _initialLocalBowPosition;
-                _bow.transform.localRotation = _initialLocalBowRotation;
-            }
+            if (_bow.transform.parent) return;
+
+            _bow.transform.parent = this.transform;
+            _bow.transform.localPosition = _initialLocalBowPosition;
+            _bow.transform.localRotation = _initialLocalBowRotation;
         }
     }
 }

@@ -1,16 +1,19 @@
 using System;
 using System.Threading;
+using _VRArchery.Scripts.Runtime.Sound;
 using _VRArchery.Scripts.Utility;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using R3;
 
 namespace _VRArchery.Scripts.Runtime.UI
 {
     public class StartButtonController : MonoBehaviour
     {
+        [SerializeField] private UiAudioPlayer _audioPlayer;
         [SerializeField]
         private Button _startButton;
 
@@ -53,7 +56,7 @@ namespace _VRArchery.Scripts.Runtime.UI
             // 色変更（例：赤に変化） → これはすぐに始めてOK
             Color targetColor = Color.white;
 
-            _startButton.image
+            await _startButton.image
                 .DOColor(targetColor, 0.5f)
                 .ToUniTask(cancellationToken: token);
         }
@@ -69,6 +72,16 @@ namespace _VRArchery.Scripts.Runtime.UI
 
                 // スケールをリセットしてからアニメーション
                 _countdownText.rectTransform.localScale = Vector3.one * 0.5f; // 小さくして
+
+                if (count == "始め")
+                {
+                    _audioPlayer.PlayCountDownShellSound();
+                }
+                else
+                {
+                    _audioPlayer.PlayCountDownSound();
+                }
+
 
                 await _countdownText.rectTransform
                     .DOScale(1f, 0.3f)

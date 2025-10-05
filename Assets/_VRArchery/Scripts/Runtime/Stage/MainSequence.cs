@@ -1,4 +1,5 @@
 using System.Threading;
+using _VRArchery.Scripts.Runtime.Target;
 using _VRArchery.Scripts.Runtime.UI;
 using _VRArchery.Scripts.Utility;
 using Cysharp.Threading.Tasks;

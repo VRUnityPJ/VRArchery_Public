@@ -1,5 +1,6 @@
 using _VRArchery.Scripts.Runtime.Score;
 using _VRArchery.Scripts.Runtime.Stage;
+using _VRArchery.Scripts.Runtime.Target;
 using _VRArchery.Scripts.Runtime.UI;
 using UnityEngine;
 using VContainer;
