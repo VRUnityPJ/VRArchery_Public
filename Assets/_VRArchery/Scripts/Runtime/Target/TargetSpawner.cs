@@ -37,6 +37,7 @@ namespace _VRArchery.Scripts.Runtime.Target
                 target.MoveAsync(token).Forget();
 
                 await UniTask.Delay(TimeSpan.FromSeconds(2), cancellationToken: token);
+
             }
         }
     }

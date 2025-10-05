@@ -7,7 +7,6 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using R3;
 
 namespace _VRArchery.Scripts.Runtime.UI
 {
@@ -28,7 +27,7 @@ namespace _VRArchery.Scripts.Runtime.UI
         public void Init()
         {
             _countdownText.gameObject.SetActive(false);
-            _startButton.gameObject.SetActive(true);
+            _startButton.gameObject.SetActive(false);
 
         }
         /// <summary>
@@ -37,6 +36,7 @@ namespace _VRArchery.Scripts.Runtime.UI
         /// <param name="token"></param>
         public async UniTask OnStartButtonClickedAsync(CancellationToken token)
         {
+            _startButton.gameObject.SetActive(true);
             await _startButton.OnClickAsync(token);
 
             // アニメーション：ふわっと大きくなる
@@ -81,7 +81,6 @@ namespace _VRArchery.Scripts.Runtime.UI
                 {
                     _audioPlayer.PlayCountDownSound();
                 }
-
 
                 await _countdownText.rectTransform
                     .DOScale(1f, 0.3f)
