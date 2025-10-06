@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using System.Collections; // コルーチンを使用するために必要
 
 public class GrabDetector : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class GrabDetector : MonoBehaviour
 
     [SerializeField]
     private ArrowGrabber _arrowGrabber;
+
+    // 処理が重複して実行されるのを防ぐためのフラグ
+    private bool _isProcessingGrab = false;
 
     void Awake()
     {
@@ -20,50 +24,50 @@ public class GrabDetector : MonoBehaviour
             return;
         }
 
-        // 掴まれた時のイベントにメソッドを登録
         _interactable.selectEntered.AddListener(OnGrabbed);
     }
 
-    /// <summary>
-    /// オブジェクトが掴まれた時に呼び出されるメソッド
-    /// </summary>
-    /// <param name="args">イベントの引数。掴んだInteractorの情報が含まれる。</param>
     private void OnGrabbed(SelectEnterEventArgs args)
     {
-        // 掴んだInteractorのGameObjectを取得
+        // 既に処理中の場合は、二重に実行しない
+        if (_isProcessingGrab) return;
+
         GameObject interactorObject = args.interactorObject.transform.gameObject;
+        
+        // interactorObjectからNearFarInteractorコンポーネントを取得
+        var interactor = interactorObject.GetComponent<NearFarInteractor>();
 
-        Debug.Log($"オブジェクト '{gameObject.name}' が掴まれました！");
-        Debug.Log($"掴んだのは '{interactorObject.name}' です。");
-
-        if (interactorObject.name.Contains("Near-Far"))
+        if (interactor != null)
         {
-            var interactor = interactorObject.GetComponent<NearFarInteractor>();
-            if (interactor.handedness == InteractorHandedness.Left)
-            {
-                Debug.Log("左手で掴まれました。");
-                _arrowGrabber.GrabArrow(Hand.Right);
-                _arrowGrabber.ArrowGrabHand = Hand.Right;
-
-            }
-            else if (interactor.handedness == InteractorHandedness.Right)
-            {
-                Debug.Log("右手で掴まれました。");
-                _arrowGrabber.GrabArrow(Hand.Left);
-                _arrowGrabber.ArrowGrabHand = Hand.Left;
-            }
-            else
-            {
-                Debug.Log("不明な方の手によって掴まれました。");
-            }
+            // 弓を掴んだ手とは反対の手を判別
+            Hand oppositeHand = (interactor.handedness == InteractorHandedness.Left) ? Hand.Right : Hand.Left;
+            
+            // コルーチンを開始して、1フレーム後に矢を掴ませる処理を呼び出す
+            StartCoroutine(GrabArrowWithDelay(oppositeHand));
         }
         else
         {
-            Debug.Log("不明なInteractorによって掴まれました。");
+            Debug.LogWarning("Interactor is not a NearFarInteractor.", interactorObject);
         }
+    }
 
-        // ここに、掴んだInteractorに応じた処理を記述
-        // 例: 特定の手で掴んだ時だけ特殊なエフェクトを再生する
+    /// <summary>
+    /// 1フレーム待機した後に、矢を掴ませる処理を呼び出すコルーチン
+    /// </summary>
+    /// <param name="hand">矢を掴ませる手</param>
+    private IEnumerator GrabArrowWithDelay(Hand hand)
+    {
+        _isProcessingGrab = true;
+
+        // 1フレーム待機する。これにより、弓を掴むインタラクションが完全に確定する
+        yield return null;
+
+        // 矢を生成して、指定した手に掴ませる
+        _arrowGrabber.GrabArrow(hand);
+        _arrowGrabber.ArrowGrabHand = hand;
+
+        // 処理が完了したのでフラグを戻す
+        _isProcessingGrab = false;
     }
 
     void OnDestroy()
