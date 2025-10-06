@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class YaFlyingManager : MonoBehaviour
+public class ArrowFaceMovement : MonoBehaviour
 {
     internal bool IsFlying = false;
 

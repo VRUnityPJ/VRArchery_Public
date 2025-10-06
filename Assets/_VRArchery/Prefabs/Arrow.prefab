@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 7366904164874558922}
   - component: {fileID: 1323765635166232602}
   - component: {fileID: 8194743572323301917}
+  - component: {fileID: -5435805867786594485}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Arrow
@@ -96,7 +97,7 @@ MonoBehaviour:
   _speed: 55
   ArrowGrip: {fileID: 0}
   _arrowFeatherPoint: {fileID: 931186616556519366}
-  yaFlyingManager: {fileID: 68846529471585332}
+  _arrowFaceMovement: {fileID: 68846529471585332}
   _actionAsset: {fileID: -944628639613478452, guid: 4a223f89f8b456d4ab0d3c07be765882, type: 3}
   _grabInteract: {fileID: 8194743572323301917}
   ArrowCounter: {fileID: 0}
@@ -574,7 +575,7 @@ MonoBehaviour:
   _speed: 5
   ArrowGrip: {fileID: 0}
   _arrowFeatherPoint: {fileID: 0}
-  yaFlyingManager: {fileID: 9206853495990351115}
+  _arrowFaceMovement: {fileID: 0}
   _actionAsset: {fileID: -944628639613478452, guid: 4a223f89f8b456d4ab0d3c07be765882, type: 3}
   _grabInteract: {fileID: 0}
   ArrowCounter: {fileID: 0}
@@ -701,7 +702,7 @@ MonoBehaviour:
   _speed: 55
   ArrowGrip: {fileID: 0}
   _arrowFeatherPoint: {fileID: 931186616556519366}
-  yaFlyingManager: {fileID: 9206853495990351115}
+  _arrowFaceMovement: {fileID: 0}
   _actionAsset: {fileID: -944628639613478452, guid: 4a223f89f8b456d4ab0d3c07be765882, type: 3}
   _grabInteract: {fileID: 0}
   ArrowCounter: {fileID: 0}

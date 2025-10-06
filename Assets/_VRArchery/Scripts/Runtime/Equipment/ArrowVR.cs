@@ -8,7 +8,7 @@ using UnityEngine.Scripting;
 using UnityEngine.UIElements;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
-public class YaVR : MonoBehaviour
+public class ArrowVR : MonoBehaviour
 {
     private bool _isFlying;
     private bool _isNocking = false;
@@ -23,7 +23,7 @@ public class YaVR : MonoBehaviour
     /// </summary>
     [SerializeField] public GameObject ArrowGrip;
     [SerializeField] private GameObject _arrowFeatherPoint;
-    [SerializeField] YaFlyingManager yaFlyingManager;
+    [SerializeField] private ArrowFaceMovement _arrowFaceMovement;
     [SerializeField] private InputActionAsset _actionAsset;
     [SerializeField] private XRGrabInteractable _grabInteract;
     private InputAction nockAction;
@@ -166,7 +166,7 @@ public class YaVR : MonoBehaviour
             _grabInteract.trackRotation = true;
             _isNocking = false;
             ForceRelease();
-            yaFlyingManager.IsFlying = true;
+            _arrowFaceMovement.IsFlying = true;
             _rb.useGravity = true;
             ArrowCounter.AddArrowCount();
             if (ArrowGrip.transform.position != null)

@@ -56,12 +56,12 @@ public class ArrowGrabber : MonoBehaviour
         }
 
         GameObject newArrowObj = Instantiate(_arrowPrefab);
-        var yaVR = newArrowObj.GetComponent<YaVR>();
-        if (yaVR != null)
+        var arrowVR = newArrowObj.GetComponent<ArrowVR>();
+        if (arrowVR != null)
         {
-            yaVR.ArrowGrip = _bowObject;
-            yaVR.ArrowCounter = _arrowCounter;
-            yaVR.ArrowGrabber = this;
+            arrowVR.ArrowGrip = _bowObject;
+            arrowVR.ArrowCounter = _arrowCounter;
+            arrowVR.ArrowGrabber = this;
         }
         XRGrabInteractable newInteractable = newArrowObj.GetComponent<XRGrabInteractable>();
 
