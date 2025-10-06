@@ -1,80 +1,83 @@
+using System.Threading;
+using _VRArchery.Scripts.Utility;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
-using System.Collections; // コルーチンを使用するために必要
 
-public class GrabDetector : MonoBehaviour
+namespace _VRArchery.Scripts.Runtime.Equipment
 {
-    private XRGrabInteractable _interactable;
-
-    [SerializeField]
-    private ArrowGrabber _arrowGrabber;
-
-    // 処理が重複して実行されるのを防ぐためのフラグ
-    private bool _isProcessingGrab = false;
-
-    void Awake()
+    public class GrabDetector : MonoBehaviour
     {
-        _interactable = GetComponent<XRGrabInteractable>();
+        private XRGrabInteractable _interactable;
 
-        if (_interactable == null)
+        [SerializeField]
+        private ArrowGrabber _arrowGrabber;
+
+        // 処理が重複して実行されるのを防ぐためのフラグ
+        private bool _isProcessingGrab = false;
+
+        private void Awake()
         {
-            Debug.LogError("XRGrabInteractable component not found on this GameObject.");
-            return;
+            TryGetComponent<XRGrabInteractable>(out _interactable);
+
+            if (_interactable == null)
+            {
+                Debug.LogError("XRGrabInteractable component not found on this GameObject.");
+                return;
+            }
+
+            _interactable.selectEntered.AddListener(OnGrabbed);
         }
 
-        _interactable.selectEntered.AddListener(OnGrabbed);
-    }
-
-    private void OnGrabbed(SelectEnterEventArgs args)
-    {
-        // 既に処理中の場合は、二重に実行しない
-        if (_isProcessingGrab) return;
-
-        GameObject interactorObject = args.interactorObject.transform.gameObject;
-        
-        // interactorObjectからNearFarInteractorコンポーネントを取得
-        var interactor = interactorObject.GetComponent<NearFarInteractor>();
-
-        if (interactor != null)
+        private void OnGrabbed(SelectEnterEventArgs args)
         {
-            // 弓を掴んだ手とは反対の手を判別
-            Hand oppositeHand = (interactor.handedness == InteractorHandedness.Left) ? Hand.Right : Hand.Left;
-            
-            // コルーチンを開始して、1フレーム後に矢を掴ませる処理を呼び出す
-            StartCoroutine(GrabArrowWithDelay(oppositeHand));
+            // 既に処理中の場合は、二重に実行しない
+            if (_isProcessingGrab) return;
+
+            GameObject interactorObject = args.interactorObject.transform.gameObject;
+
+            // interactorObjectからNearFarInteractorコンポーネントを取得
+            interactorObject.TryGetComponent<NearFarInteractor>(out var interactor);
+
+            if (interactor != null)
+            {
+                // 弓を掴んだ手とは反対の手を判別
+                Hand oppositeHand = (interactor.handedness == InteractorHandedness.Left) ? Hand.Right : Hand.Left;
+
+                GrabArrowDelayAsync(oppositeHand, destroyCancellationToken).Forget();
+            }
+            else
+            {
+                CustomDebug.LogWarning($"Interactor is not a NearFarInteractor: {interactorObject}");
+            }
         }
-        else
+
+        /// <summary>
+        /// 1フレーム待機した後に、矢を掴ませる処理を呼び出すUniTask
+        /// </summary>
+        /// <param name="hand">矢を掴ませる手</param>
+        private async UniTask GrabArrowDelayAsync(Hand hand, CancellationToken token)
         {
-            Debug.LogWarning("Interactor is not a NearFarInteractor.", interactorObject);
+            token.ThrowIfCancellationRequested();
+            _isProcessingGrab = true;
+            // 1フレーム待機する。これにより、弓を掴むインタラクションが完全に確定する
+            await UniTask.NextFrame();
+            // 矢を生成して、指定した手に掴ませる
+            _arrowGrabber.GrabArrow(hand);
+            _arrowGrabber.ArrowGrabHand = hand;
+
+            // 処理が完了したのでフラグを戻す
+            _isProcessingGrab = false;
         }
-    }
 
-    /// <summary>
-    /// 1フレーム待機した後に、矢を掴ませる処理を呼び出すコルーチン
-    /// </summary>
-    /// <param name="hand">矢を掴ませる手</param>
-    private IEnumerator GrabArrowWithDelay(Hand hand)
-    {
-        _isProcessingGrab = true;
-
-        // 1フレーム待機する。これにより、弓を掴むインタラクションが完全に確定する
-        yield return null;
-
-        // 矢を生成して、指定した手に掴ませる
-        _arrowGrabber.GrabArrow(hand);
-        _arrowGrabber.ArrowGrabHand = hand;
-
-        // 処理が完了したのでフラグを戻す
-        _isProcessingGrab = false;
-    }
-
-    void OnDestroy()
-    {
-        if (_interactable != null)
+        private void OnDestroy()
         {
-            _interactable.selectEntered.RemoveListener(OnGrabbed);
+            if (_interactable != null)
+            {
+                _interactable.selectEntered.RemoveListener(OnGrabbed);
+            }
         }
     }
 }
