@@ -1,28 +1,31 @@
 using UnityEngine;
 
-public class ArrowFaceMovement : MonoBehaviour
+namespace _VRArchery.Scripts.Runtime.Equipment
 {
-    internal bool IsFlying = false;
-
-    private Vector3 _prePosition;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class ArrowFaceMovement : MonoBehaviour
     {
-        _prePosition = transform.position;
-    }
+        public bool IsFlying { get; set; }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(IsFlying)//進行方向に回転
+        private Vector3 _prePosition;
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        private void Start()
         {
-            Vector3 velocity = transform.position - _prePosition;
-            if(velocity.magnitude > 0.01f)
-            {
-                Debug.Log("flying away");
-                transform.rotation = Quaternion.LookRotation(velocity);
-            }
             _prePosition = transform.position;
+        }
+
+        // Update is called once per frame
+        private void Update()
+        {
+            if(IsFlying)//進行方向に回転
+            {
+                Vector3 velocity = transform.position - _prePosition;
+                if(velocity.magnitude > 0.01f)
+                {
+                    Debug.Log("flying away");
+                    transform.rotation = Quaternion.LookRotation(velocity);
+                }
+                _prePosition = transform.position;
+            }
         }
     }
 }

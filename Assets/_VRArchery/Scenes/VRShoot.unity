@@ -5448,11 +5448,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _arrow: {fileID: 3064036471652312049}
   _speed: 55
-  ArrowGrip: {fileID: 0}
   _arrowFeatherPoint: {fileID: 0}
-  yaFlyingManager: {fileID: 1041898475822604788}
+  _arrowFaceMovement: {fileID: 0}
   _actionAsset: {fileID: -944628639613478452, guid: 4a223f89f8b456d4ab0d3c07be765882, type: 3}
   _grabInteract: {fileID: 0}
+  ArrowGrip: {fileID: 0}
   ArrowCounter: {fileID: 0}
   ArrowGrabber: {fileID: 0}
 --- !u!1001 &1460562819199558690

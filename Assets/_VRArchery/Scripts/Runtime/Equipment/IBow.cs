@@ -1,7 +1,10 @@
 using UnityEngine;
 
-public interface IBow
+namespace _VRArchery.Scripts.Runtime.Equipment
 {
-    public GameObject GetWirePointObject();
-    public void ResetWirePointObject();
+    public interface IBow
+    {
+        public GameObject GetWirePointObject();
+        public void ResetWirePointObject();
+    }
 }
