@@ -103,6 +103,7 @@ public class YaVR : MonoBehaviour
             CustomDebug.Log("つかみ中！");
         }
 
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -120,6 +121,10 @@ public class YaVR : MonoBehaviour
             _rb.useGravity = false;
             CustomDebug.Log($"刺さった:{_rb.isKinematic}");
             //_boxCollider.isTrigger = true;
+        }
+        else if (other.gameObject.CompareTag("Stage"))
+        {
+            DelayDestroy().Forget(); 
         }
         if (other.gameObject.TryGetComponent(out IBow bow))
         {
@@ -196,6 +201,23 @@ public class YaVR : MonoBehaviour
     {
         await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
         ArrowGrabber.GrabArrow(ArrowGrabber.ArrowGrabHand);
+    }
+
+    async UniTask DelayDestroy()
+    {
+        _rb.isKinematic = true;
+        _boxCollider.enabled = false;
+
+        // CancellationToken を取得
+        var token = this.GetCancellationTokenOnDestroy();
+
+        // 2秒待つ。ただし、待っている間にオブジェクトが破壊されたら、
+        // 例外を発生させて処理を中断する
+        await UniTask.Delay(TimeSpan.FromSeconds(2), cancellationToken: token);
+
+        // このオブジェクトがまだ存在していれば破壊する
+        // (awaitで例外が投げられた場合、ここには到達しない)
+        Destroy(gameObject);
     }
 
 
