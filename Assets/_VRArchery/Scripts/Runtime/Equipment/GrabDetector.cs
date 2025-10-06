@@ -11,7 +11,6 @@ namespace _VRArchery.Scripts.Runtime.Equipment
     public class GrabDetector : MonoBehaviour
     {
         private XRGrabInteractable _interactable;
-
         [SerializeField]
         private ArrowGrabber _arrowGrabber;
 

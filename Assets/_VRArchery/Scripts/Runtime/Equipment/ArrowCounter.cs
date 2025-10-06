@@ -2,30 +2,33 @@ using _VRArchery.Scripts.Utility;
 using R3;
 using UnityEngine;
 
-public class ArrowCounter : MonoBehaviour
+namespace _VRArchery.Scripts.Runtime.Equipment
 {
-    public ReactiveProperty<int> ShootedArrowNum = new ReactiveProperty<int>(0);
-    [SerializeField] private int _maxArrow = 5;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class ArrowCounter : MonoBehaviour
     {
-        ShootedArrowNum.Subscribe(arrow =>
+        public ReactiveProperty<int> ShootedArrowNum = new ReactiveProperty<int>(0);
+        [SerializeField] private int _maxArrow = 5;
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        void Start()
         {
-            if (arrow == _maxArrow)
+            ShootedArrowNum.Subscribe(arrow =>
             {
-                //リザルト表示メソッド
-                CustomDebug.Log($"All Arrows Shooted");
-            }
-        });
-    }
+                if (arrow == _maxArrow)
+                {
+                    //リザルト表示メソッド
+                    CustomDebug.Log($"All Arrows Shooted");
+                }
+            });
+        }
 
-    public void AddArrowCount()
-    {
-        ShootedArrowNum.Value++;
-        CustomDebug.Log($"the Number of Shooted Arrows : {ShootedArrowNum.Value}");
-    }
-    public void ResetArrowCount()
-    {
-        ShootedArrowNum.Value = 0;
+        public void AddArrowCount()
+        {
+            ShootedArrowNum.Value++;
+            CustomDebug.Log($"the Number of Shooted Arrows : {ShootedArrowNum.Value}");
+        }
+        public void ResetArrowCount()
+        {
+            ShootedArrowNum.Value = 0;
+        }
     }
 }

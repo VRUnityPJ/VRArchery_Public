@@ -1199,7 +1199,7 @@ GameObject:
   - component: {fileID: 726928436}
   m_Layer: 0
   m_Name: Base
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3520,7 +3520,7 @@ GameObject:
   - component: {fileID: 1682038678}
   m_Layer: 0
   m_Name: Base (5)
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3968,7 +3968,7 @@ GameObject:
   - component: {fileID: 1755480845}
   m_Layer: 0
   m_Name: Base (3)
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4076,7 +4076,7 @@ GameObject:
   - component: {fileID: 1777700738}
   m_Layer: 0
   m_Name: Base (2)
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4700,7 +4700,7 @@ GameObject:
   - component: {fileID: 1969265292}
   m_Layer: 0
   m_Name: Base (4)
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4926,7 +4926,7 @@ GameObject:
   - component: {fileID: 2027985004}
   m_Layer: 0
   m_Name: Base (6)
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5034,7 +5034,7 @@ GameObject:
   - component: {fileID: 2031999063}
   m_Layer: 0
   m_Name: Base (1)
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5217,7 +5217,7 @@ GameObject:
   - component: {fileID: 2075125944}
   m_Layer: 0
   m_Name: "\u5E8A\u58C1\u5224\u5B9A"
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5328,7 +5328,7 @@ GameObject:
   - component: {fileID: 2105636940}
   m_Layer: 0
   m_Name: Base (7)
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5448,11 +5448,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _arrow: {fileID: 3064036471652312049}
   _speed: 55
-  ArrowGrip: {fileID: 0}
   _arrowFeatherPoint: {fileID: 0}
-  yaFlyingManager: {fileID: 1041898475822604788}
+  _arrowFaceMovement: {fileID: 0}
   _actionAsset: {fileID: -944628639613478452, guid: 4a223f89f8b456d4ab0d3c07be765882, type: 3}
   _grabInteract: {fileID: 0}
+  ArrowGrip: {fileID: 0}
   ArrowCounter: {fileID: 0}
   ArrowGrabber: {fileID: 0}
 --- !u!1001 &1460562819199558690

@@ -8,6 +8,7 @@ TagManager:
   - Nock
   - Target
   - Arrow
+  - Stage
   layers:
   - Default
   - TransparentFX

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace _VRArchery.Scripts.Equipment
+namespace _VRArchery.Scripts.Runtime.Equipment
 {
     public class YumiVRController : MonoBehaviour
     {
@@ -26,7 +26,7 @@ namespace _VRArchery.Scripts.Equipment
 
         // Update is called once per frame
         void Update()
-        {         
+        {
             if(GameManager.instance._isPlaying)
             {
                 if (Input.GetKey(KeyCode.W) && _Ya)
@@ -71,6 +71,6 @@ namespace _VRArchery.Scripts.Equipment
             _ya = _Ya.GetComponent<Ya>();
             _rb.isKinematic = true;
         }
-    
+
     }
 }
