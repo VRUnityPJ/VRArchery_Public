@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 1323765635166232602}
   - component: {fileID: 8194743572323301917}
   - component: {fileID: -5435805867786594485}
+  - component: {fileID: -7724650635649435845}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Arrow
@@ -95,11 +96,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _arrow: {fileID: 2595377709587373617}
   _speed: 55
-  ArrowGrip: {fileID: 0}
   _arrowFeatherPoint: {fileID: 931186616556519366}
   _arrowFaceMovement: {fileID: 68846529471585332}
   _actionAsset: {fileID: -944628639613478452, guid: 4a223f89f8b456d4ab0d3c07be765882, type: 3}
   _grabInteract: {fileID: 8194743572323301917}
+  ArrowGrip: {fileID: 0}
   ArrowCounter: {fileID: 0}
   ArrowGrabber: {fileID: 0}
 --- !u!65 &7366904164874558922
@@ -388,6 +389,19 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!114 &-7724650635649435845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2595377709587373617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c6019774a7469da169eca470d528a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hitEffect: {fileID: 5332401766664789297, guid: 4ed77f5942d5e17439333ab87f38c5b8, type: 3}
 --- !u!1 &3110879953376313750
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,11 +587,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _arrow: {fileID: 6104487565087410486}
   _speed: 5
-  ArrowGrip: {fileID: 0}
   _arrowFeatherPoint: {fileID: 0}
   _arrowFaceMovement: {fileID: 0}
   _actionAsset: {fileID: -944628639613478452, guid: 4a223f89f8b456d4ab0d3c07be765882, type: 3}
   _grabInteract: {fileID: 0}
+  ArrowGrip: {fileID: 0}
   ArrowCounter: {fileID: 0}
   ArrowGrabber: {fileID: 0}
 --- !u!1 &6104487565087410486
@@ -700,10 +714,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _arrow: {fileID: 2595377709587373617}
   _speed: 55
-  ArrowGrip: {fileID: 0}
   _arrowFeatherPoint: {fileID: 931186616556519366}
   _arrowFaceMovement: {fileID: 0}
   _actionAsset: {fileID: -944628639613478452, guid: 4a223f89f8b456d4ab0d3c07be765882, type: 3}
   _grabInteract: {fileID: 0}
+  ArrowGrip: {fileID: 0}
   ArrowCounter: {fileID: 0}
   ArrowGrabber: {fileID: 0}

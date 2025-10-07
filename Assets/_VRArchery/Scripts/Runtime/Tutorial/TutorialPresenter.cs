@@ -32,6 +32,7 @@ namespace _VRArchery.Scripts.Runtime.Tutorial
         /// <returns>Yesボタンが押されたらtrue、Noボタンが押されたらfalse</returns>
         public async UniTask<bool> TryTutorialAsync(CancellationToken ct)
         {
+            _tutorialText.text = "チュートリアルを開始しますか？";
             _tutorialText.transform.localScale = Vector3.one;
 
             await DOTween.Sequence()
@@ -60,8 +61,6 @@ namespace _VRArchery.Scripts.Runtime.Tutorial
         /// <param name="ct"></param>
         public async UniTask StartTutorialAsync(CancellationToken ct)
         {
-            var seq = DOTween.Sequence();
-
             _tutorialText.text = "今からチュートリアルを開始するよ";
             await _tutorialText.transform.DOScale(Vector3.one, 0.3f).ToUniTask(cancellationToken: ct);
 
@@ -77,6 +76,8 @@ namespace _VRArchery.Scripts.Runtime.Tutorial
 
             await _okButton.OnClickAsync(ct);
             _tutorialText.text = "これでチュートリアルを終了するよ";
+
+            var seq = DOTween.Sequence();
 
             await seq
                 .Append(_okButton.transform.DOScale(Vector3.zero, 0.3f))

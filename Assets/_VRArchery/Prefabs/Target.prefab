@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1544396120578301852}
   - component: {fileID: 5743263599196768165}
   - component: {fileID: -3137457064958692980}
+  - component: {fileID: 8261275753270007934}
   m_Layer: 0
   m_Name: Target
   m_TagString: Target
@@ -31,8 +32,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 29.45, y: 2.44, z: 1.5}
-  m_LocalScale: {x: 234.94925, y: 234.94925, z: 234.94925}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 200, y: 200, z: 200}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
@@ -151,5 +152,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be06102ca96a7e84a94a375901b7a95d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitStopDuration: 2
+  _effect: {fileID: 8261275753270007934}
+  _hitStopDuration: 0.1
   _hitStopTimeScale: 0.3
+--- !u!114 &8261275753270007934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7846117325604094452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c25e0f1a4424197a11a5241565c8db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleSystem: {fileID: 9111785955409272373, guid: 178c7969cfb627346a66308fd1f0d616, type: 3}

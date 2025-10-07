@@ -32,12 +32,12 @@ namespace _VRArchery.Scripts.Runtime.Target
             while (!token.IsCancellationRequested && _timeController.LimitTimeSec.CurrentValue > 0)
             {
                 var randomPoint = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
+                var spawnDuration = Random.Range(0.1f, 3f);
                 var target = _objectResolver.Instantiate(_targetPrefab, randomPoint.position, Quaternion.identity);
 
                 target.MoveAsync(token).Forget();
 
-                await UniTask.Delay(TimeSpan.FromSeconds(2), cancellationToken: token);
-
+                await UniTask.Delay(TimeSpan.FromSeconds(spawnDuration), cancellationToken: token);
             }
         }
     }

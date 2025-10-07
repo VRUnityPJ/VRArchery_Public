@@ -11,7 +11,9 @@ namespace _VRArchery.Scripts.Runtime.Target
 {
     public class TargetCollider : MonoBehaviour
     {
-        private ScoreHolder _scoreHolder;
+        [SerializeField]
+        private TargetEffect _effect;
+
         [Tooltip("ヒットストップさせる時間（秒）")]
         [SerializeField] private float _hitStopDuration = 0.1f;
 
@@ -19,6 +21,7 @@ namespace _VRArchery.Scripts.Runtime.Target
         [SerializeField] private float _hitStopTimeScale = 0.1f;
 
         private Transform _playerPos;
+        private ScoreHolder _scoreHolder;
 
         private const float LifeTimeSec = 10f;
 
@@ -27,7 +30,6 @@ namespace _VRArchery.Scripts.Runtime.Target
         {
             _scoreHolder = scoreHolder;
             _playerPos  = playerTransform;
-
         }
 
         private void Update() => transform.LookAt(_playerPos);
@@ -41,6 +43,12 @@ namespace _VRArchery.Scripts.Runtime.Target
                 _scoreHolder.AddScore(addPoint);
                 HitStopManager.Apply(_hitStopDuration, _hitStopTimeScale);
                 CustomDebug.Log(_scoreHolder.Score);
+                Destroy(gameObject);
+            }
+
+            if (other.gameObject.CompareTag("Stage"))
+            {
+                _effect.OnStartParticle();
                 Destroy(gameObject);
             }
         }
@@ -60,7 +68,7 @@ namespace _VRArchery.Scripts.Runtime.Target
                 var randomSpeed = UnityEngine.Random.Range(2, 4);
 
                 var anim = DOTween.Sequence()
-                    .Append(transform.DOJump(transform.position + Vector3.forward * 10f, 5f, 1, randomSpeed))
+                    .Append(transform.DOJump(transform.position + Vector3.forward * 10f + Vector3.down * 2, 5f, 1, randomSpeed))
                     .ToUniTask(cancellationToken: cts.Token);
 
                 var lifeTimeTask = UniTask.Delay(TimeSpan.FromSeconds(LifeTimeSec), cancellationToken: cts.Token);
