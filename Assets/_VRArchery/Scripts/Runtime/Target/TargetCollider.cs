@@ -37,10 +37,11 @@ namespace _VRArchery.Scripts.Runtime.Target
             //敵にぶつかったとき
             if (other.gameObject.CompareTag("Arrow"))
             {
-                _scoreHolder.AddScore(100);
+                var addPoint = _scoreHolder.CalculateAddScore(transform.position, _playerPos.position);
+                _scoreHolder.AddScore(addPoint);
                 HitStopManager.Apply(_hitStopDuration, _hitStopTimeScale);
+                CustomDebug.Log(_scoreHolder.Score);
                 Destroy(gameObject);
-                Debug.Log(_scoreHolder.Score);
             }
         }
 

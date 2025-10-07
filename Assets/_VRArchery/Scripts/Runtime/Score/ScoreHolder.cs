@@ -1,3 +1,4 @@
+using System;
 using R3;
 using UnityEngine;
 
@@ -48,6 +49,18 @@ namespace _VRArchery.Scripts.Runtime.Score
             }
 
             _score.Value -= value;
+        }
+
+        /// <summary>
+        /// 加算するスコアを計算する
+        /// </summary>
+        /// <param name="targetPos"></param>
+        /// <param name="playerPos"></param>
+        /// <returns></returns>
+        public int CalculateAddScore(Vector3 targetPos, Vector3 playerPos)
+        {
+            var result = (targetPos - playerPos).sqrMagnitude;
+            return (int)result;
         }
 
         /// <summary>
