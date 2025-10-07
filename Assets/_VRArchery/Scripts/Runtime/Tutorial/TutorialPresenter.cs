@@ -19,6 +19,7 @@ namespace _VRArchery.Scripts.Runtime.Tutorial
         /// </summary>
         public void Init()
         {
+            _tutorialText.transform.localScale = Vector3.zero;
             _yesButton.transform.localScale = Vector3.zero;
             _noButton.transform.localScale = Vector3.zero;
             _okButton.transform.localScale = Vector3.zero;
@@ -60,9 +61,10 @@ namespace _VRArchery.Scripts.Runtime.Tutorial
         public async UniTask StartTutorialAsync(CancellationToken ct)
         {
             var seq = DOTween.Sequence();
-            await _tutorialText.transform.DOScale(Vector3.one, 0.3f).ToUniTask(cancellationToken: ct);
 
             _tutorialText.text = "今からチュートリアルを開始するよ";
+            await _tutorialText.transform.DOScale(Vector3.one, 0.3f).ToUniTask(cancellationToken: ct);
+
             _okButton.transform.DOScale(Vector3.one, 0.3f)
                 .ToUniTask(cancellationToken: ct)
                 .Forget();

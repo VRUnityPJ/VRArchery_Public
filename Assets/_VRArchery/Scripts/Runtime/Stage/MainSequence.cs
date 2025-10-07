@@ -5,7 +5,6 @@ using _VRArchery.Scripts.Runtime.UI;
 using _VRArchery.Scripts.Utility;
 using Cysharp.Threading.Tasks;
 using KeyBoard;
-using R3;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using VContainer;
