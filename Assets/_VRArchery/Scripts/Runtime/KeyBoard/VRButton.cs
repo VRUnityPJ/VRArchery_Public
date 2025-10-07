@@ -1,12 +1,13 @@
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 //参考　https://light11.hatenadiary.com/entry/2018/01/31/234716
 /// <summary>
 /// VRゲームに使用するボタンの基底クラス
 /// </summary>
-public class VRButton : MonoBehaviour
+public class VRButton : Button
 {
     private EventTrigger _trigger;
 

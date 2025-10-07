@@ -4,12 +4,13 @@ using UnityEngine;
 
 namespace RankingSystem.Scripts
 {
-    public class PlayerNameHolder : MonoBehaviour,IRankingDataHolder<PlayerName>
+    public class PlayerNameHolder : MonoBehaviour, IRankingDataHolder<PlayerName>
     {
         private PlayerName Name;
         private InputKeyCollector _keyCollector;
         private RankingStorage _storage;
-        void Start()
+
+        private void Start()
         {
             SetStorage();
 
@@ -22,6 +23,7 @@ namespace RankingSystem.Scripts
                 SendData(Name);
             }).AddTo(this);
         }
+
         public void SetStorage()
         {
             _storage = RankingStorage.instance;

@@ -8,17 +8,21 @@ namespace _VRArchery.Scripts.Runtime.UI
 {
     public class ScorePresenter : MonoBehaviour
     {
-        [Inject] private ScoreHolder _scoreHolder;
+        [Inject]
+        private ScoreHolder _scoreHolder;
+
         [SerializeField]
-        private ResultUIController _resultUIController; //追加
-        [SerializeField] private int _finalScore; // 最終スコア保存用
+        private ResultUIViewer _resultUIViewer; //追加
 
         /// <summary>
         /// ゲーム終了時にスコアをアニメーションさせて表示する
         /// </summary>
-        public async UniTask OnShowScoreAnimationAsync(CancellationToken token)
+        public async UniTask ShowScoreAnimationAsync(CancellationToken token)
         {
-            await _resultUIController.ShowResultAsync(_finalScore, token);
+            await _resultUIViewer.ShowResultAsync(
+                _scoreHolder.Score.CurrentValue,
+                _scoreHolder.GetRank().ToString(),
+                token);
         }
     }
 }

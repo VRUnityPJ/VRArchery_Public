@@ -13,11 +13,13 @@ namespace _VRArchery.Scripts.Runtime.LifeTimeScope
         [SerializeField] private TargetSpawner _targetSpawner;
         [SerializeField] private ScorePresenter _scorePresenter;
         [SerializeField] private Transform _playerTransform;
+        [SerializeField] private MainSequence _mainSequence;
 
         protected override void Configure(IContainerBuilder builder)
         {
             base.Configure(builder);
 
+            builder.RegisterComponent(_mainSequence);
             builder.RegisterComponent(_targetSpawner);
             builder.RegisterComponent(_scorePresenter);
             builder.RegisterComponent(_playerTransform);

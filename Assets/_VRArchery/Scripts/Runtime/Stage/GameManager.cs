@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
                 _isPlaying = true;
                 _startCountText.text = null;
                 _startCount.gameObject.SetActive(false);
-            }     
+            }
         }
     }
 
