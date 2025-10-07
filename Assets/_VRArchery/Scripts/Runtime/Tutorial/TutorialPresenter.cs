@@ -25,7 +25,7 @@ namespace _VRArchery.Scripts.Runtime.Tutorial
         }
 
         /// <summary>
-        /// チュートリアルを実行するかどうかをユーザーに問いかけ、その結果を返します。
+        /// チュートリアルを実行するかどうかをユーザーに問いかけ、その結果を返す
         /// </summary>
         /// <param name="ct">CancellationToken</param>
         /// <returns>Yesボタンが押されたらtrue、Noボタンが押されたらfalse</returns>
@@ -33,9 +33,8 @@ namespace _VRArchery.Scripts.Runtime.Tutorial
         {
             _tutorialText.transform.localScale = Vector3.one;
 
-            var seq = DOTween.Sequence();
-
-            await seq.Append(_yesButton.transform.DOScale(Vector3.one, 0.3f))
+            await DOTween.Sequence()
+                .Append(_yesButton.transform.DOScale(Vector3.one, 0.3f))
                 .Append(_noButton.transform.DOScale(Vector3.one, 0.3f))
                 .ToUniTask(cancellationToken: ct);
 
@@ -44,7 +43,8 @@ namespace _VRArchery.Scripts.Runtime.Tutorial
                 _noButton.OnClickAsync(ct)
                 );
 
-            await seq.Append(_yesButton.transform.DOScale(Vector3.zero, 0.3f))
+            await DOTween.Sequence()
+                .Append(_yesButton.transform.DOScale(Vector3.zero, 0.3f))
                 .Append(_noButton.transform.DOScale(Vector3.zero, 0.3f))
                 .Append(_tutorialText.transform.DOScale(Vector3.zero, 0.3f))
                 .ToUniTask(cancellationToken: ct);
