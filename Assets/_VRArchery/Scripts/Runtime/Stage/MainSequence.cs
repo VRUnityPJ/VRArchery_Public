@@ -4,7 +4,12 @@ using _VRArchery.Scripts.Runtime.Tutorial;
 using _VRArchery.Scripts.Runtime.UI;
 using _VRArchery.Scripts.Utility;
 using Cysharp.Threading.Tasks;
+using KeyBoard;
+using R3;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using VContainer;
+using VContainer.Unity;
 
 namespace _VRArchery.Scripts.Runtime.Stage
 {
@@ -18,6 +23,7 @@ namespace _VRArchery.Scripts.Runtime.Stage
         [SerializeField] private TimeController _timeController;
         [SerializeField] private ScorePresenter _scorePresenter;
         [SerializeField] private TutorialPresenter _tutorialPresenter;
+        [SerializeField] private ResultUIViewer _resultUIViewer;
 
         private async UniTaskVoid Start() => GameStartAsync().Forget();
 
@@ -33,6 +39,19 @@ namespace _VRArchery.Scripts.Runtime.Stage
 
                 _startButtonController.Init();
                 _tutorialPresenter.Init();
+                _resultUIViewer.Init();
+
+                //名前入力を行う
+                await SceneManager.LoadSceneAsync("FirstScene_Demo", LoadSceneMode.Additive)
+                    .ToUniTask(cancellationToken: cts.Token);
+
+                var enterName = LifetimeScope.Find<KeyBoardLifetimeScope>().Container.Resolve<ICompletable>();
+
+                //入力が完了するまで待機
+                await enterName.OnComplete(cts.Token);
+
+                await SceneManager.UnloadSceneAsync("FirstScene_Demo")
+                    .ToUniTask(cancellationToken: cts.Token);
 
                 //チュートリアルを開始するか選択する
                 var isTutorialStart = await _tutorialPresenter.TryTutorialAsync(cts.Token);
@@ -55,7 +74,7 @@ namespace _VRArchery.Scripts.Runtime.Stage
                 CustomDebug.Log("ゲーム終了");
                 cts.Cancel();
 
-                await _scorePresenter.OnShowScoreAnimationAsync(destroyCancellationToken);
+                await _scorePresenter.ShowScoreAnimationAsync(destroyCancellationToken);
             }
         }
 

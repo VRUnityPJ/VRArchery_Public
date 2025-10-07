@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace _VRArchery.Scripts.Runtime.UI
 {
-    public class ResultUIController : MonoBehaviour
+    public class ResultUIViewer : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _finalScoreText;
         [SerializeField] private TextMeshProUGUI _rankText;
@@ -28,61 +28,57 @@ namespace _VRArchery.Scripts.Runtime.UI
         /// <summary>
         /// ゲーム終了時にスコアとランクを表示（Presenter的役割）
         /// </summary>
-        public async UniTask ShowResultAsync(int score, CancellationToken token)
+        public async UniTask ShowResultAsync(int score, string rank, CancellationToken token)
         {
             // 「やめ」表示
             _endText.gameObject.SetActive(true);
             _endText.text = "やめ";
             _endText.rectTransform.localScale = Vector3.one * 0.5f;
-            _endText.rectTransform
-                .DOScale(5f, 0.5f)
-                .SetEase(Ease.OutBack);
+
+            await _endText.rectTransform
+                .DOScale(1f, 0.5f)
+                .SetEase(Ease.OutBack)
+                .ToUniTask(cancellationToken:  token);
 
             await UniTask.Delay(TimeSpan.FromSeconds(2f), cancellationToken: token);
 
             // 「やめ」非表示
             _endText.gameObject.SetActive(false);
 
-            ShowScore(score); // View更新
-            await UniTask.Delay(TimeSpan.FromSeconds(1f), cancellationToken: token);
-            ShowRank(score);  // View更新
+            await ShowScoreAsync(score, token); // View更新
+            await ShowRankAsync(rank, token);  // View更新
+
+            await UniTask.Delay(TimeSpan.FromSeconds(2f), cancellationToken: token);
         }
 
         /// <summary>
         /// スコア表示（View的役割）
         /// </summary>
-        private void ShowScore(int score)
+        private async UniTask ShowScoreAsync(int score,  CancellationToken token)
         {
             _finalScoreText.gameObject.SetActive(true);
             _finalScoreText.text = $"Score : {score}";
             _finalScoreText.rectTransform.localScale = Vector3.one * 0.5f;
-            _finalScoreText.rectTransform
-                .DOScale(5f, 0.5f)
-                .SetEase(Ease.OutBack);
+
+            await _finalScoreText.rectTransform
+                .DOScale(1f, 0.5f)
+                .SetEase(Ease.OutBack)
+                .ToUniTask(cancellationToken: token);
         }
 
         /// <summary>
         /// ランク表示（View的役割）
         /// </summary>
-        private void ShowRank(int score)
+        private async UniTask ShowRankAsync(string rank, CancellationToken token)
         {
             _rankText.gameObject.SetActive(true);
-            _rankText.text = GetRankText(score); // Model的役割
+            _rankText.text = $"rank: {rank}";
             _rankText.rectTransform.localScale = Vector3.one * 0.5f;
-            _rankText.rectTransform
-                .DOScale(5f, 0.5f)
-                .SetEase(Ease.OutBack);
-        }
 
-        /// <summary>
-        /// スコアに応じたランクを返す（Model的役割）
-        /// </summary>
-        private string GetRankText(int score)
-        {
-            if (score >= 90) return "Rank : S";
-            if (score >= 70) return "Rank : A";
-            if (score >= 50) return "Rank : B";
-            return "Rank : C";
+            await _rankText.rectTransform
+                .DOScale(1f, 0.5f)
+                .SetEase(Ease.OutBack)
+                .ToUniTask(cancellationToken: token);
         }
     }
 }

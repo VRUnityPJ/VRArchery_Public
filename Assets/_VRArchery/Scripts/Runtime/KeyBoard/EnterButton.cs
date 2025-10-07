@@ -1,6 +1,3 @@
-using UnityEngine;
-using DG.Tweening;
-using System;
 
 namespace KeyBoard
 {
@@ -11,7 +8,7 @@ namespace KeyBoard
             base.Start();
             SetColor();
         }
-        
+
         protected override void SetColor()
         {
             defaultColor = _setting.EnterButtonColor.defaultColor;

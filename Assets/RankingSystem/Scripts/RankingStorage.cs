@@ -8,9 +8,8 @@ namespace RankingSystem.Scripts
 {
     /// <summary>
     /// ランキングのストレージ
-    ///
     /// </summary>
-    public class RankingStorage : MonoBehaviour,IRankingStorage
+    public class RankingStorage : MonoBehaviour, IRankingStorage
     {
         //シングルトンのインスタンス
         public static RankingStorage instance;
