@@ -1890,6 +1890,7 @@ MonoBehaviour:
   _scorePresenter: {fileID: 3559119043735855849}
   _tutorialPresenter: {fileID: 5868839559553298718}
   _resultUIViewer: {fileID: 1576286089}
+  _timerText: {fileID: 2648314723002684938}
 --- !u!4 &1645173487
 Transform:
   m_ObjectHideFlags: 0
@@ -1957,7 +1958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _limitTimeSec:
-    value: 60
+    value: 3
 --- !u!1 &1674518430
 GameObject:
   m_ObjectHideFlags: 0
