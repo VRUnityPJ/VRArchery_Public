@@ -106,7 +106,7 @@ namespace _VRArchery.Scripts.Runtime.Equipment
 
         }
 
-        private void OnTriggerEnter(Collider other)
+        private async void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag("Nock"))
             {
@@ -120,6 +120,7 @@ namespace _VRArchery.Scripts.Runtime.Equipment
                 _rb.isKinematic = true;
                 _rb.useGravity = false;
                 CustomDebug.Log($"刺さった:{_rb.isKinematic}");
+                await DelayDestroyAsync();
                 //_boxCollider.isTrigger = true;
             }
             else if (other.gameObject.CompareTag("Stage"))
@@ -205,7 +206,7 @@ namespace _VRArchery.Scripts.Runtime.Equipment
 
             // 2秒待つ。ただし、待っている間にオブジェクトが破壊されたら、
             // 例外を発生させて処理を中断する
-            await UniTask.Delay(TimeSpan.FromSeconds(2), cancellationToken: token);
+            await UniTask.Delay(TimeSpan.FromSeconds(0.05f), cancellationToken: token);
 
             // このオブジェクトがまだ存在していれば破壊する
             // (awaitで例外が投げられた場合、ここには到達しない)
