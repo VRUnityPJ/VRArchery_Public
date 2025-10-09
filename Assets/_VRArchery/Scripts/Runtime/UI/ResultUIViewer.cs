@@ -12,6 +12,7 @@ namespace _VRArchery.Scripts.Runtime.UI
         [SerializeField] private TextMeshProUGUI _finalScoreText;
         [SerializeField] private TextMeshProUGUI _rankText;
         [SerializeField] private TextMeshProUGUI _endText;
+        [SerializeField] private TextMeshProUGUI _seeYouText;
 
         private void Start() => Init();
 
@@ -23,6 +24,7 @@ namespace _VRArchery.Scripts.Runtime.UI
             _finalScoreText.gameObject.SetActive(false);
             _rankText.gameObject.SetActive(false);
             _endText.gameObject.SetActive(false);
+            _seeYouText.gameObject.SetActive(false);
         }
 
         /// <summary>
@@ -38,7 +40,7 @@ namespace _VRArchery.Scripts.Runtime.UI
             await _endText.rectTransform
                 .DOScale(1f, 0.5f)
                 .SetEase(Ease.OutBack)
-                .ToUniTask(cancellationToken:  token);
+                .ToUniTask(cancellationToken: token);
 
             await UniTask.Delay(TimeSpan.FromSeconds(2f), cancellationToken: token);
 
@@ -48,13 +50,20 @@ namespace _VRArchery.Scripts.Runtime.UI
             await ShowScoreAsync(score, token); // View更新
             await ShowRankAsync(rank, token);  // View更新
 
-            await UniTask.Delay(TimeSpan.FromSeconds(2f), cancellationToken: token);
+            await UniTask.Delay(TimeSpan.FromSeconds(6f), cancellationToken: token);
+
+            _finalScoreText.gameObject.SetActive(false);
+            _rankText.gameObject.SetActive(false);
+
+            await ShowSeeYouAsync(token);
+            await UniTask.Delay(TimeSpan.FromSeconds(15f), cancellationToken: token);
+
         }
 
         /// <summary>
         /// スコア表示（View的役割）
         /// </summary>
-        private async UniTask ShowScoreAsync(int score,  CancellationToken token)
+        private async UniTask ShowScoreAsync(int score, CancellationToken token)
         {
             _finalScoreText.gameObject.SetActive(true);
             _finalScoreText.text = $"Score : {score}";
@@ -79,6 +88,21 @@ namespace _VRArchery.Scripts.Runtime.UI
                 .DOScale(1f, 0.5f)
                 .SetEase(Ease.OutBack)
                 .ToUniTask(cancellationToken: token);
+        }
+
+        /// <summary>
+        /// ゲーム終了時に「また来てね！」というUIを出す
+        /// </summary>
+        private async UniTask ShowSeeYouAsync(CancellationToken token)
+        {
+            _seeYouText.gameObject.SetActive(true);
+            _seeYouText.text = "あそんでくれてありがとう！\nまたきてね！";
+            _seeYouText.rectTransform.localScale = Vector3.one * 0.5f;
+
+            await _seeYouText.rectTransform
+            .DOScale(1f, 0.5f)
+            .SetEase(Ease.OutBack)
+            .ToUniTask(cancellationToken: token);
         }
     }
 }
