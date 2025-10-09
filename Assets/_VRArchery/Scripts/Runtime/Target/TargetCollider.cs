@@ -65,10 +65,11 @@ namespace _VRArchery.Scripts.Runtime.Target
 
             try
             {
-                var randomSpeed = UnityEngine.Random.Range(2, 4);
+                var randomSpeed = UnityEngine.Random.Range(4, 8);
+                var jumpPower = UnityEngine.Random.Range(3, 6);
 
                 var anim = DOTween.Sequence()
-                    .Append(transform.DOJump(transform.position + Vector3.forward * 10f + Vector3.down * 2, 5f, 1, randomSpeed))
+                    .Append(transform.DOJump(transform.position + Vector3.forward * 10f + Vector3.down * 2, jumpPower, 1, randomSpeed))
                     .ToUniTask(cancellationToken: cts.Token);
 
                 var lifeTimeTask = UniTask.Delay(TimeSpan.FromSeconds(LifeTimeSec), cancellationToken: cts.Token);

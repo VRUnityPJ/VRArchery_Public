@@ -787,7 +787,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 728678229}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -852,30 +852,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 926876393}
     m_Modifications:
-    - target: {fileID: 2117177901420931687, guid: 65f76eb9f0f4af64f98127793e5bcb29, type: 3}
-      propertyPath: _speed
-      value: 28
-      objectReference: {fileID: 0}
-    - target: {fileID: 2117177901420931687, guid: 65f76eb9f0f4af64f98127793e5bcb29, type: 3}
-      propertyPath: ArrowGrip
-      value: 
-      objectReference: {fileID: 593717774}
-    - target: {fileID: 2117177901420931687, guid: 65f76eb9f0f4af64f98127793e5bcb29, type: 3}
-      propertyPath: _arrowFeatherPoint
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2244822084769370136, guid: 65f76eb9f0f4af64f98127793e5bcb29, type: 3}
-      propertyPath: ArrowGrip
-      value: 
-      objectReference: {fileID: 7426194129512526677}
-    - target: {fileID: 6561218450549625315, guid: 65f76eb9f0f4af64f98127793e5bcb29, type: 3}
-      propertyPath: ArrowGrip
-      value: 
-      objectReference: {fileID: 593717774}
-    - target: {fileID: 8343167407413159203, guid: d56cf1aacbea4704cac4d7983df1a0ad, type: 3}
-      propertyPath: m_PermittedDisplacementAxes
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a8211a3e0e87d014e8326e23ae022d39, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.1239069
@@ -919,6 +895,30 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a8211a3e0e87d014e8326e23ae022d39, type: 3}
       propertyPath: m_Name
       value: Arrows
+      objectReference: {fileID: 0}
+    - target: {fileID: 2117177901420931687, guid: 65f76eb9f0f4af64f98127793e5bcb29, type: 3}
+      propertyPath: _speed
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 2117177901420931687, guid: 65f76eb9f0f4af64f98127793e5bcb29, type: 3}
+      propertyPath: ArrowGrip
+      value: 
+      objectReference: {fileID: 593717774}
+    - target: {fileID: 2117177901420931687, guid: 65f76eb9f0f4af64f98127793e5bcb29, type: 3}
+      propertyPath: _arrowFeatherPoint
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2244822084769370136, guid: 65f76eb9f0f4af64f98127793e5bcb29, type: 3}
+      propertyPath: ArrowGrip
+      value: 
+      objectReference: {fileID: 7426194129512526677}
+    - target: {fileID: 6561218450549625315, guid: 65f76eb9f0f4af64f98127793e5bcb29, type: 3}
+      propertyPath: ArrowGrip
+      value: 
+      objectReference: {fileID: 593717774}
+    - target: {fileID: 8343167407413159203, guid: d56cf1aacbea4704cac4d7983df1a0ad, type: 3}
+      propertyPath: m_PermittedDisplacementAxes
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -992,7 +992,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 885443340}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1488,7 +1488,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1470881234}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1944,6 +1944,7 @@ MonoBehaviour:
   - {fileID: 1470881235}
   - {fileID: 885443341}
   _timeController: {fileID: 1645173490}
+  _particleSystem: {fileID: 4809171458859421548, guid: 4e91ed1a8efe7044785b9bd97a47d87f, type: 3}
 --- !u!114 &1645173490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2237,7 +2238,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1750281656}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3622,8 +3623,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Rank: S'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 444f8cda65d8e79468af6f1c31be01dd, type: 2}
-  m_sharedMaterial: {fileID: -99006141908357071, guid: 444f8cda65d8e79468af6f1c31be01dd, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3840,8 +3841,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Time : 60'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 444f8cda65d8e79468af6f1c31be01dd, type: 2}
-  m_sharedMaterial: {fileID: -99006141908357071, guid: 444f8cda65d8e79468af6f1c31be01dd, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4937,8 +4938,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Score : 60'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 444f8cda65d8e79468af6f1c31be01dd, type: 2}
-  m_sharedMaterial: {fileID: -99006141908357071, guid: 444f8cda65d8e79468af6f1c31be01dd, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5546,8 +5547,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u30C1\u30E5\u30FC\u30C8\u30EA\u30A2\u30EB\u3092\u958B\u59CB\u3057\u307E\u3059\u304B\uFF1F"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 444f8cda65d8e79468af6f1c31be01dd, type: 2}
-  m_sharedMaterial: {fileID: -99006141908357071, guid: 444f8cda65d8e79468af6f1c31be01dd, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6092,8 +6093,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 444f8cda65d8e79468af6f1c31be01dd, type: 2}
-  m_sharedMaterial: {fileID: -99006141908357071, guid: 444f8cda65d8e79468af6f1c31be01dd, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
