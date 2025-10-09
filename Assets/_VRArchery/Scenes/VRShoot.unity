@@ -1958,7 +1958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _limitTimeSec:
-    value: 3
+    value: 60
 --- !u!1 &1674518430
 GameObject:
   m_ObjectHideFlags: 0
