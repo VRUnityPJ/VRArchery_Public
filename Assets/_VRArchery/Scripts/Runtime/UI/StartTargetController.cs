@@ -3,22 +3,31 @@ using System.Threading;
 using _VRArchery.Scripts.Runtime.Sound;
 using _VRArchery.Scripts.Utility;
 using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.Triggers;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace _VRArchery.Scripts.Runtime.UI
 {
-    public class StartButtonController : MonoBehaviour
+    public class StartTargetController : MonoBehaviour
     {
-        [SerializeField] private UiAudioPlayer _audioPlayer;
         [SerializeField]
-        private Button _startButton;
+        private UiAudioPlayer _audioPlayer;
+
+        [SerializeField]
+        private GameObject _tutorialCollider;
 
         [SerializeField]
         private TextMeshProUGUI _countdownText;
 
+        [SerializeField]
+        private TextMeshProUGUI _instructText;
+
+        /// <summary>
+        /// コライダーの衝突判定を非同期で待つために必要
+        /// </summary>
+        private AsyncTriggerEnterTrigger _enterTrigger;
         private void Start() => Init();
 
         /// <summary>
@@ -26,39 +35,40 @@ namespace _VRArchery.Scripts.Runtime.UI
         /// </summary>
         public void Init()
         {
+            _enterTrigger = _tutorialCollider.GetAsyncTriggerEnterTrigger();
             _countdownText.gameObject.SetActive(false);
-            _startButton.gameObject.SetActive(false);
-
+            _tutorialCollider.gameObject.transform.localScale = Vector3.zero;
+            _instructText.rectTransform.localScale = Vector3.zero;
         }
+
         /// <summary>
         /// スタートボタンを押したときにカウントダウンを開始する
         /// </summary>
         /// <param name="token"></param>
         public async UniTask OnStartButtonClickedAsync(CancellationToken token)
         {
-            _startButton.gameObject.SetActive(true);
-            await _startButton.OnClickAsync(token);
-
-            // アニメーション：ふわっと大きくなる
-            await _startButton.transform.DOScale(1.2f, 0.3f)
-                .SetLoops(2, LoopType.Yoyo)
+            await DOTween.Sequence()
+                .Append(_tutorialCollider.gameObject.transform.DOScale(Vector3.one * 150, 0.3f))
+                .Join(_instructText.rectTransform.DOScale(Vector3.one, 0.3f))
                 .ToUniTask(cancellationToken: token);
 
-            // カウントダウンテキストの位置をボタンと同じにする
-            _countdownText.rectTransform.position = _startButton.transform.position;
+            while (!token.IsCancellationRequested)
+            {
+                var collision = await _enterTrigger.OnTriggerEnterAsync(token);
 
-            // アニメーションが終わったらボタンを非表示にする
-            _startButton.gameObject.SetActive(false);
+                if (collision.gameObject.CompareTag("Arrow"))
+                {
+                    break;
+                }
+            }
+
+            await DOTween.Sequence()
+                .Append(_tutorialCollider.gameObject.transform.DOScale(Vector3.zero, 0.3f))
+                .Join(_instructText.rectTransform.DOScale(Vector3.zero, 0.3f))
+                .ToUniTask(cancellationToken: token);
 
             // カウントダウン開始
-            await StartCountdownAsync(destroyCancellationToken);
-
-            // 色変更（例：赤に変化） → これはすぐに始めてOK
-            Color targetColor = Color.white;
-
-            await _startButton.image
-                .DOColor(targetColor, 0.5f)
-                .ToUniTask(cancellationToken: token);
+            await StartCountdownAsync(token);
         }
 
         private async UniTask StartCountdownAsync(CancellationToken token)

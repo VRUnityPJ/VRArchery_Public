@@ -13,6 +13,7 @@ namespace _VRArchery.Scripts.Runtime.Tutorial
         [SerializeField] private Button _yesButton;
         [SerializeField] private Button _noButton;
         [SerializeField] private Button _okButton;
+        [SerializeField] private TutorialScrollAnimation _scrollAnimation;
 
         /// <summary>
         /// 初期化処理
@@ -23,6 +24,7 @@ namespace _VRArchery.Scripts.Runtime.Tutorial
             _yesButton.transform.localScale = Vector3.zero;
             _noButton.transform.localScale = Vector3.zero;
             _okButton.transform.localScale = Vector3.zero;
+            _scrollAnimation.Init();
         }
 
         /// <summary>
@@ -35,6 +37,9 @@ namespace _VRArchery.Scripts.Runtime.Tutorial
             _tutorialText.text = "チュートリアルを開始しますか？";
             _tutorialText.transform.localScale = Vector3.one;
 
+            //巻物を表示させる
+            await _scrollAnimation.ShowScrollAnimationAsync(ct);
+
             await DOTween.Sequence()
                 .Append(_yesButton.transform.DOScale(Vector3.one, 0.3f))
                 .Append(_noButton.transform.DOScale(Vector3.one, 0.3f))
@@ -45,10 +50,10 @@ namespace _VRArchery.Scripts.Runtime.Tutorial
                 _noButton.OnClickAsync(ct)
                 );
 
+
             await DOTween.Sequence()
                 .Append(_yesButton.transform.DOScale(Vector3.zero, 0.3f))
                 .Append(_noButton.transform.DOScale(Vector3.zero, 0.3f))
-                .Append(_tutorialText.transform.DOScale(Vector3.zero, 0.3f))
                 .ToUniTask(cancellationToken: ct);
 
             // yesボタンなら0(true)を返す
@@ -77,12 +82,9 @@ namespace _VRArchery.Scripts.Runtime.Tutorial
             await _okButton.OnClickAsync(ct);
             _tutorialText.text = "これでチュートリアルを終了するよ";
 
-            var seq = DOTween.Sequence();
-
-            await seq
-                .Append(_okButton.transform.DOScale(Vector3.zero, 0.3f))
-                .Append(_tutorialText.transform.DOScale(Vector3.zero, 0.3f))
-                .ToUniTask(cancellationToken: ct);
+            await _okButton.OnClickAsync(ct);
         }
+
+        public async UniTask HideTutorialAsync(CancellationToken ct) => await _scrollAnimation.HideScrollAnimation(ct);
     }
 }
