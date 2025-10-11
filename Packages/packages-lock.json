@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.annulusgames.u-pools": {
+      "version": "https://github.com/AnnulusGames/uPools.git?path=/Assets/uPools",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "e11ce9c12c65c12f3bc35ae2ef7cacde6826e503"
+    },
     "com.cysharp.r3": {
       "version": "1.3.0",
       "depth": 0,
