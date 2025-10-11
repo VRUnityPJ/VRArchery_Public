@@ -858,6 +858,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioClip: {fileID: 8300000, guid: b8be905f3eafc984c8e8723f69d4b5b8, type: 3}
   _audioClipShell: {fileID: 8300000, guid: b3a814aced23ecd4dac63fe98c582c81, type: 3}
+  _audioClipButton: {fileID: 8300000, guid: adc1670bb3673d846b31be7a5fbee345, type: 3}
+  _audioClipTargetHit: {fileID: 8300000, guid: b551463307a63de4b95247ae69457d07, type: 3}
+  _audioClipTargetAir: {fileID: 8300000, guid: 66c8d4551799b6346962738ceed4b9ca, type: 3}
   _audioSource: {fileID: 925699330}
 --- !u!4 &925699332
 Transform:
@@ -1052,8 +1055,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u3042\u305D\u3093\u3067\u304F\u308C\u3066\u3042\u308A\u304C\u3068\u3046\uFF01\n\u307E\u305F\u304D\u3066\u306D\uFF01"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 444f8cda65d8e79468af6f1c31be01dd, type: 2}
-  m_sharedMaterial: {fileID: -99006141908357071, guid: 444f8cda65d8e79468af6f1c31be01dd, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1575,6 +1578,7 @@ MonoBehaviour:
   - {fileID: 1470881235}
   - {fileID: 885443341}
   _timeController: {fileID: 1645173490}
+  _particleSystem: {fileID: 0}
 --- !u!114 &1645173490
 MonoBehaviour:
   m_ObjectHideFlags: 0
