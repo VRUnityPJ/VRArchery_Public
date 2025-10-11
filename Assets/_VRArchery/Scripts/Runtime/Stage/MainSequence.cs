@@ -23,6 +23,7 @@ namespace _VRArchery.Scripts.Runtime.Stage
         [SerializeField] private ScorePresenter _scorePresenter;
         [SerializeField] private TutorialPresenter _tutorialPresenter;
         [SerializeField] private ResultUIViewer _resultUIViewer;
+        [SerializeField] private GameObject _timerText;
 
         private async UniTaskVoid Start() => GameStartAsync().Forget();
 
@@ -39,6 +40,7 @@ namespace _VRArchery.Scripts.Runtime.Stage
                 _startButtonController.Init();
                 _tutorialPresenter.Init();
                 _resultUIViewer.Init();
+                _timerText.SetActive(false);
 
                 //名前入力を行う
                 await SceneManager.LoadSceneAsync("FirstScene_Demo", LoadSceneMode.Additive)
@@ -64,16 +66,21 @@ namespace _VRArchery.Scripts.Runtime.Stage
                 //ボタンが押されてカウントダウンが終わるまで待機
                 await _startButtonController.OnStartButtonClickedAsync(cts.Token);
 
+                _timerText.SetActive(true);
+
                 //的の生成開始
                 _targetSpawner.StartSpawnTargetAsync(cts.Token).Forget();
 
                 //タイマースタート
                 await _timeController.StartTimerAsync(cts.Token);
 
+                _timerText.SetActive(false);
+
                 CustomDebug.Log("ゲーム終了");
                 cts.Cancel();
 
                 await _scorePresenter.ShowScoreAnimationAsync(destroyCancellationToken);
+
             }
         }
 
