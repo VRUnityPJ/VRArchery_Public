@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using _VRArchery.Scripts.Runtime.Score;
+using _VRArchery.Scripts.Runtime.Sound;
 using _VRArchery.Scripts.Utility;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
@@ -22,6 +23,7 @@ namespace _VRArchery.Scripts.Runtime.Target
 
         private Transform _playerPos;
         private ScoreHolder _scoreHolder;
+        private readonly UiAudioPlayer _audioPlayer = Locator.Resolve<UiAudioPlayer>();
 
         private const float LifeTimeSec = 10f;
 
@@ -39,6 +41,7 @@ namespace _VRArchery.Scripts.Runtime.Target
             //敵にぶつかったとき
             if (other.gameObject.CompareTag("Arrow"))
             {
+                _audioPlayer.TargetHitSound();
                 var addPoint = _scoreHolder.CalculateAddScore(transform.position, _playerPos.position);
                 _scoreHolder.AddScore(addPoint);
                 HitStopManager.Apply(_hitStopDuration, _hitStopTimeScale);

@@ -1,3 +1,4 @@
+using _VRArchery.Scripts.Utility;
 using UnityEngine;
 
 namespace _VRArchery.Scripts.Runtime.Sound
@@ -11,13 +12,12 @@ namespace _VRArchery.Scripts.Runtime.Sound
         [SerializeField] private AudioClip _audioClipTargetAir;
         [SerializeField] private AudioSource _audioSource;
 
+        private void Awake() => Locator.Register(this);
 
         public void ButtonSound() => _audioSource.PlayOneShot(_audioClipButton, 1.0f);
         public void TargetHitSound() => _audioSource.PlayOneShot(_audioClipTargetHit, 1.0f);
         public void TargetAirSound() => _audioSource.PlayOneShot(_audioClipTargetAir, 1.0f);
         public void PlayCountDownShellSound() => _audioSource.PlayOneShot(_audioClipShell, 1.0f);
-
-
         public void PlayCountDownSound() => _audioSource.PlayOneShot(_audioClip, 1.0f);
     }
 }

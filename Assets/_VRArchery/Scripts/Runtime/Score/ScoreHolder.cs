@@ -14,8 +14,9 @@ namespace _VRArchery.Scripts.Runtime.Score
         /// </summary>
         public Rank CurrentRank => _currentRank;
 
-        private const int ARankThreshold = 100;
-        private const int BRankThreshold = 50;
+        private const int SRankThreshold = 6000;
+        private const int ARankThreshold = 5000;
+        private const int BRankThreshold = 4000;
         private Rank _currentRank;
 
         private readonly ReactiveProperty<int> _score = new();
@@ -68,6 +69,8 @@ namespace _VRArchery.Scripts.Runtime.Score
         /// </summary>
         public Rank GetRank()
         {
+            if (_score.Value >= SRankThreshold)
+                return Rank.S;
             if (_score.Value >= ARankThreshold)
                 return Rank.A;
             if (_score.Value >= BRankThreshold)

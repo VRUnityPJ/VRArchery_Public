@@ -18,6 +18,7 @@ namespace _VRArchery.Scripts.Runtime.Equipment
         private NearFarInteractor _rightHand;
         [SerializeField]
         private GameObject _arrowPrefab;
+
         /// <summary>
         /// シーン上の弓オブジェクト
         /// </summary>
@@ -57,7 +58,7 @@ namespace _VRArchery.Scripts.Runtime.Equipment
                 return;
             }
 
-            GameObject newArrowObj = Instantiate(_arrowPrefab);
+            GameObject newArrowObj = Instantiate(_arrowPrefab, _rightHand.transform);
             var arrowVR = newArrowObj.GetComponent<ArrowVR>();
             if (arrowVR != null)
             {
@@ -74,17 +75,17 @@ namespace _VRArchery.Scripts.Runtime.Equipment
                 return;
             }
 
+            if (interactor is XRBaseInteractor baseInteractor)
+            {
+                //interactionManagerへのアクセスにはXRBaseInteractorを使用します
+                //SelectEnterの引数をIXRSelectInteractorとIXRSelectInteractableにキャストします
+                baseInteractor.interactionManager.SelectEnter(baseInteractor as IXRSelectInteractor, newInteractable as IXRSelectInteractable);
+            }
+
             if (interactor.attachTransform != null)
             {
                 newArrowObj.transform.position = interactor.attachTransform.position;
                 newArrowObj.transform.rotation = interactor.attachTransform.rotation;
-            }
-
-            if (interactor is XRBaseInteractor baseInteractor)
-            {
-                // interactionManagerへのアクセスにはXRBaseInteractorを使用します
-                // SelectEnterの引数をIXRSelectInteractorとIXRSelectInteractableにキャストします
-                baseInteractor.interactionManager.SelectEnter(baseInteractor as IXRSelectInteractor, newInteractable as IXRSelectInteractable);
             }
         }
     }

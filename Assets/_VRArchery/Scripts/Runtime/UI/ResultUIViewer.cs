@@ -1,5 +1,7 @@
 using System;
 using System.Threading;
+using _VRArchery.Scripts.Runtime.Sound;
+using _VRArchery.Scripts.Utility;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using TMPro;
@@ -13,6 +15,8 @@ namespace _VRArchery.Scripts.Runtime.UI
         [SerializeField] private TextMeshProUGUI _rankText;
         [SerializeField] private TextMeshProUGUI _endText;
         [SerializeField] private TextMeshProUGUI _seeYouText;
+
+        private readonly UiAudioPlayer _audioPlayer = Locator.Resolve<UiAudioPlayer>();
 
         private void Start() => Init();
 
@@ -33,6 +37,8 @@ namespace _VRArchery.Scripts.Runtime.UI
         public async UniTask ShowResultAsync(int score, string rank, CancellationToken token)
         {
             // 「やめ」表示
+            _audioPlayer.PlayCountDownSound();
+
             _endText.gameObject.SetActive(true);
             _endText.text = "やめ";
             _endText.rectTransform.localScale = Vector3.one * 0.5f;
@@ -69,6 +75,8 @@ namespace _VRArchery.Scripts.Runtime.UI
             _finalScoreText.text = $"Score : {score}";
             _finalScoreText.rectTransform.localScale = Vector3.one * 0.5f;
 
+            _audioPlayer.PlayCountDownSound();
+
             await _finalScoreText.rectTransform
                 .DOScale(1f, 0.5f)
                 .SetEase(Ease.OutBack)
@@ -83,6 +91,8 @@ namespace _VRArchery.Scripts.Runtime.UI
             _rankText.gameObject.SetActive(true);
             _rankText.text = $"rank: {rank}";
             _rankText.rectTransform.localScale = Vector3.one * 0.5f;
+
+            _audioPlayer.PlayCountDownSound();
 
             await _rankText.rectTransform
                 .DOScale(1f, 0.5f)
