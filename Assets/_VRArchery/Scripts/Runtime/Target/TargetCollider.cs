@@ -23,7 +23,6 @@ namespace _VRArchery.Scripts.Runtime.Target
 
         private Transform _playerPos;
         private ScoreHolder _scoreHolder;
-        private readonly UiAudioPlayer _audioPlayer = Locator.Resolve<UiAudioPlayer>();
 
         private const float LifeTimeSec = 10f;
 
@@ -41,7 +40,6 @@ namespace _VRArchery.Scripts.Runtime.Target
             //敵にぶつかったとき
             if (other.gameObject.CompareTag("Arrow"))
             {
-                _audioPlayer.TargetHitSound();
                 var addPoint = _scoreHolder.CalculateAddScore(transform.position, _playerPos.position);
                 _scoreHolder.AddScore(addPoint);
                 HitStopManager.Apply(_hitStopDuration, _hitStopTimeScale);
