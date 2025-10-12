@@ -1,4 +1,6 @@
-﻿namespace _VRArchery.Scripts.Utility
+﻿using UnityEngine;
+
+namespace _VRArchery.Scripts.Utility
 {
     public static class Locator
     {

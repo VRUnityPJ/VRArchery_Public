@@ -16,7 +16,7 @@ namespace _VRArchery.Scripts.Runtime.UI
         [SerializeField] private TextMeshProUGUI _endText;
         [SerializeField] private TextMeshProUGUI _seeYouText;
 
-        private readonly UiAudioPlayer _audioPlayer = Locator.Resolve<UiAudioPlayer>();
+        private UiAudioPlayer _audioPlayer;
 
         private void Start() => Init();
 
@@ -25,6 +25,7 @@ namespace _VRArchery.Scripts.Runtime.UI
         /// </summary>
         public void Init()
         {
+            _audioPlayer =  Locator.Resolve<UiAudioPlayer>();
             _finalScoreText.gameObject.SetActive(false);
             _rankText.gameObject.SetActive(false);
             _endText.gameObject.SetActive(false);
