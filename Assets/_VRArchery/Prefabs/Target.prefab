@@ -156,7 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _effect: {fileID: 8261275753270007934}
   _hitStopDuration: 0.1
-  _hitStopTimeScale: 0.3
+  _hitStopTimeScale: 0.1
 --- !u!114 &8261275753270007934
 MonoBehaviour:
   m_ObjectHideFlags: 0

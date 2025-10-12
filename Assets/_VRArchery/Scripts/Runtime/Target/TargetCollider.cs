@@ -18,6 +18,11 @@ namespace _VRArchery.Scripts.Runtime.Target
         [Tooltip("ヒットストップ中のTime.timeScale")]
         [SerializeField] private float _hitStopTimeScale = 0.1f;
 
+        /// <summary>
+        /// ポイントを獲得する補正値(1~2の範囲がよい)
+        /// </summary>
+        [SerializeField] private int _getPointCorrection = 1;
+
         private Transform _playerPos;
         private ScoreHolder _scoreHolder;
         private TargetMover _targetMover;
@@ -42,7 +47,7 @@ namespace _VRArchery.Scripts.Runtime.Target
             {
                 //距離に応じて加算するポイントを計算する
                 var addPoint = _scoreHolder.CalculateAddScore(transform.position, _playerPos.position);
-                _scoreHolder.AddScore(addPoint);
+                _scoreHolder.AddScore(addPoint * _getPointCorrection);
 
                 HitStopManager.Apply(_hitStopDuration, _hitStopTimeScale);
                 CustomDebug.Log(_scoreHolder.Score);

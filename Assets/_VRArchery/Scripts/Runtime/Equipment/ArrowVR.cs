@@ -209,10 +209,7 @@ namespace _VRArchery.Scripts.Runtime.Equipment
 
         private async UniTask DelayDestroyAsync()
         {
-            if(destroyCancellationToken.IsCancellationRequested)
-            {
-                return;
-            }
+            destroyCancellationToken.ThrowIfCancellationRequested();
 
             _rb.isKinematic = true;
             _boxCollider.enabled = false;
