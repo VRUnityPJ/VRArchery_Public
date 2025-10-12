@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using _VRArchery.Scripts.Runtime.Sound;
 using _VRArchery.Scripts.Utility;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -25,6 +26,8 @@ namespace _VRArchery.Scripts.Runtime.Equipment
         private InputAction _nockAction;
         private GameObject _bowString;
         private IBow _bow;
+        private ArrowEffectController _arrowEffectController;
+        private UiAudioPlayer  _uiAudioPlayer;
         /// <summary>
         /// 矢をつがえる位置の当たり判定
         /// </summary>
@@ -54,6 +57,8 @@ namespace _VRArchery.Scripts.Runtime.Equipment
         {
             _rb = GetComponent<Rigidbody>();
             _boxCollider = GetComponent<BoxCollider>();
+            TryGetComponent(out _arrowEffectController);
+            _uiAudioPlayer = Locator.Resolve<UiAudioPlayer>();
             _grabInteract.trackRotation = true;
         }
 
@@ -178,6 +183,9 @@ namespace _VRArchery.Scripts.Runtime.Equipment
                 _rb.useGravity = true;
                 ArrowCounter.AddArrowCount();
                 CustomDebug.Log($"Vector: {ArrowGrip.transform.position - this.transform.position}");
+
+                _arrowEffectController.IsActiveTrainRenderer = true;
+                _uiAudioPlayer.TargetAirSound();
                 _rb.AddForce((ArrowGrip.transform.position - this.transform.position) * _speed, ForceMode.Impulse);
                 _bow?.ResetWirePointObject();
                 await ReloadArrowAsync();
@@ -201,6 +209,8 @@ namespace _VRArchery.Scripts.Runtime.Equipment
 
         private async UniTask DelayDestroyAsync()
         {
+            destroyCancellationToken.ThrowIfCancellationRequested();
+
             _rb.isKinematic = true;
             _boxCollider.enabled = false;
 

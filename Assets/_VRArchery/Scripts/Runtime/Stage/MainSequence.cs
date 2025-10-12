@@ -7,6 +7,7 @@ using Cysharp.Threading.Tasks;
 using KeyBoard;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using VContainer;
 using VContainer.Unity;
 
@@ -17,7 +18,7 @@ namespace _VRArchery.Scripts.Runtime.Stage
     /// </summary>
     public class MainSequence : MonoBehaviour
     {
-        [SerializeField] private StartButtonController _startButtonController;
+        [SerializeField] private StartTargetController _startTargetController;
         [SerializeField] private TargetSpawner _targetSpawner;
         [SerializeField] private TimeController _timeController;
         [SerializeField] private ScorePresenter _scorePresenter;
@@ -37,9 +38,11 @@ namespace _VRArchery.Scripts.Runtime.Stage
             {
                 using var cts = CancellationTokenSource.CreateLinkedTokenSource(destroyCancellationToken);
 
-                _startButtonController.Init();
+                _startTargetController.Init();
                 _tutorialPresenter.Init();
                 _resultUIViewer.Init();
+
+                _scorePresenter.gameObject.SetActive(false);
                 _timerText.SetActive(false);
 
                 //名前入力を行う
@@ -50,6 +53,8 @@ namespace _VRArchery.Scripts.Runtime.Stage
 
                 //入力が完了するまで待機
                 await enterName.OnComplete(cts.Token);
+
+                _scorePresenter.gameObject.SetActive(true);
 
                 await SceneManager.UnloadSceneAsync("FirstScene_Demo")
                     .ToUniTask(cancellationToken: cts.Token);
@@ -63,8 +68,10 @@ namespace _VRArchery.Scripts.Runtime.Stage
                     await _tutorialPresenter.StartTutorialAsync(cts.Token);
                 }
 
+                await _tutorialPresenter.HideTutorialAsync(cts.Token);
+
                 //ボタンが押されてカウントダウンが終わるまで待機
-                await _startButtonController.OnStartButtonClickedAsync(cts.Token);
+                await _startTargetController.OnStartButtonClickedAsync(cts.Token);
 
                 _timerText.SetActive(true);
 

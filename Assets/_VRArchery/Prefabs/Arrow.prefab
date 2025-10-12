@@ -272,7 +272,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
-  m_FarAttachMode: 0
+  m_FarAttachMode: 1
 --- !u!96 &-5435805867786594485
 TrailRenderer:
   serializedVersion: 3
@@ -297,7 +297,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0cac2609ea506c04f955d30ee039667f, type: 2}
+  - {fileID: 2100000, guid: 5fca38760f3fc4a48ad0262ee64fb1b3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -328,7 +328,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.12837791
         inSlope: 0
         outSlope: 0
         tangentMode: 0

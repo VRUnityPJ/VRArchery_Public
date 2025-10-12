@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 5743263599196768165}
   - component: {fileID: -3137457064958692980}
   - component: {fileID: 8261275753270007934}
+  - component: {fileID: 3681233182519415035}
+  - component: {fileID: 5695078459321583739}
   m_Layer: 0
   m_Name: Target
   m_TagString: Target
@@ -154,7 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _effect: {fileID: 8261275753270007934}
   _hitStopDuration: 0.1
-  _hitStopTimeScale: 0.3
+  _hitStopTimeScale: 0.1
 --- !u!114 &8261275753270007934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,3 +170,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _particleSystem: {fileID: 9111785955409272373, guid: 178c7969cfb627346a66308fd1f0d616, type: 3}
+--- !u!114 &3681233182519415035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7846117325604094452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd4e3f3e8bc54a97bd82a27c2368f7bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5695078459321583739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7846117325604094452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be818e05631740c6967dbe6e69b079f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _destroyAnimationTime: 0.05
