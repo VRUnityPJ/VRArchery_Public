@@ -4128,7 +4128,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2291735172237534479, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_FarAttachMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2291735172237534479, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_EnableFarCasting
@@ -6318,7 +6318,7 @@ MonoBehaviour:
   _cloudPrefabUp: {fileID: 7069891212242407346}
   _cloudPrefabDown: {fileID: 5833858121657720860}
   _paper: {fileID: 2715155660284874821}
-  _cloudMoveValue: 20
+  _cloudMoveValue: 10
   _cloudShowTime: 1
   _cloudHideTime: 1
 --- !u!33 &8621951214540405308

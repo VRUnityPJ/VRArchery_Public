@@ -58,7 +58,7 @@ namespace _VRArchery.Scripts.Runtime.Equipment
                 return;
             }
 
-            GameObject newArrowObj = Instantiate(_arrowPrefab, _rightHand.transform);
+            GameObject newArrowObj = Instantiate(_arrowPrefab);
             var arrowVR = newArrowObj.GetComponent<ArrowVR>();
             if (arrowVR != null)
             {
@@ -84,8 +84,8 @@ namespace _VRArchery.Scripts.Runtime.Equipment
 
             if (interactor.attachTransform != null)
             {
-                newArrowObj.transform.position = interactor.attachTransform.position;
-                newArrowObj.transform.rotation = interactor.attachTransform.rotation;
+                newArrowObj.transform.position = interactor.transform.position;
+                newArrowObj.transform.rotation = interactor.transform.rotation;
             }
         }
     }
