@@ -63,8 +63,9 @@ namespace _VRArchery.Scripts.Runtime.Equipment
                 return;
             _nockAction.Enable();
 
-            _nockAction.performed += OnTriggerRightPressed;
-            _nockAction.canceled += OnTriggerRightReleased;
+            _nockAction.performed += NockArrow;
+            _nockAction.canceled += context => _ = ShootArrowAsync(context);
+
             CustomDebug.Log("nockAction enabled");
         }
 
@@ -144,39 +145,41 @@ namespace _VRArchery.Scripts.Runtime.Equipment
                 //_grabInteract.trackRotation = true;
             }
         }
-
-        private void OnTriggerRightPressed(InputAction.CallbackContext ctx)
+        /// <summary>
+        /// 矢をつがえる処理
+        /// </summary>
+        private void NockArrow(InputAction.CallbackContext ctx)
         {
             CustomDebug.Log("OnTriggerRightPressed");
-            if (_canNock)
+            if (!_canNock)
             {
-                CustomDebug.Log("An Arrow Is Nocking");
-                _isNocking = true;
-                _grabInteract.trackRotation = false;
-                _rb.useGravity = false;
-                _isFlying = false;
+                return;
             }
+            CustomDebug.Log("An Arrow Is Nocking");
+            _isNocking = true;
+            _grabInteract.trackRotation = false;
+            _rb.useGravity = false;
+            _isFlying = false;
         }
 
-        async private void OnTriggerRightReleased(InputAction.CallbackContext ctx)
+        /// <summary>
+        /// 矢を撃つ処理
+        /// </summary>
+        private async UniTask ShootArrowAsync(InputAction.CallbackContext ctx)
         {
             CustomDebug.Log("OnTriggerRightReleased");
             if (_isNocking)
             {
-                CustomDebug.Log("An Arrow is Shooted");
+                CustomDebug.Log("An Arrow is Shot");
                 _grabInteract.trackRotation = true;
                 _isNocking = false;
                 ForceRelease();
                 _arrowFaceMovement.IsFlying = true;
                 _rb.useGravity = true;
                 ArrowCounter.AddArrowCount();
-                Debug.Log($"Vector: {ArrowGrip.transform.position - this.transform.position}");
+                CustomDebug.Log($"Vector: {ArrowGrip.transform.position - this.transform.position}");
                 _rb.AddForce((ArrowGrip.transform.position - this.transform.position) * _speed, ForceMode.Impulse);
-                if (_bow != null)
-                {
-                    _bow.ResetWirePointObject();
-                }
-
+                _bow?.ResetWirePointObject();
                 await ReloadArrowAsync();
             }
         }
