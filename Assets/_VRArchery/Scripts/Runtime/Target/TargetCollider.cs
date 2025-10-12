@@ -1,15 +1,12 @@
-using System;
-using System.Threading;
 using _VRArchery.Scripts.Runtime.Score;
-using _VRArchery.Scripts.Runtime.Sound;
 using _VRArchery.Scripts.Utility;
 using Cysharp.Threading.Tasks;
-using DG.Tweening;
 using UnityEngine;
 using VContainer;
 
 namespace _VRArchery.Scripts.Runtime.Target
 {
+    [RequireComponent(typeof(TargetMover))]
     public class TargetCollider : MonoBehaviour
     {
         [SerializeField]
@@ -23,8 +20,11 @@ namespace _VRArchery.Scripts.Runtime.Target
 
         private Transform _playerPos;
         private ScoreHolder _scoreHolder;
+        private TargetMover _targetMover;
 
         private const float LifeTimeSec = 10f;
+
+        private void Start() => TryGetComponent(out _targetMover);
 
         [Inject]
         public void Construct(ScoreHolder scoreHolder, Transform playerTransform)
@@ -35,15 +35,21 @@ namespace _VRArchery.Scripts.Runtime.Target
 
         private void Update() => transform.LookAt(_playerPos);
 
-        private void OnTriggerEnter(Collider other)
+        private async UniTaskVoid OnTriggerEnter(Collider other)
         {
             //敵にぶつかったとき
             if (other.gameObject.CompareTag("Arrow"))
             {
+                //距離に応じて加算するポイントを計算する
                 var addPoint = _scoreHolder.CalculateAddScore(transform.position, _playerPos.position);
                 _scoreHolder.AddScore(addPoint);
+
                 HitStopManager.Apply(_hitStopDuration, _hitStopTimeScale);
                 CustomDebug.Log(_scoreHolder.Score);
+
+                //消滅時のアニメーション
+                await _targetMover.DestroyAnimationAsync(destroyCancellationToken);
+
                 Destroy(gameObject);
             }
 
@@ -51,39 +57,6 @@ namespace _VRArchery.Scripts.Runtime.Target
             {
                 _effect.OnStartParticle();
                 Destroy(gameObject);
-            }
-        }
-
-        /// <summary>
-        /// 的のアニメーションを行う
-        /// </summary>
-        /// <param name="token"></param>
-        public async UniTask MoveAsync(CancellationToken token)
-        {
-            //受け取ったキャンセルトークンとdestroyCancellationTokenをくっつけて
-            //どちらかがキャンセルされたら発火するキャンセルトークンを新たに生成
-            using var cts = CancellationTokenSource.CreateLinkedTokenSource(token, destroyCancellationToken);
-
-            try
-            {
-                var randomSpeed = UnityEngine.Random.Range(4, 8);
-                var jumpPower = UnityEngine.Random.Range(3, 6);
-
-                var anim = DOTween.Sequence()
-                    .Append(transform.DOJump(transform.position + Vector3.forward * 10f + Vector3.down * 2, jumpPower, 1, randomSpeed))
-                    .ToUniTask(cancellationToken: cts.Token);
-
-                var lifeTimeTask = UniTask.Delay(TimeSpan.FromSeconds(LifeTimeSec), cancellationToken: cts.Token);
-
-                await UniTask.WhenAny(anim, lifeTimeTask);
-            }
-            finally
-            {
-                CustomDebug.Log("動作停止");
-                if(gameObject != null)
-                {
-                    Destroy(gameObject);
-                }
             }
         }
     }

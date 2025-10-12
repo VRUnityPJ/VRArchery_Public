@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading;
+using _VRArchery.Scripts.Runtime.Sound;
+using _VRArchery.Scripts.Utility;
 using UnityEngine;
 using DG.Tweening;
 using Cysharp.Threading.Tasks;
@@ -17,8 +19,13 @@ namespace _VRArchery.Scripts.Runtime.Tutorial
         [SerializeField] private float _cloudHideTime = 1;
 
         private Vector2 _originalCloudScale;
+        private UiAudioPlayer  _audioPlayer;
 
-        private void Start() => _makimonoPrefab.SetActive(false);
+        private void Start()
+        {
+            _makimonoPrefab.SetActive(false);
+            _audioPlayer = Locator.Resolve<UiAudioPlayer>();
+        }
 
         public void Init()
         {
@@ -34,6 +41,7 @@ namespace _VRArchery.Scripts.Runtime.Tutorial
         public async UniTask ShowScrollAnimationAsync(CancellationToken ct)
         {
             _makimonoPrefab.SetActive(true);
+            _audioPlayer.PlayScrollStartSound();
 
             // 巻物のアニメーション
             await DOTween.Sequence()
@@ -70,6 +78,8 @@ namespace _VRArchery.Scripts.Runtime.Tutorial
             await DOTween.Sequence()
                 .Append(_cloudPrefabUp.DOScale(Vector3.zero, _cloudHideTime))
                 .Join(_cloudPrefabDown.DOScale(Vector3.zero, _cloudHideTime));
+
+            _audioPlayer.PlayScrollEndSound();
 
             await DOTween.Sequence()
                 .Append(_makimonoPrefab.transform.DOMoveX(_makimonoPrefab.transform.position.x - 7, 2f))

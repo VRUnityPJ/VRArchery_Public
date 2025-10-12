@@ -18,7 +18,7 @@ namespace _VRArchery.Scripts.Runtime.Stage
     /// </summary>
     public class MainSequence : MonoBehaviour
     {
-        [FormerlySerializedAs("_startButtonController")] [SerializeField] private StartTargetController _startTargetController;
+        [SerializeField] private StartTargetController _startTargetController;
         [SerializeField] private TargetSpawner _targetSpawner;
         [SerializeField] private TimeController _timeController;
         [SerializeField] private ScorePresenter _scorePresenter;
@@ -41,6 +41,8 @@ namespace _VRArchery.Scripts.Runtime.Stage
                 _startTargetController.Init();
                 _tutorialPresenter.Init();
                 _resultUIViewer.Init();
+
+                _scorePresenter.gameObject.SetActive(false);
                 _timerText.SetActive(false);
 
                 //名前入力を行う
@@ -51,6 +53,8 @@ namespace _VRArchery.Scripts.Runtime.Stage
 
                 //入力が完了するまで待機
                 await enterName.OnComplete(cts.Token);
+
+                _scorePresenter.gameObject.SetActive(true);
 
                 await SceneManager.UnloadSceneAsync("FirstScene_Demo")
                     .ToUniTask(cancellationToken: cts.Token);

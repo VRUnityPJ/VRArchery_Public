@@ -754,7 +754,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Target (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3681233182519415035, guid: ecd810518c3c8f84fa4e2e56a609f629, type: 3}
+    - {fileID: -3137457064958692980, guid: ecd810518c3c8f84fa4e2e56a609f629, type: 3}
+    - {fileID: 8261275753270007934, guid: ecd810518c3c8f84fa4e2e56a609f629, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1328,7 +1331,7 @@ GameObject:
   - component: {fileID: 728678232}
   - component: {fileID: 728678231}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1377,7 +1380,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 728678229}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1671,7 +1674,7 @@ GameObject:
   - component: {fileID: 885443343}
   - component: {fileID: 885443342}
   m_Layer: 0
-  m_Name: Cube (3)
+  m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1720,7 +1723,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 885443340}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1908,6 +1911,8 @@ MonoBehaviour:
   _audioClipButton: {fileID: 8300000, guid: adc1670bb3673d846b31be7a5fbee345, type: 3}
   _audioClipTargetHit: {fileID: 8300000, guid: b551463307a63de4b95247ae69457d07, type: 3}
   _audioClipTargetAir: {fileID: 8300000, guid: 66c8d4551799b6346962738ceed4b9ca, type: 3}
+  _makimonoStartSound: {fileID: 8300000, guid: f16c9cd517a7c3846aab798e5214a09f, type: 3}
+  _makimonoEndSound: {fileID: 8300000, guid: f9258bea42b010245b5178cef95bb343, type: 3}
   _audioSource: {fileID: 925699330}
 --- !u!4 &925699332
 Transform:
@@ -2548,7 +2553,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Target (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3681233182519415035, guid: ecd810518c3c8f84fa4e2e56a609f629, type: 3}
+    - {fileID: -3137457064958692980, guid: ecd810518c3c8f84fa4e2e56a609f629, type: 3}
+    - {fileID: 8261275753270007934, guid: ecd810518c3c8f84fa4e2e56a609f629, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2977,7 +2985,7 @@ GameObject:
   - component: {fileID: 1470881237}
   - component: {fileID: 1470881236}
   m_Layer: 0
-  m_Name: Cube (2)
+  m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3026,7 +3034,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1470881234}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3145,7 +3153,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Target (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3681233182519415035, guid: ecd810518c3c8f84fa4e2e56a609f629, type: 3}
+    - {fileID: -3137457064958692980, guid: ecd810518c3c8f84fa4e2e56a609f629, type: 3}
+    - {fileID: 8261275753270007934, guid: ecd810518c3c8f84fa4e2e56a609f629, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3542,7 +3553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed04a12be0e451eaebf01ce25114e01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetPrefab: {fileID: -3137457064958692980, guid: ecd810518c3c8f84fa4e2e56a609f629, type: 3}
+  _targetPrefab: {fileID: 5695078459321583739, guid: ecd810518c3c8f84fa4e2e56a609f629, type: 3}
   _spawnPoints:
   - {fileID: 728678230}
   - {fileID: 1750281657}
@@ -3563,7 +3574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _limitTimeSec:
-    value: 5
+    value: 120
 --- !u!1001 &1657743215
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4268,7 +4279,7 @@ GameObject:
   - component: {fileID: 1750281659}
   - component: {fileID: 1750281658}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4317,7 +4328,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1750281656}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -5325,7 +5336,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Target (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3681233182519415035, guid: ecd810518c3c8f84fa4e2e56a609f629, type: 3}
+    - {fileID: -3137457064958692980, guid: ecd810518c3c8f84fa4e2e56a609f629, type: 3}
+    - {fileID: 8261275753270007934, guid: ecd810518c3c8f84fa4e2e56a609f629, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -6173,7 +6187,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Target
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3681233182519415035, guid: ecd810518c3c8f84fa4e2e56a609f629, type: 3}
+    - {fileID: -3137457064958692980, guid: ecd810518c3c8f84fa4e2e56a609f629, type: 3}
+    - {fileID: 8261275753270007934, guid: ecd810518c3c8f84fa4e2e56a609f629, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -7818,7 +7835,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 89}
+  m_AnchoredPosition: {x: 0, y: 72}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &5090355555232887356

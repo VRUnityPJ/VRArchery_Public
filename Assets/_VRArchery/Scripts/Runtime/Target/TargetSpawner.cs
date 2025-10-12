@@ -12,7 +12,7 @@ namespace _VRArchery.Scripts.Runtime.Target
 {
     public class TargetSpawner : MonoBehaviour
     {
-        [SerializeField] private TargetCollider _targetPrefab;
+        [SerializeField] private TargetMover _targetPrefab;
 
         /// <summary>
         /// 的を生成する位置
