@@ -63,11 +63,9 @@ namespace _VRArchery.Scripts.Runtime.Equipment
                 return;
             _nockAction.Enable();
 
-            _nockAction.performed += OnTriggerLeftPressed;
-            _nockAction.performed += OnTriggerRightPressed;
+            _nockAction.performed += NockArrow;
+            _nockAction.canceled += context => _ = ShootArrowAsync(context);
 
-            _nockAction.canceled += context => _ = OnTriggerLeftReleased(context);
-            _nockAction.canceled += context => _ = OnTriggerRightReleased(context);
             CustomDebug.Log("nockAction enabled");
         }
 
@@ -150,7 +148,7 @@ namespace _VRArchery.Scripts.Runtime.Equipment
         /// <summary>
         /// 矢をつがえる処理
         /// </summary>
-        private void NockArrow()
+        private void NockArrow(InputAction.CallbackContext ctx)
         {
             CustomDebug.Log("OnTriggerRightPressed");
             if (!_canNock)
@@ -167,7 +165,7 @@ namespace _VRArchery.Scripts.Runtime.Equipment
         /// <summary>
         /// 矢を撃つ処理
         /// </summary>
-        private async UniTask ShootArrowAsync()
+        private async UniTask ShootArrowAsync(InputAction.CallbackContext ctx)
         {
             CustomDebug.Log("OnTriggerRightReleased");
             if (_isNocking)
@@ -185,11 +183,6 @@ namespace _VRArchery.Scripts.Runtime.Equipment
                 await ReloadArrowAsync();
             }
         }
-
-        private void OnTriggerLeftPressed(InputAction.CallbackContext ctx) => NockArrow();
-        private void OnTriggerRightPressed(InputAction.CallbackContext ctx) => NockArrow();
-        private async UniTask OnTriggerLeftReleased(InputAction.CallbackContext ctx) => await ShootArrowAsync();
-        private async UniTask OnTriggerRightReleased(InputAction.CallbackContext ctx) => await ShootArrowAsync();
 
         private void ForceRelease()
         {

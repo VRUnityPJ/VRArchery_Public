@@ -26,6 +26,17 @@
                     "action": "nockArrow",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "720fe546-d5e0-4f3c-b9c9-af8e8b5be290",
+                    "path": "<XRController>{LeftHand}/{TriggerButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "nockArrow",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
