@@ -14,6 +14,12 @@ namespace _VRArchery.Scripts.Runtime.Sound
         [SerializeField] private AudioClip _makimonoEndSound;
 
         [Space]
+        [SerializeField] private AudioClip _cRankSound;
+        [SerializeField] private AudioClip _bRankSound;
+        [SerializeField] private AudioClip _aRankSound;
+        [SerializeField] private AudioClip _sRankSound;
+
+        [Space]
         [SerializeField] private AudioSource _audioSource;
 
         private void Awake() => Locator.Register(this);
@@ -33,5 +39,10 @@ namespace _VRArchery.Scripts.Runtime.Sound
         /// 巻物をしまうときの効果音
         /// </summary>
         public void PlayScrollEndSound() => _audioSource.PlayOneShot(_makimonoEndSound, 1.0f);
+
+        public void CRankSound() => _audioSource.PlayOneShot(_cRankSound, 1.0f);
+        public void BRankSound() => _audioSource.PlayOneShot(_bRankSound, 1.0f);
+        public void ARankSound() => _audioSource.PlayOneShot(_aRankSound, 1.0f);
+        public void SRankSound() => _audioSource.PlayOneShot(_sRankSound, 1.0f);
     }
 }

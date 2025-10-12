@@ -1,5 +1,7 @@
 using System.Threading;
 using _VRArchery.Scripts.Runtime.Score;
+using _VRArchery.Scripts.Runtime.Sound;
+using _VRArchery.Scripts.Utility;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
@@ -14,6 +16,10 @@ namespace _VRArchery.Scripts.Runtime.UI
         [SerializeField]
         private ResultUIViewer _resultUIViewer; //追加
 
+        private UiAudioPlayer  _audioPlayer;
+
+        private void Start() => _audioPlayer = Locator.Resolve<UiAudioPlayer>();
+
         /// <summary>
         /// ゲーム終了時にスコアをアニメーションさせて表示する
         /// </summary>
@@ -23,6 +29,25 @@ namespace _VRArchery.Scripts.Runtime.UI
                 _scoreHolder.Score.CurrentValue,
                 _scoreHolder.GetRank().ToString(),
                 token);
+
+            //ランクに応じて効果音を鳴らす
+            switch (_scoreHolder.GetRank())
+            {
+                case Rank.C:
+                    _audioPlayer.CRankSound();
+                    break;
+                case Rank.B:
+                    _audioPlayer.BRankSound();
+                    break;
+                case Rank.A:
+                    _audioPlayer.ARankSound();
+                    break;
+                case Rank.S:
+                    _audioPlayer.SRankSound();
+                    break;
+            }
+
+            await _resultUIViewer.ShowSeeYouAsync(token);
         }
     }
 }

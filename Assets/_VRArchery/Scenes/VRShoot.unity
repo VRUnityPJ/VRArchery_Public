@@ -1913,6 +1913,10 @@ MonoBehaviour:
   _audioClipTargetAir: {fileID: 8300000, guid: 66c8d4551799b6346962738ceed4b9ca, type: 3}
   _makimonoStartSound: {fileID: 8300000, guid: f16c9cd517a7c3846aab798e5214a09f, type: 3}
   _makimonoEndSound: {fileID: 8300000, guid: f9258bea42b010245b5178cef95bb343, type: 3}
+  _cRankSound: {fileID: 8300000, guid: b28e72861ebaa5841a380d082f36e6d4, type: 3}
+  _bRankSound: {fileID: 8300000, guid: db10e78a8e3cb534693b0e3955a13c0f, type: 3}
+  _aRankSound: {fileID: 8300000, guid: 0cdcac1a1e6d9c44daa6ab5f6f4d24c6, type: 3}
+  _sRankSound: {fileID: 8300000, guid: bc17c801aede8fa4798aea75c7e5f922, type: 3}
   _audioSource: {fileID: 925699330}
 --- !u!4 &925699332
 Transform:
@@ -3576,7 +3580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _limitTimeSec:
-    value: 120
+    value: 5
 --- !u!1001 &1657743215
 PrefabInstance:
   m_ObjectHideFlags: 0

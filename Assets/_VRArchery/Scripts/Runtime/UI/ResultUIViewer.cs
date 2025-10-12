@@ -61,10 +61,6 @@ namespace _VRArchery.Scripts.Runtime.UI
 
             _finalScoreText.gameObject.SetActive(false);
             _rankText.gameObject.SetActive(false);
-
-            await ShowSeeYouAsync(token);
-            await UniTask.Delay(TimeSpan.FromSeconds(15f), cancellationToken: token);
-
         }
 
         /// <summary>
@@ -104,7 +100,7 @@ namespace _VRArchery.Scripts.Runtime.UI
         /// <summary>
         /// ゲーム終了時に「また来てね！」というUIを出す
         /// </summary>
-        private async UniTask ShowSeeYouAsync(CancellationToken token)
+        public async UniTask ShowSeeYouAsync(CancellationToken token)
         {
             _seeYouText.gameObject.SetActive(true);
             _seeYouText.text = "あそんでくれてありがとう！\nまたきてね！";
@@ -114,6 +110,8 @@ namespace _VRArchery.Scripts.Runtime.UI
             .DOScale(1f, 0.5f)
             .SetEase(Ease.OutBack)
             .ToUniTask(cancellationToken: token);
+
+            await UniTask.Delay(TimeSpan.FromSeconds(15f), cancellationToken: token);
         }
     }
 }
