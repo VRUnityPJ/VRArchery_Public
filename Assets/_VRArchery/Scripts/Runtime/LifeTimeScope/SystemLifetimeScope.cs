@@ -14,6 +14,8 @@ namespace _VRArchery.Scripts.Runtime.LifeTimeScope
         [SerializeField] private ScorePresenter _scorePresenter;
         [SerializeField] private Transform _playerTransform;
         [SerializeField] private MainSequence _mainSequence;
+        [SerializeField] private TargetScoreViewer _targetScoreViewer;
+
         protected override void Configure(IContainerBuilder builder)
         {
             base.Configure(builder);
@@ -22,6 +24,7 @@ namespace _VRArchery.Scripts.Runtime.LifeTimeScope
             builder.RegisterComponent(_targetSpawner);
             builder.RegisterComponent(_scorePresenter);
             builder.RegisterComponent(_playerTransform);
+            builder.RegisterComponent(_targetScoreViewer);
 
             builder.Register<ScoreHolder>(Lifetime.Scoped);
         }
