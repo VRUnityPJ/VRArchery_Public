@@ -9691,10 +9691,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be06102ca96a7e84a94a375901b7a95d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _effect: {fileID: 0}
+  _effect: {fileID: -4814455435625658438}
   _hitStopDuration: 0.1
   _hitStopTimeScale: 0.1
-  _getPointCorrection: 2
+  _getPointCorrection: 3
 --- !u!114 &5193498017597354872
 MonoBehaviour:
   m_ObjectHideFlags: 0
