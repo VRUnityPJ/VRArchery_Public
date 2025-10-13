@@ -1,4 +1,5 @@
 using System.Threading;
+using _VRArchery.Scripts.Runtime.Score;
 using _VRArchery.Scripts.Runtime.Target;
 using _VRArchery.Scripts.Runtime.Tutorial;
 using _VRArchery.Scripts.Runtime.UI;
@@ -25,6 +26,14 @@ namespace _VRArchery.Scripts.Runtime.Stage
         [SerializeField] private TutorialPresenter _tutorialPresenter;
         [SerializeField] private ResultUIViewer _resultUIViewer;
         [SerializeField] private GameObject _timerText;
+
+        private ScoreHolder _scoreHolder;
+
+        [Inject]
+        public void Construct(ScoreHolder scoreHolder)
+        {
+            _scoreHolder  = scoreHolder;
+        }
 
         private async UniTaskVoid Start() => GameStartAsync().Forget();
 
@@ -87,6 +96,9 @@ namespace _VRArchery.Scripts.Runtime.Stage
                 cts.Cancel();
 
                 await _scorePresenter.ShowScoreAnimationAsync(destroyCancellationToken);
+
+                //スコアを初期化
+                _scoreHolder.InitializeScore();
 
             }
         }

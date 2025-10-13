@@ -1,5 +1,6 @@
 using System;
 using System.Threading;
+using _VRArchery.Scripts.Runtime.Score;
 using _VRArchery.Scripts.Runtime.Sound;
 using _VRArchery.Scripts.Utility;
 using Cysharp.Threading.Tasks;
@@ -57,6 +58,25 @@ namespace _VRArchery.Scripts.Runtime.UI
             await ShowScoreAsync(score, token); // View更新
             await ShowRankAsync(rank, token);  // View更新
 
+            await UniTask.Delay(TimeSpan.FromSeconds(1f), cancellationToken: token);
+
+            //ランクに応じて効果音を鳴らす
+            switch (rank)
+            {
+                case "C":
+                    _audioPlayer.CRankSound();
+                    break;
+                case "B":
+                    _audioPlayer.BRankSound();
+                    break;
+                case "A":
+                    _audioPlayer.ARankSound();
+                    break;
+                case "S":
+                    _audioPlayer.SRankSound();
+                    break;
+            }
+
             await UniTask.Delay(TimeSpan.FromSeconds(6f), cancellationToken: token);
 
             _finalScoreText.gameObject.SetActive(false);
@@ -69,7 +89,7 @@ namespace _VRArchery.Scripts.Runtime.UI
         private async UniTask ShowScoreAsync(int score, CancellationToken token)
         {
             _finalScoreText.gameObject.SetActive(true);
-            _finalScoreText.text = $"Score : {score}";
+            _finalScoreText.text = $"スコア : {score}";
             _finalScoreText.rectTransform.localScale = Vector3.one * 0.5f;
 
             _audioPlayer.PlayCountDownSound();
@@ -86,7 +106,7 @@ namespace _VRArchery.Scripts.Runtime.UI
         private async UniTask ShowRankAsync(string rank, CancellationToken token)
         {
             _rankText.gameObject.SetActive(true);
-            _rankText.text = $"rank: {rank}";
+            _rankText.text = $"総合評価 : {rank}";
             _rankText.rectTransform.localScale = Vector3.one * 0.5f;
 
             _audioPlayer.PlayCountDownSound();

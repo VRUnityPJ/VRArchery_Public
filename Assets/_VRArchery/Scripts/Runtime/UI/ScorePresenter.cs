@@ -30,23 +30,6 @@ namespace _VRArchery.Scripts.Runtime.UI
                 _scoreHolder.GetRank().ToString(),
                 token);
 
-            //ランクに応じて効果音を鳴らす
-            switch (_scoreHolder.GetRank())
-            {
-                case Rank.C:
-                    _audioPlayer.CRankSound();
-                    break;
-                case Rank.B:
-                    _audioPlayer.BRankSound();
-                    break;
-                case Rank.A:
-                    _audioPlayer.ARankSound();
-                    break;
-                case Rank.S:
-                    _audioPlayer.SRankSound();
-                    break;
-            }
-
             await _resultUIViewer.ShowSeeYouAsync(token);
         }
     }
