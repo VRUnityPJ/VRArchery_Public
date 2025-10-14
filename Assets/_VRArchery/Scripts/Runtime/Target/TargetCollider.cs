@@ -6,6 +6,9 @@ using VContainer;
 
 namespace _VRArchery.Scripts.Runtime.Target
 {
+    /// <summary>
+    /// 的の当たり判定にまつわるクラス
+    /// </summary>
     [RequireComponent(typeof(TargetMover))]
     public class TargetCollider : MonoBehaviour
     {
@@ -27,11 +30,6 @@ namespace _VRArchery.Scripts.Runtime.Target
         private ScoreHolder _scoreHolder;
         private TargetMover _targetMover;
         private TargetScoreViewer _targetScoreViewer;
-
-        /// <summary>
-        /// 的の生存期間
-        /// </summary>
-        private const float LifeTimeSec = 10f;
 
         private void Start() => TryGetComponent(out _targetMover);
 

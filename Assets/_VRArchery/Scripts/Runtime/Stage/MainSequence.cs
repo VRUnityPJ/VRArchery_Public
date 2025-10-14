@@ -8,7 +8,6 @@ using Cysharp.Threading.Tasks;
 using KeyBoard;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using VContainer;
 using VContainer.Unity;
 
