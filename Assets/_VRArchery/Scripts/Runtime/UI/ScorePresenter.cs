@@ -14,7 +14,7 @@ namespace _VRArchery.Scripts.Runtime.UI
         private ScoreHolder _scoreHolder;
 
         [SerializeField]
-        private ResultUIViewer _resultUIViewer; //追加
+        private ResultUIViewer _resultUIViewer;
 
         private UiAudioPlayer  _audioPlayer;
 
@@ -25,11 +25,11 @@ namespace _VRArchery.Scripts.Runtime.UI
         /// </summary>
         public async UniTask ShowScoreAnimationAsync(CancellationToken token)
         {
-            await _resultUIViewer.ShowResultAsync(
-                _scoreHolder.Score.CurrentValue,
-                _scoreHolder.GetRank().ToString(),
-                token);
+            var score = _scoreHolder.Score.CurrentValue;
+            var rank = _scoreHolder.GetRank().ToString();
+            var needScore = ScoreHolder.GetNextRankScore(score);
 
+            await _resultUIViewer.ShowResultAsync(score, needScore, rank, token);
             await _resultUIViewer.ShowSeeYouAsync(token);
         }
     }

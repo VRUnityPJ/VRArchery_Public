@@ -15,6 +15,7 @@ namespace _VRArchery.Scripts.Runtime.UI
         [SerializeField] private TextMeshProUGUI _finalScoreText;
         [SerializeField] private TextMeshProUGUI _rankText;
         [SerializeField] private TextMeshProUGUI _endText;
+        [SerializeField] private TextMeshProUGUI _nextRankText;
         [SerializeField] private TextMeshProUGUI _seeYouText;
 
         private UiAudioPlayer _audioPlayer;
@@ -26,18 +27,20 @@ namespace _VRArchery.Scripts.Runtime.UI
         /// </summary>
         public void Init()
         {
-            _audioPlayer =  Locator.Resolve<UiAudioPlayer>();
+            _audioPlayer = Locator.Resolve<UiAudioPlayer>();
             _finalScoreText.gameObject.SetActive(false);
             _rankText.gameObject.SetActive(false);
             _endText.gameObject.SetActive(false);
+            _nextRankText.gameObject.SetActive(false);
             _seeYouText.gameObject.SetActive(false);
         }
 
         /// <summary>
         /// ゲーム終了時にスコアとランクを表示（Presenter的役割）
         /// </summary>
-        public async UniTask ShowResultAsync(int score, string rank, CancellationToken token)
+        public async UniTask ShowResultAsync(int score, int needScore, string rank, CancellationToken token)
         {
+            _audioPlayer.BGM.Stop();
             // 「やめ」表示
             _audioPlayer.PlayCountDownSound();
 
@@ -57,6 +60,7 @@ namespace _VRArchery.Scripts.Runtime.UI
 
             await ShowScoreAsync(score, token); // View更新
             await ShowRankAsync(rank, token);  // View更新
+            await ShowNextRankAsync(needScore, token);
 
             await UniTask.Delay(TimeSpan.FromSeconds(1f), cancellationToken: token);
 
@@ -81,6 +85,7 @@ namespace _VRArchery.Scripts.Runtime.UI
 
             _finalScoreText.gameObject.SetActive(false);
             _rankText.gameObject.SetActive(false);
+            _nextRankText.gameObject.SetActive(false);
         }
 
         /// <summary>
@@ -112,6 +117,25 @@ namespace _VRArchery.Scripts.Runtime.UI
             _audioPlayer.PlayCountDownSound();
 
             await _rankText.rectTransform
+                .DOScale(1f, 0.5f)
+                .SetEase(Ease.OutBack)
+                .ToUniTask(cancellationToken: token);
+        }
+
+        /// <summary>
+        /// 次のランクまで何点必要か表示するアニメーション
+        /// </summary>
+        /// <param name="needScore"></param>
+        /// <param name="token"></param>
+        private async UniTask ShowNextRankAsync(int needScore, CancellationToken token)
+        {
+            _nextRankText.gameObject.SetActive(true);
+            _nextRankText.text = $"次のランクまで<color=\"red\">{needScore}点";
+            _nextRankText.rectTransform.localScale = Vector3.zero;
+
+            _audioPlayer.PlayCountDownSound();
+
+            await _nextRankText.rectTransform
                 .DOScale(1f, 0.5f)
                 .SetEase(Ease.OutBack)
                 .ToUniTask(cancellationToken: token);

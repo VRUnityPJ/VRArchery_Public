@@ -26,8 +26,9 @@ namespace _VRArchery.Scripts.Runtime.Sound
 
         [Space]
         [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private AudioSource _bgmAudioSource;
 
-        public AudioSource AudioSource => _audioSource;
+        public AudioSource BGM => _bgmAudioSource;
 
         private void Awake() => Locator.Register(this);
 
@@ -51,43 +52,5 @@ namespace _VRArchery.Scripts.Runtime.Sound
         public void BRankSound() => _audioSource.PlayOneShot(_bRankSound, 1.0f);
         public void ARankSound() => _audioSource.PlayOneShot(_aRankSound, 1.0f);
         public void SRankSound() => _audioSource.PlayOneShot(_sRankSound, 1.0f);
-
-        /// <summary>
-        /// レア的が出現したときに使用する効果音
-        /// レア的が破壊されたときには鳴っていた効果音を無効化する
-        /// </summary>
-        /// <param name="token"></param>
-        public async UniTask PlayRareSpawnSoundAsync(AudioClip clip , CancellationToken token)
-        {
-            // 他のサウンド再生に影響を与えないよう、元のループ設定を保持しておく
-            var originalLoopState = _audioSource.loop;
-
-            try
-            {
-                // レア的用のサウンドクリップを設定し、ループを有効にして再生開始
-                _audioSource.clip = clip;
-                _audioSource.loop = true;
-                _audioSource.Play();
-
-                // CancellationTokenがキャンセルされるまで待機する
-                // これにより、レア的が破壊されるなどのイベントを外部から通知できる
-                // SuppressCancellationThrow() を付けると、キャンセル時に例外が発生せず、スムーズにfinally句へ移行できる
-                await UniTask.WaitUntilCanceled(cancellationToken: token)
-                    .SuppressCancellationThrow();
-            }
-            finally
-            {
-                // この非同期処理の実行中に他の効果音が鳴っている可能性を考慮し、
-                // 現在再生中のクリップがレア的のものである場合のみ停止する
-                if (_audioSource.isPlaying && _audioSource.clip == clip)
-                {
-                    _audioSource.Stop();
-                    _audioSource.clip = null; // クリップの参照をクリア
-                }
-
-                // AudioSourceのループ設定を元の状態に戻す
-                _audioSource.loop = originalLoopState;
-            }
-        }
     }
 }
