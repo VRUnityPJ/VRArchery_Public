@@ -40,7 +40,8 @@ namespace _VRArchery.Scripts.Runtime.UI
         /// </summary>
         public async UniTask ShowResultAsync(int score, int needScore, string rank, CancellationToken token)
         {
-            _audioPlayer.BGM.Stop();
+            _audioPlayer.FadeOutBGM(5);
+
             // 「やめ」表示
             _audioPlayer.PlayCountDownSound();
 

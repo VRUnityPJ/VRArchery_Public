@@ -1,6 +1,7 @@
 using System.Threading;
 using _VRArchery.Scripts.Utility;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using UnityEngine;
 
 namespace _VRArchery.Scripts.Runtime.Sound
@@ -30,7 +31,11 @@ namespace _VRArchery.Scripts.Runtime.Sound
 
         public AudioSource BGM => _bgmAudioSource;
 
+        public float _defaultBGMVolume;
+
         private void Awake() => Locator.Register(this);
+
+        private void Start() => _defaultBGMVolume = BGM.volume;
 
         public void ButtonSound() => _audioSource.PlayOneShot(_audioClipButton, 1.0f);
         public void TargetHitSound() => _audioSource.PlayOneShot(_audioClipTargetHit, 1.0f);
@@ -52,5 +57,26 @@ namespace _VRArchery.Scripts.Runtime.Sound
         public void BRankSound() => _audioSource.PlayOneShot(_bRankSound, 1.0f);
         public void ARankSound() => _audioSource.PlayOneShot(_aRankSound, 1.0f);
         public void SRankSound() => _audioSource.PlayOneShot(_sRankSound, 1.0f);
+
+
+        /// <summary>
+        /// BGMをフェードアウトする
+        /// </summary>
+        /// <param name="time"></param>
+        public void FadeOutBGM(float time)
+        {
+            DOTween.To(()=>_bgmAudioSource.volume,
+                x => _bgmAudioSource.volume = x,
+                0.0f,
+                time);
+        }
+
+        public void FadeInBGM(float time)
+        {
+            DOTween.To(()=>_bgmAudioSource.volume,
+                x => _bgmAudioSource.volume = x,
+                _defaultBGMVolume,
+                time);
+        }
     }
 }
