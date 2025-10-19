@@ -77,5 +77,19 @@ namespace _VRArchery.Scripts.Runtime.Score
                 return Rank.B;
             return Rank.C;
         }
+
+        /// <summary>
+        /// 次のランクに必要なスコアを返す
+        /// </summary>
+        /// <param name="score"></param>
+        /// <returns></returns>
+        public static int GetNextRankScore(int score) =>
+            score switch
+            {
+                >= SRankThreshold => 0,
+                >= ARankThreshold => SRankThreshold - score,
+                >= BRankThreshold => ARankThreshold - score,
+                _ => BRankThreshold - score
+            };
     }
 }

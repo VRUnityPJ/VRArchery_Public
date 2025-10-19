@@ -155,7 +155,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _effect: {fileID: 8261275753270007934}
-  _targetScoreViewer: {fileID: 1310517880440680900, guid: cf645ec4bb5df6f4fb808277beca686c, type: 3}
   _hitStopDuration: 0.1
   _hitStopTimeScale: 0.1
   _getPointCorrection: 1
@@ -184,6 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd4e3f3e8bc54a97bd82a27c2368f7bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spawnSound: {fileID: 8300000, guid: b551463307a63de4b95247ae69457d07, type: 3}
 --- !u!114 &5695078459321583739
 MonoBehaviour:
   m_ObjectHideFlags: 0

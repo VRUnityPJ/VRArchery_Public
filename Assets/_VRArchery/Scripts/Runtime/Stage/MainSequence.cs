@@ -1,4 +1,6 @@
 using System.Threading;
+using _VRArchery.Scripts.Runtime.Score;
+using _VRArchery.Scripts.Runtime.Sound;
 using _VRArchery.Scripts.Runtime.Target;
 using _VRArchery.Scripts.Runtime.Tutorial;
 using _VRArchery.Scripts.Runtime.UI;
@@ -7,7 +9,6 @@ using Cysharp.Threading.Tasks;
 using KeyBoard;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using VContainer;
 using VContainer.Unity;
 
@@ -25,6 +26,15 @@ namespace _VRArchery.Scripts.Runtime.Stage
         [SerializeField] private TutorialPresenter _tutorialPresenter;
         [SerializeField] private ResultUIViewer _resultUIViewer;
         [SerializeField] private GameObject _timerText;
+        [SerializeField] private UiAudioPlayer  _audioPlayer;
+
+        private ScoreHolder _scoreHolder;
+
+        [Inject]
+        public void Construct(ScoreHolder scoreHolder)
+        {
+            _scoreHolder  = scoreHolder;
+        }
 
         private async UniTaskVoid Start() => GameStartAsync().Forget();
 
@@ -37,6 +47,8 @@ namespace _VRArchery.Scripts.Runtime.Stage
             while (!destroyCancellationToken.IsCancellationRequested)
             {
                 using var cts = CancellationTokenSource.CreateLinkedTokenSource(destroyCancellationToken);
+
+                _audioPlayer.FadeInBGM(1);
 
                 _startTargetController.Init();
                 _tutorialPresenter.Init();
@@ -70,9 +82,10 @@ namespace _VRArchery.Scripts.Runtime.Stage
 
                 await _tutorialPresenter.HideTutorialAsync(cts.Token);
 
-                //ボタンが押されてカウントダウンが終わるまで待機
+                #if !UNITY_EDITOR
+                //チュートリアル用の的が討たれるまで待機
                 await _startTargetController.OnStartButtonClickedAsync(cts.Token);
-
+                #endif
                 _timerText.SetActive(true);
 
                 //的の生成開始
@@ -87,6 +100,9 @@ namespace _VRArchery.Scripts.Runtime.Stage
                 cts.Cancel();
 
                 await _scorePresenter.ShowScoreAnimationAsync(destroyCancellationToken);
+
+                //スコアを初期化
+                _scoreHolder.InitializeScore();
 
             }
         }

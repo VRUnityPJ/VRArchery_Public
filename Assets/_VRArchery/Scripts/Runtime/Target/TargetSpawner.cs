@@ -10,6 +10,9 @@ using Random = UnityEngine.Random;
 
 namespace _VRArchery.Scripts.Runtime.Target
 {
+    /// <summary>
+    /// 的を自動生成するためのクラス
+    /// </summary>
     public class TargetSpawner : MonoBehaviour
     {
         [SerializeField] private TargetMover[] _targetPrefab;
@@ -21,13 +24,20 @@ namespace _VRArchery.Scripts.Runtime.Target
 
         [SerializeField] private TimeController _timeController;
 
+        /// <summary>
+        /// 的が生成されたときに表示するパーティクル
+        /// </summary>
         [SerializeField] private GameObject _particleSystem;
 
         [Inject]
         private IObjectResolver _objectResolver;
         private AsyncObjectPool<GameObject> _objectPool;
 
-        private float _rareAppearanceRate = 0.05f;
+        /// <summary>
+        /// レア的の出現確率
+        /// </summary>
+        [SerializeField]
+        private float _rareAppearanceRate = 0.5f;
 
         //事前にパーティクルを用意しておく
         private void Start() => SharedGameObjectPool.Prewarm(_particleSystem,4);
