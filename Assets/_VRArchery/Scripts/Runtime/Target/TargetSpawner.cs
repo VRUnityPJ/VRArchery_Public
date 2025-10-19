@@ -23,14 +23,22 @@ namespace _VRArchery.Scripts.Runtime.Target
 
         [SerializeField] private GameObject _particleSystem;
 
-        [Inject]
-        private IObjectResolver _objectResolver;
+        [Inject] private IObjectResolver _objectResolver;
         private AsyncObjectPool<GameObject> _objectPool;
 
-        private float _rareAppearanceRate = 0.05f;
+        private float _rareSpawnInterval = 5f;
+        private float _lastRareSpawnTime;
 
         //事前にパーティクルを用意しておく
-        private void Start() => SharedGameObjectPool.Prewarm(_particleSystem,4);
+        private void Start()
+        {
+            SharedGameObjectPool.Prewarm(_particleSystem, 4);
+            _lastRareSpawnTime = Time.time - _rareSpawnInterval; // 最初のレア出現を5秒後にする
+        }
+
+
+
+
 
         /// <summary>
         /// 的を生成する
@@ -40,41 +48,38 @@ namespace _VRArchery.Scripts.Runtime.Target
         {
             while (!token.IsCancellationRequested && _timeController.LimitTimeSec.CurrentValue > 0)
             {
-                var randomPoint = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
+                var currentTime = Time.time;
+                // レア的の出現条件を満たしているかチェック
+                if (currentTime - _lastRareSpawnTime >= _rareSpawnInterval)
+                {
+                    var rareSpawnPoint = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
+                    var rareTarget = _objectResolver.Instantiate(_targetPrefab[1], rareSpawnPoint.position,
+                        Quaternion.identity);
+                    EffectPoolAsync(rareTarget.transform.position, token).Forget();
+
+                    rareTarget.MoveAsync(token).Forget();
+                    _lastRareSpawnTime = currentTime;
+
+                }
+
+                // 通常的の生成
+                var normalSpawnPoint = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
+                var normalTarget =
+                    _objectResolver.Instantiate(_targetPrefab[0], normalSpawnPoint.position, Quaternion.identity);
+                EffectPoolAsync(normalTarget.transform.position, token).Forget();
+                normalTarget.MoveAsync(token).Forget();
                 var spawnDuration = Random.Range(0.1f, 3f);
-                var choice = SelectTargetByRarity();
-                var target = _objectResolver.Instantiate(choice, randomPoint.position, Quaternion.identity);
-
-                EffectPoolAsync(target.gameObject.transform.position, token).Forget();
-
-                target.MoveAsync(token).Forget();
-
                 await UniTask.Delay(TimeSpan.FromSeconds(spawnDuration), cancellationToken: token);
             }
         }
+
+
+
 
         /// <summary>
         /// 設定された出現率に基づいて、生成する的のプレハブを返す
         /// </summary>
         /// <returns>生成する的のプレハブ</returns>
-        private TargetMover SelectTargetByRarity()
-        {
-            // 0.0fから1.0fの間のランダムな値を生成
-            var randomValue = Random.Range(0f, 1f);
-
-            // ランダムな値がレア出現率より小さい場合、レアな的を選択
-            if (randomValue < _rareAppearanceRate)
-            {
-                // _targetPrefab配列の1番目をレアな的とする
-                return _targetPrefab[1];
-            }
-            else
-            {
-                // それ以外の場合は、通常の的を選択
-                // _targetPrefab配列の0番目を通常の的とする
-                return _targetPrefab[0];
-            }
-        }
 
         private async UniTask EffectPoolAsync(Vector3 position, CancellationToken token)
         {
