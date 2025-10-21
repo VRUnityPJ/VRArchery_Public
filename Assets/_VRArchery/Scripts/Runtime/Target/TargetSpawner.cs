@@ -29,63 +29,71 @@ namespace _VRArchery.Scripts.Runtime.Target
         /// </summary>
         [SerializeField] private GameObject _particleSystem;
 
-        [Inject]
-        private IObjectResolver _objectResolver;
-        private AsyncObjectPool<GameObject> _objectPool;
+        [Inject] private IObjectResolver _objectResolver;
 
         /// <summary>
-        /// レア的の出現確率
+        /// レア的の出現間隔（秒）Inspectorで調整
         /// </summary>
-        [SerializeField]
-        private float _rareAppearanceRate = 0.5f;
+        [SerializeField] private float _rareSpawnInterval = 5f;
 
-        //事前にパーティクルを用意しておく
-        private void Start() => SharedGameObjectPool.Prewarm(_particleSystem,4);
+        private void Start()
+        {
+            SharedGameObjectPool.Prewarm(_particleSystem, 4);
+        }
 
         /// <summary>
-        /// 的を生成する
+        /// 的の生成処理を開始（通常的とレア的を並行して生成）
         /// </summary>
-        /// <param name="token"></param>
         public async UniTask StartSpawnTargetAsync(CancellationToken token)
+        {
+            var normalLoop = SpawnNormalTargetsAsync(token);
+            var rareLoop = SpawnRareTargetsAsync(token);
+
+            await UniTask.WhenAll(normalLoop, rareLoop);
+        }
+
+        /// <summary>
+        /// 通常的をランダムな間隔で生成し続ける
+        /// </summary>
+        private async UniTask SpawnNormalTargetsAsync(CancellationToken token)
         {
             while (!token.IsCancellationRequested && _timeController.LimitTimeSec.CurrentValue > 0)
             {
-                var randomPoint = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
                 var spawnDuration = Random.Range(0.1f, 3f);
-                var choice = SelectTargetByRarity();
-                var target = _objectResolver.Instantiate(choice, randomPoint.position, Quaternion.identity);
-
-                EffectPoolAsync(target.gameObject.transform.position, token).Forget();
-
-                target.MoveAsync(token).Forget();
-
                 await UniTask.Delay(TimeSpan.FromSeconds(spawnDuration), cancellationToken: token);
+
+                await SpawnTargetAsync(_targetPrefab[0], token); // 通常的
             }
         }
 
         /// <summary>
-        /// 設定された出現率に基づいて、生成する的のプレハブを返す
+        /// レア的を一定間隔で生成し続ける
         /// </summary>
-        /// <returns>生成する的のプレハブ</returns>
-        private TargetMover SelectTargetByRarity()
+        private async UniTask SpawnRareTargetsAsync(CancellationToken token)
         {
-            // 0.0fから1.0fの間のランダムな値を生成
-            var randomValue = Random.Range(0f, 1f);
+            while (!token.IsCancellationRequested && _timeController.LimitTimeSec.CurrentValue > 0)
+            {
+                await UniTask.Delay(TimeSpan.FromSeconds(_rareSpawnInterval), cancellationToken: token);
 
-            // ランダムな値がレア出現率より小さい場合、レアな的を選択
-            if (randomValue < _rareAppearanceRate)
-            {
-                // _targetPrefab配列の1番目をレアな的とする
-                return _targetPrefab[1];
-            }
-            else
-            {
-                // それ以外の場合は、通常の的を選択
-                // _targetPrefab配列の0番目を通常の的とする
-                return _targetPrefab[0];
+                await SpawnTargetAsync(_targetPrefab[1], token); // レア的
             }
         }
 
+        /// <summary>
+        /// 的を生成し、エフェクトと移動を開始する共通処理
+        /// </summary>
+        private async UniTask SpawnTargetAsync(TargetMover prefab, CancellationToken token)
+        {
+            var spawnPoint = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
+            var target = _objectResolver.Instantiate(prefab, spawnPoint.position, Quaternion.identity);
+
+            EffectPoolAsync(target.transform.position, token).Forget();
+            target.MoveAsync(token).Forget();
+        }
+
+        /// <summary>
+        /// エフェクトを表示し、一定時間後にプールへ返却
+        /// </summary>
         private async UniTask EffectPoolAsync(Vector3 position, CancellationToken token)
         {
             var effect = SharedGameObjectPool.Rent(_particleSystem, position, Quaternion.identity);
@@ -99,6 +107,5 @@ namespace _VRArchery.Scripts.Runtime.Target
                 SharedGameObjectPool.Return(effect);
             }
         }
-
     }
 }
