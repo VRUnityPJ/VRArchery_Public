@@ -10,6 +10,9 @@ using Random = UnityEngine.Random;
 
 namespace _VRArchery.Scripts.Runtime.Target
 {
+    /// <summary>
+    /// 的を自動生成するためのクラス
+    /// </summary>
     public class TargetSpawner : MonoBehaviour
     {
         [SerializeField] private TargetMover[] _targetPrefab;
@@ -21,6 +24,9 @@ namespace _VRArchery.Scripts.Runtime.Target
 
         [SerializeField] private TimeController _timeController;
 
+        /// <summary>
+        /// 的が生成されたときに表示するパーティクル
+        /// </summary>
         [SerializeField] private GameObject _particleSystem;
 
         [Inject] private IObjectResolver _objectResolver;

@@ -19,11 +19,13 @@ namespace _VRArchery.Scripts.Runtime.Tutorial
         [SerializeField] private float _cloudHideTime = 1;
 
         private Vector2 _originalCloudScale;
+        private Vector3 _originalMakimonoScale;
         private UiAudioPlayer  _audioPlayer;
 
         private void Start()
         {
             _makimonoPrefab.SetActive(false);
+            _originalMakimonoScale = _makimonoPrefab.transform.localScale;
             _audioPlayer = Locator.Resolve<UiAudioPlayer>();
         }
 
@@ -41,14 +43,17 @@ namespace _VRArchery.Scripts.Runtime.Tutorial
         public async UniTask ShowScrollAnimationAsync(CancellationToken ct)
         {
             _makimonoPrefab.SetActive(true);
+            _makimonoPrefab.transform.localScale = Vector3.zero;
             _audioPlayer.PlayScrollStartSound();
 
             // 巻物のアニメーション
             await DOTween.Sequence()
+                .Append(_makimonoPrefab.transform.DOScale(_originalMakimonoScale, 0.1f))
                 .Append(_makimonoPrefab.transform.DOMoveX(_makimonoPrefab.transform.position.x + 7, 2f))
                 .Join(_paper.transform.DOMoveX(_paper.transform.position.x + 7, 2f))
                 .Join(_makimonoPrefab.transform.DORotate(Vector3.up * 360, 2, RotateMode.LocalAxisAdd))
                 .ToUniTask(cancellationToken: ct);
+
             DOTween.Sequence()
                 .Append(_cloudPrefabUp.DOScale(_originalCloudScale, _cloudShowTime))
                 .Join(_cloudPrefabDown.DOScale(_originalCloudScale, _cloudShowTime))
@@ -85,6 +90,7 @@ namespace _VRArchery.Scripts.Runtime.Tutorial
                 .Append(_makimonoPrefab.transform.DOMoveX(_makimonoPrefab.transform.position.x - 7, 2f))
                 .Join(_paper.transform.DOMoveX(_paper.transform.position.x - 7, 2f))
                 .Join(_makimonoPrefab.transform.DORotate(Vector3.up * 360, 2, RotateMode.LocalAxisAdd))
+                .Append(_makimonoPrefab.transform.DOScale(Vector3.zero, 0.1f))
                 .ToUniTask(cancellationToken: ct);
 
             _makimonoPrefab.SetActive(false);

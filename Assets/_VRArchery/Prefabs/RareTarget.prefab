@@ -9707,6 +9707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd4e3f3e8bc54a97bd82a27c2368f7bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spawnSound: {fileID: 8300000, guid: 7f626c6ffbbba5849be155f3c6777463, type: 3}
 --- !u!114 &-4814455435625658438
 MonoBehaviour:
   m_ObjectHideFlags: 0
