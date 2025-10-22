@@ -1,4 +1,5 @@
 using System.Threading;
+using _VRArchery.Scripts.Runtime.Equipment;
 using _VRArchery.Scripts.Runtime.Score;
 using _VRArchery.Scripts.Runtime.Sound;
 using _VRArchery.Scripts.Runtime.Target;
@@ -7,6 +8,7 @@ using _VRArchery.Scripts.Runtime.UI;
 using _VRArchery.Scripts.Utility;
 using Cysharp.Threading.Tasks;
 using KeyBoard;
+using RankingSystem.Scripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using VContainer;
@@ -27,13 +29,16 @@ namespace _VRArchery.Scripts.Runtime.Stage
         [SerializeField] private ResultUIViewer _resultUIViewer;
         [SerializeField] private GameObject _timerText;
         [SerializeField] private UiAudioPlayer  _audioPlayer;
+        [SerializeField] private BowActivator _bowActivator;
 
         private ScoreHolder _scoreHolder;
+        private RankingScoreAdaptor _rankingScoreAdaptor;
 
         [Inject]
-        public void Construct(ScoreHolder scoreHolder)
+        public void Construct(ScoreHolder scoreHolder, RankingScoreAdaptor  rankingScoreAdapter)
         {
             _scoreHolder  = scoreHolder;
+            _rankingScoreAdaptor  = rankingScoreAdapter;
         }
 
         private async UniTaskVoid Start() => GameStartAsync().Forget();
@@ -50,9 +55,11 @@ namespace _VRArchery.Scripts.Runtime.Stage
 
                 _audioPlayer.FadeInBGM(1);
 
+                //初期化処理
                 _startTargetController.Init();
                 _tutorialPresenter.Init();
                 _resultUIViewer.Init();
+                _bowActivator.Init();
 
                 _scorePresenter.gameObject.SetActive(false);
                 _timerText.SetActive(false);
@@ -82,10 +89,12 @@ namespace _VRArchery.Scripts.Runtime.Stage
 
                 await _tutorialPresenter.HideTutorialAsync(cts.Token);
 
-                #if !UNITY_EDITOR
+                //#if !UNITY_EDITOR
                 //チュートリアル用の的が討たれるまで待機
+               // await _bowActivator.ActivateBowAsync(cts.Token);
                 await _startTargetController.OnStartButtonClickedAsync(cts.Token);
-                #endif
+                //#endif
+
                 _timerText.SetActive(true);
 
                 //的の生成開始
@@ -99,8 +108,10 @@ namespace _VRArchery.Scripts.Runtime.Stage
                 CustomDebug.Log("ゲーム終了");
                 cts.Cancel();
 
-                await _scorePresenter.ShowScoreAnimationAsync(destroyCancellationToken);
+                _bowActivator.DeactivateBowAsync(destroyCancellationToken).Forget();
+                //await _scorePresenter.ShowScoreAnimationAsync(destroyCancellationToken);
 
+                _rankingScoreAdaptor.Register();
                 //スコアを初期化
                 _scoreHolder.InitializeScore();
 

@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: ec46d2188d4b8774e847e75f1e12a8db, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 71f14a2d79f732f4d9893ef1b911f4ff, type: 2}
   m_HaloStrength: 0.3
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -806,6 +806,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3021257131737047345, guid: ecd810518c3c8f84fa4e2e56a609f629, type: 3}
   m_PrefabInstance: {fileID: 302658573}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &333937245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 333937246}
+  - component: {fileID: 333937247}
+  m_Layer: 0
+  m_Name: Skybox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &333937246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333937245}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1645173487}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &333937247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333937245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d38a07db899f4bd286810d86865e5cba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotationSpeed: 0.5
 --- !u!4 &348538495 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d03555153bb9b9f4d896749c4aaa33da, type: 3}
@@ -2063,17 +2108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0612d9e6daef0a7448308cbf4a3ebb02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioClip: {fileID: 8300000, guid: b8be905f3eafc984c8e8723f69d4b5b8, type: 3}
-  _audioClipShell: {fileID: 8300000, guid: b3a814aced23ecd4dac63fe98c582c81, type: 3}
-  _audioClipButton: {fileID: 8300000, guid: adc1670bb3673d846b31be7a5fbee345, type: 3}
-  _audioClipTargetHit: {fileID: 8300000, guid: c543febccf584f04cb79b3d4c12acf61, type: 3}
-  _audioClipTargetAir: {fileID: 8300000, guid: 66c8d4551799b6346962738ceed4b9ca, type: 3}
-  _makimonoStartSound: {fileID: 8300000, guid: f16c9cd517a7c3846aab798e5214a09f, type: 3}
-  _makimonoEndSound: {fileID: 8300000, guid: f9258bea42b010245b5178cef95bb343, type: 3}
-  _cRankSound: {fileID: 8300000, guid: b28e72861ebaa5841a380d082f36e6d4, type: 3}
-  _bRankSound: {fileID: 8300000, guid: db10e78a8e3cb534693b0e3955a13c0f, type: 3}
-  _aRankSound: {fileID: 8300000, guid: 0cdcac1a1e6d9c44daa6ab5f6f4d24c6, type: 3}
-  _sRankSound: {fileID: 8300000, guid: bc17c801aede8fa4798aea75c7e5f922, type: 3}
   _audioSource: {fileID: 925699330}
   _bgmAudioSource: {fileID: 1178064501}
   _seLists:
@@ -2491,6 +2525,54 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11c61bcc1c1d2a34196d9d952682edc8, type: 3}
+--- !u!1 &1105260041
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1105260042}
+  - component: {fileID: 1105260043}
+  m_Layer: 0
+  m_Name: Bow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1105260042
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105260041}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1645173487}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1105260043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105260041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74121f79157a40bbbb3160f9e9810160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bow: {fileID: 994773097}
+  _activeParticle: {fileID: 570832250925526149, guid: dcd90c4976197424b9958a7c54b6bb8c, type: 3}
+  _showDuration: 0.1
+  _hideDuration: 0.1
 --- !u!1 &1178064499
 GameObject:
   m_ObjectHideFlags: 0
@@ -3562,7 +3644,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1576286088}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 9.902067, y: -89.67952, z: -334.391}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3694,6 +3776,7 @@ MonoBehaviour:
   _resultUIViewer: {fileID: 1576286089}
   _timerText: {fileID: 2648314723002684938}
   _audioPlayer: {fileID: 925699331}
+  _bowActivator: {fileID: 1105260043}
 --- !u!4 &1645173487
 Transform:
   m_ObjectHideFlags: 0
@@ -3708,6 +3791,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 660007612}
+  - {fileID: 333937246}
+  - {fileID: 1105260042}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1645173488
@@ -3767,7 +3852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _limitTimeSec:
-    value: 5
+    value: 10
 --- !u!1001 &1657743215
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9307,8 +9392,8 @@ SceneRoots:
   - {fileID: 67556934}
   - {fileID: 4958115004673615621}
   - {fileID: 1674518432}
-  - {fileID: 1645173487}
   - {fileID: 1576286090}
+  - {fileID: 1645173487}
   - {fileID: 925699332}
   - {fileID: 1479807441039425205}
   - {fileID: 1574684310}

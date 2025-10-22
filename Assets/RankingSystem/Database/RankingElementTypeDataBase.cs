@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using RankingSystem.Scripts;
 using UnityEditor;
 using UnityEngine;
+using _VRArchery.Scripts.Runtime.Score;
 
 namespace Ranking.Scripts.DataBase
 {
@@ -29,17 +30,17 @@ namespace Ranking.Scripts.DataBase
         public RankingData CreateRankingData()
         {
             Dictionary<Type,object> dictionary = new Dictionary<Type, object>();
-            
+
             foreach (var data in typeData)
             {
                 //stringからTypeを取得
                 Type type = Type.GetType(data.className);
                 if(type == null)
                     Debug.LogError("キャストできない型クラスです");
-                
+
                 //もっともらしい型にリフレクション
                 object obj = Activator.CreateInstance(type);
-                
+
                 if (dictionary.ContainsKey(type))
                     throw new Exception("指定する型が重複しています");
 
@@ -49,20 +50,20 @@ namespace Ranking.Scripts.DataBase
             return RankingData.GenerateRankingDataWithDictionary(dictionary);
         }
     }
-    
+
     /// <summary>
     /// ランキングに登録する要素の型データをキーとしてobject型のインスタンスを保持するクラス
     /// </summary>
     [Serializable]
     public class RankingData
     {
-        
-        
+
+
         /// <summary>
         /// 型データとobject型のインスタンスを保持するDictionary
         /// </summary>
         private Dictionary<Type, object> _dataDictionary;
-        
+
         /// <summary>
         /// クラス内からしか呼べないコンストラクタ
         /// </summary>
@@ -70,7 +71,7 @@ namespace Ranking.Scripts.DataBase
         {
             _dataDictionary = dictionary;
         }
-        
+
         /// <summary>
         /// 初期の辞書データを指定してRankingDataクラスを作成する
         /// </summary>
@@ -78,7 +79,7 @@ namespace Ranking.Scripts.DataBase
         {
             return new RankingData(dictionary);
         }
-        
+
         /// <summary>
         /// 辞書データなしでRankingDataクラスを作成する
         /// </summary>
