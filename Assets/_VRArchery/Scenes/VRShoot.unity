@@ -2076,6 +2076,29 @@ MonoBehaviour:
   _sRankSound: {fileID: 8300000, guid: bc17c801aede8fa4798aea75c7e5f922, type: 3}
   _audioSource: {fileID: 925699330}
   _bgmAudioSource: {fileID: 1178064501}
+  _seLists:
+  - _seName: 4
+    _seClip: {fileID: 8300000, guid: b8be905f3eafc984c8e8723f69d4b5b8, type: 3}
+  - _seName: 3
+    _seClip: {fileID: 8300000, guid: b3a814aced23ecd4dac63fe98c582c81, type: 3}
+  - _seName: 5
+    _seClip: {fileID: 8300000, guid: f16c9cd517a7c3846aab798e5214a09f, type: 3}
+  - _seName: 6
+    _seClip: {fileID: 8300000, guid: f9258bea42b010245b5178cef95bb343, type: 3}
+  - _seName: 1
+    _seClip: {fileID: 8300000, guid: c543febccf584f04cb79b3d4c12acf61, type: 3}
+  - _seName: 2
+    _seClip: {fileID: 8300000, guid: 66c8d4551799b6346962738ceed4b9ca, type: 3}
+  - _seName: 0
+    _seClip: {fileID: 8300000, guid: adc1670bb3673d846b31be7a5fbee345, type: 3}
+  - _seName: 7
+    _seClip: {fileID: 8300000, guid: b28e72861ebaa5841a380d082f36e6d4, type: 3}
+  - _seName: 8
+    _seClip: {fileID: 8300000, guid: db10e78a8e3cb534693b0e3955a13c0f, type: 3}
+  - _seName: 9
+    _seClip: {fileID: 8300000, guid: 0cdcac1a1e6d9c44daa6ab5f6f4d24c6, type: 3}
+  - _seName: 10
+    _seClip: {fileID: 8300000, guid: bc17c801aede8fa4798aea75c7e5f922, type: 3}
   _defaultBGMVolume: 0
 --- !u!4 &925699332
 Transform:
