@@ -203,7 +203,7 @@ namespace _VRArchery.Scripts.Runtime.Equipment
 
         private async UniTask ReloadArrowAsync()
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
+            await UniTask.Delay(TimeSpan.FromSeconds(0.1f));
             ArrowGrabber.GrabArrow(ArrowGrabber.ArrowGrabHand);
         }
 
