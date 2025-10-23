@@ -252,12 +252,12 @@ namespace RankingSystem.Scripts
                         if(i == null || i_score == null || i_name == null)
                             Debug.LogError("取得したランキングが欠落しています");
 
-                        // Score score = new Score(i_score);
+                        Score score = new Score(i_score);
                         //Point point = new Point(i_score);
                         PlayerName playerName = new PlayerName(i_name);
 
                         //データを更新
-                        //dataForDataBase.UpdateData(point);
+                        dataForDataBase.UpdateData(score);
                         dataForDataBase.UpdateData(playerName);
 
                         //配列に格納
