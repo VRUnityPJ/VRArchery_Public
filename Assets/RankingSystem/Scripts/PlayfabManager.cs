@@ -76,10 +76,10 @@ namespace RankingSystem.Scripts
 
         public static void RegisterRankingData(RankingData data)
         {
-            var scoreData = data.GetData<Score>();
+            //var scoreData = data.GetData<Score>();
             //var pointData = data.GetData<Point>();
             var nameData = data.GetData<PlayerName>();
-            RegisterScore(scoreData);
+            //RegisterScore(scoreData);
             //RegisterPoint(pointData);
             RegisterPlayerName(nameData);
         }
@@ -252,12 +252,12 @@ namespace RankingSystem.Scripts
                         if(i == null || i_score == null || i_name == null)
                             Debug.LogError("取得したランキングが欠落しています");
 
-                        Score score = new Score(i_score);
+                        //Score score = new Score(i_score);
                         //Point point = new Point(i_score);
                         PlayerName playerName = new PlayerName(i_name);
 
                         //データを更新
-                        dataForDataBase.UpdateData(score);
+                        //dataForDataBase.UpdateData(score);
                         dataForDataBase.UpdateData(playerName);
 
                         //配列に格納
