@@ -22,12 +22,13 @@ namespace _VRArchery.Scripts.Runtime.Equipment
         private void Start()
         {
             SharedGameObjectPool.Prewarm(_activeParticle.gameObject,1);
+            _originalScale = _bow.localScale;
         }
 
         public void Init()
         {
-            // _bow.gameObject.SetActive(false);
-            // _bow.localScale = Vector3.zero;
+            _bow.gameObject.SetActive(false);
+            _bow.localScale = Vector3.zero;
         }
 
         /// <summary>
