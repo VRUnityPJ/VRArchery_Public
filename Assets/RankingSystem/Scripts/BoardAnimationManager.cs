@@ -71,12 +71,12 @@ namespace RankingSystem.Scripts
 
             for (int i = 0; i < nameTexts.Length; i++)
             {
-                //Point point = records[i].GetData<Point>();
+                Score score = records[i].GetData<Score>();
                 PlayerName playerName = records[i].GetData<PlayerName>();
                 Debug.Log(playerName.StringValue);
                 nameTexts[i].text = playerName.StringValue;
                 Debug.Log("nameText = " + nameTexts[i].text);
-                //scoreTexts[i].text = point.IntValue.ToString();
+                scoreTexts[i].text = score.IntValue.ToString();
                 Debug.Log("ランキングボードを更新しました");
             }
         }

@@ -1,5 +1,6 @@
 using System;
 using R3;
+using RankingSystem.Scripts;
 using UnityEngine;
 
 namespace _VRArchery.Scripts.Runtime.Score
@@ -7,7 +8,7 @@ namespace _VRArchery.Scripts.Runtime.Score
     /// <summary>
     /// スコアを管理するクラス
     /// </summary>
-    public sealed class ScoreHolder
+    public sealed class ScoreHolder : IRankingDataElement<ScoreHolder>
     {
         /// <summary>
         /// スコアランク

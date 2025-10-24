@@ -1,3 +1,4 @@
+using RankingSystem.Scripts;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -10,6 +11,8 @@ namespace KeyBoard
         private EnterButton _enterButton;
         [SerializeField]
         private InputKeyCollector _inputcol;
+        [SerializeField]
+        private RankingStorage _rankingStorage;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -17,7 +20,9 @@ namespace KeyBoard
 
             builder.RegisterInstance(_enterButton);
             builder.RegisterInstance(_inputcol);
+            builder.RegisterInstance(_rankingStorage);
             builder.RegisterEntryPoint<EnterController>().As<ICompletable>();
+
         }
     }
 }

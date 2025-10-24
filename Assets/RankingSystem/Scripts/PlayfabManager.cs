@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using _VRArchery.Scripts.Runtime.Score;
 using Cysharp.Threading.Tasks;
 using PlayFab;
 using PlayFab.ClientModels;
@@ -76,7 +77,7 @@ namespace RankingSystem.Scripts
 
         public static void RegisterRankingData(RankingData data)
         {
-            var scoreData = data.GetData<Score>();
+            var scoreData = data.GetData<ScoreHolder>();
             //var pointData = data.GetData<Point>();
             var nameData = data.GetData<PlayerName>();
             RegisterScore(scoreData);
@@ -88,9 +89,9 @@ namespace RankingSystem.Scripts
         /// スコアを登録する関数
         /// </summary>
         /// <param name="score"></param>
-        internal static void RegisterScore(Score score)
+        internal static void RegisterScore(ScoreHolder score)
         {
-            int data = score.IntValue;
+            int data = score.Score.CurrentValue;
 
             PlayFabClientAPI.UpdatePlayerStatistics
             (
@@ -252,12 +253,12 @@ namespace RankingSystem.Scripts
                         if(i == null || i_score == null || i_name == null)
                             Debug.LogError("取得したランキングが欠落しています");
 
-                        // Score score = new Score(i_score);
+                        Score score = new Score(i_score);
                         //Point point = new Point(i_score);
                         PlayerName playerName = new PlayerName(i_name);
 
                         //データを更新
-                        //dataForDataBase.UpdateData(point);
+                        dataForDataBase.UpdateData(score);
                         dataForDataBase.UpdateData(playerName);
 
                         //配列に格納
