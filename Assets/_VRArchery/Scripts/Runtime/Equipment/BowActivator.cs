@@ -37,10 +37,19 @@ namespace _VRArchery.Scripts.Runtime.Equipment
         /// <param name="token"></param>
         public async UniTask ActivateBowAsync(CancellationToken token)
         {
+            //すでにアクティブ状態なら処理を中断
+            if(_bow.gameObject.activeSelf)
+            {
+                return;
+            }
+
             _bow.gameObject.SetActive(true);
-            var effect = SharedGameObjectPool.Rent(_activeParticle.gameObject, _bow);
+            var effect = SharedGameObjectPool.Rent(_activeParticle.gameObject, _bow.position, Quaternion.identity);
+            effect.transform.localScale = Vector3.one * 0.1f;
             await _bow.DOScale(_originalScale, _showDuration)
                 .ToUniTask(cancellationToken: token);
+            await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: token);
+            effect.transform.localScale = Vector3.one;
             SharedGameObjectPool.Return(effect);
         }
 

@@ -2064,7 +2064,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 104.3, y: -33}
+  m_AnchoredPosition: {x: 83, y: -33}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &882997307
@@ -2152,7 +2152,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -193.02083, y: 0, z: 0, w: 0}
+  m_margin: {x: -193.02083, y: 0, z: -42.29698, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2910,9 +2910,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bow: {fileID: 994773097}
-  _activeParticle: {fileID: 570832250925526149, guid: dcd90c4976197424b9958a7c54b6bb8c, type: 3}
-  _showDuration: 0.1
-  _hideDuration: 0.1
+  _activeParticle: {fileID: 1406861477063768124, guid: 4e91ed1a8efe7044785b9bd97a47d87f, type: 3}
+  _showDuration: 0.3
+  _hideDuration: 0.3
 --- !u!1 &1178064499
 GameObject:
   m_ObjectHideFlags: 0
@@ -4292,7 +4292,7 @@ MonoBehaviour:
   - {fileID: 885443341}
   _timeController: {fileID: 1645173490}
   _particleSystem: {fileID: 4809171458859421548, guid: 4e91ed1a8efe7044785b9bd97a47d87f, type: 3}
-  _rareSpawnInterval: 5
+  _rareSpawnInterval: 17
 --- !u!114 &1645173490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4306,7 +4306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _limitTimeSec:
-    value: 10
+    value: 90
 --- !u!1001 &1657743215
 PrefabInstance:
   m_ObjectHideFlags: 0
