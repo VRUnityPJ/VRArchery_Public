@@ -89,11 +89,11 @@ namespace _VRArchery.Scripts.Runtime.Stage
 
                 await _tutorialPresenter.HideTutorialAsync(cts.Token);
 
-                //#if !UNITY_EDITOR
-                //チュートリアル用の的が討たれるまで待機
                 await _bowActivator.ActivateBowAsync(cts.Token);
+                #if !UNITY_EDITOR
+                //チュートリアル用の的が討たれるまで待機
                 await _startTargetController.OnStartButtonClickedAsync(cts.Token);
-                //#endif
+                #endif
 
                 _timerText.SetActive(true);
 

@@ -1,5 +1,6 @@
 using System;
 using System.Threading;
+using _VRArchery.Scripts.Runtime.Score;
 using _VRArchery.Scripts.Runtime.Sound;
 using _VRArchery.Scripts.Utility;
 using Cysharp.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace _VRArchery.Scripts.Runtime.UI
         [SerializeField] private TextMeshProUGUI _endText;
         [SerializeField] private TextMeshProUGUI _nextRankText;
         [SerializeField] private TextMeshProUGUI _seeYouText;
+        [SerializeField] private TextMeshProUGUI _creatorCommentText;
 
         private UiAudioPlayer _audioPlayer;
 
@@ -31,6 +33,7 @@ namespace _VRArchery.Scripts.Runtime.UI
             _rankText.gameObject.SetActive(false);
             _endText.gameObject.SetActive(false);
             _nextRankText.gameObject.SetActive(false);
+            _creatorCommentText.gameObject.SetActive(false);
             _seeYouText.gameObject.SetActive(false);
         }
 
@@ -67,16 +70,16 @@ namespace _VRArchery.Scripts.Runtime.UI
             //ランクに応じて効果音を鳴らす
             switch (rank)
             {
-                case "C":
+                case nameof(Rank.半人前):
                     _audioPlayer.CRankSound();
                     break;
-                case "B":
+                case nameof(Rank.一人前):
                     _audioPlayer.BRankSound();
                     break;
-                case "A":
+                case nameof(Rank.師範代):
                     _audioPlayer.ARankSound();
                     break;
-                case "S":
+                case nameof(Rank.弓聖):
                     _audioPlayer.SRankSound();
                     break;
             }
@@ -140,6 +143,36 @@ namespace _VRArchery.Scripts.Runtime.UI
                 .SetEase(Ease.OutBack)
                 .ToUniTask(cancellationToken: token);
         }
+        public async UniTask ShowCommentAsync(string rank, CancellationToken token)
+        {
+            _creatorCommentText.gameObject.SetActive(true);
+            string comment = null;
+            switch (rank)
+            {
+                case nameof(Rank.半人前):
+                    comment = "君ならもっとできる。\nがんばれ。";
+                    break;
+                case nameof(Rank.一人前):
+                    comment = "けっこう上手いね。\nまだ上を目指せる。";
+                    break;
+                case nameof(Rank.師範代):
+                    comment = "才能に満ち溢れているね。\nすごい。";
+                    break;
+                case nameof(Rank.弓聖):
+                    comment = "君は天才だ。\n開発者の僕よりうまいかも。";
+                    break;
+            }
+            _creatorCommentText.text = comment;
+            _creatorCommentText.rectTransform.localScale = Vector3.one * 0.5f;
+
+
+            await _creatorCommentText.rectTransform
+                .DOScale(1f, 0.5f)
+                .SetEase(Ease.OutBack)
+                .ToUniTask(cancellationToken: token);
+            await UniTask.Delay(TimeSpan.FromSeconds(3f), cancellationToken: token);
+            _creatorCommentText.gameObject.SetActive(false);
+        }
 
         /// <summary>
         /// ゲーム終了時に「また来てね！」というUIを出す
@@ -147,6 +180,7 @@ namespace _VRArchery.Scripts.Runtime.UI
         public async UniTask ShowSeeYouAsync(CancellationToken token)
         {
             _seeYouText.gameObject.SetActive(true);
+
             _seeYouText.text = "あそんでくれてありがとう！\nまたきてね！";
             _seeYouText.rectTransform.localScale = Vector3.one * 0.5f;
 

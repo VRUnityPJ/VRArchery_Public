@@ -71,12 +71,12 @@ namespace _VRArchery.Scripts.Runtime.Score
         public Rank GetRank()
         {
             if (_score.Value >= SRankThreshold)
-                return Rank.S;
+                return Rank.弓聖;
             if (_score.Value >= ARankThreshold)
-                return Rank.A;
+                return Rank.師範代;
             if (_score.Value >= BRankThreshold)
-                return Rank.B;
-            return Rank.C;
+                return Rank.一人前;
+            return Rank.半人前;
         }
 
         /// <summary>

@@ -30,6 +30,7 @@ namespace _VRArchery.Scripts.Runtime.UI
             var needScore = ScoreHolder.GetNextRankScore(score);
 
             await _resultUIViewer.ShowResultAsync(score, needScore, rank, token);
+            await _resultUIViewer.ShowCommentAsync(rank, token);
             await _resultUIViewer.ShowSeeYouAsync(token);
         }
     }
