@@ -1,7 +1,5 @@
-﻿using System;
-using _VRArchery.Scripts.Runtime.Sound;
+﻿using _VRArchery.Scripts.Runtime.Sound;
 using _VRArchery.Scripts.Utility;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace _VRArchery.Scripts.Runtime.Target
@@ -16,12 +14,13 @@ namespace _VRArchery.Scripts.Runtime.Target
         private void Start()
         {
             _uiAudioPlayer = Locator.Resolve<UiAudioPlayer>();
+            PlaySpawnSound();
         }
 
         /// <summary>
         /// スポーン時に使用する効果音
         /// </summary>
-        private void PlaySpawnSound() => throw new Exception();
+        private void PlaySpawnSound() => _uiAudioPlayer.PlaySE(_spawnSound);
 
         /// <summary>
         /// 矢にふれたときに効果音を鳴らす

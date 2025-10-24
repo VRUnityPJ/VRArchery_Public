@@ -65,6 +65,12 @@ namespace _VRArchery.Scripts.Runtime.Sound
         }
 
         /// <summary>
+        /// 効果音を鳴らす
+        /// </summary>
+        /// <param name="clip"></param>
+        public void PlaySE(AudioClip clip) => _audioSource.PlayOneShot(clip);
+
+        /// <summary>
         /// BGMをフェードアウトする
         /// </summary>
         /// <param name="time"></param>

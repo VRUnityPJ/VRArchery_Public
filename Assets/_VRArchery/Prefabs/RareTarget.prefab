@@ -9589,6 +9589,7 @@ GameObject:
   - component: {fileID: 5193498017597354872}
   - component: {fileID: -4814455435625658438}
   - component: {fileID: -9083040487299310100}
+  - component: {fileID: 7335903926112550208}
   m_Layer: 0
   m_Name: RareTarget
   m_TagString: Target
@@ -9707,7 +9708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd4e3f3e8bc54a97bd82a27c2368f7bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnSound: {fileID: 8300000, guid: 7f626c6ffbbba5849be155f3c6777463, type: 3}
+  _spawnSound: {fileID: 8300000, guid: 5b16b2d1ac33c364cbe7b3a77100973d, type: 3}
 --- !u!114 &-4814455435625658438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9743,6 +9744,33 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 657253756102538170, guid: 1e815e88b534d5341aca5753029b2d57, type: 3}
+--- !u!54 &7335903926112550208
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2498224040202285368}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &3553315937022738661
 GameObject:
   m_ObjectHideFlags: 0

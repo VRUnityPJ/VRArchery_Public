@@ -83,17 +83,20 @@ namespace _VRArchery.Scripts.Runtime.Stage
 
                 if (isTutorialStart)
                 {
+                    //弓を出現させる
+                    await _bowActivator.ActivateBowAsync(cts.Token);
                     // チュートリアルを開始する
                     await _tutorialPresenter.StartTutorialAsync(cts.Token);
                 }
 
                 await _tutorialPresenter.HideTutorialAsync(cts.Token);
 
+                //弓を出現させる
                 await _bowActivator.ActivateBowAsync(cts.Token);
-                #if !UNITY_EDITOR
+
+
                 //チュートリアル用の的が討たれるまで待機
                 await _startTargetController.OnStartButtonClickedAsync(cts.Token);
-                #endif
 
                 _timerText.SetActive(true);
 
@@ -109,8 +112,11 @@ namespace _VRArchery.Scripts.Runtime.Stage
                 cts.Cancel();
 
                 _bowActivator.DeactivateBowAsync(destroyCancellationToken).Forget();
+
+                //リザルト画面を表示させる
                 await _scorePresenter.ShowScoreAnimationAsync(destroyCancellationToken);
 
+                //ランキングにスコアを登録する
                 _rankingScoreAdaptor.Register();
                 //スコアを初期化
                 _scoreHolder.InitializeScore();
