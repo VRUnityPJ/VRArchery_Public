@@ -380,8 +380,8 @@ Transform:
   - {fileID: 1963743758}
   - {fileID: 476859725}
   - {fileID: 904877859}
-  - {fileID: 2075125944}
   - {fileID: 1198467322}
+  - {fileID: 2075125944}
   - {fileID: 994773097}
   - {fileID: 728678230}
   - {fileID: 1470881235}
@@ -2415,11 +2415,6 @@ Transform:
   - {fileID: 1178064500}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &928238604 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5363036201520807440, guid: ab471258fa6a5db4eb5765d02a18c977, type: 3}
-  m_PrefabInstance: {fileID: 7426194129512526676}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &963039323
 GameObject:
   m_ObjectHideFlags: 0
@@ -4077,7 +4072,7 @@ ReflectionProbe:
   m_TimeSlicingMode: 0
   m_Resolution: 128
   m_UpdateFrequency: 0
-  m_BoxSize: {x: 20, y: 10, z: 20}
+  m_BoxSize: {x: 43.3, y: 10, z: 53.4}
   m_BoxOffset: {x: 0, y: 0, z: 0}
   m_NearClip: 0.3
   m_FarClip: 1000
@@ -4087,7 +4082,7 @@ ReflectionProbe:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IntensityMultiplier: 1.07
+  m_IntensityMultiplier: 0.63
   m_BlendDistance: 1
   m_HDR: 1
   m_BoxProjection: 0
@@ -4109,6 +4104,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d03555153bb9b9f4d896749c4aaa33da, type: 3}
   m_PrefabInstance: {fileID: 62934960}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1631800077 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7483741473988494285, guid: ab471258fa6a5db4eb5765d02a18c977, type: 3}
+  m_PrefabInstance: {fileID: 7426194129512526676}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1640208528 stripped
 Transform:
@@ -4411,7 +4411,7 @@ MonoBehaviour:
   _leftHand: {fileID: 805905570}
   _rightHand: {fileID: 696530564}
   _arrowPrefab: {fileID: 2595377709587373617, guid: 65f76eb9f0f4af64f98127793e5bcb29, type: 3}
-  _bowObject: {fileID: 928238604}
+  _bowObject: {fileID: 1631800077}
   _arrowCounter: {fileID: 1674518433}
   ArrowGrabHand: 0
 --- !u!4 &1674518432
