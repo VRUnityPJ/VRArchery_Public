@@ -14,6 +14,8 @@ namespace _VRArchery.Scripts.Runtime.Tutorial
         [SerializeField] private Button _noButton;
         [SerializeField] private Button _okButton;
         [SerializeField] private TutorialScrollAnimation _scrollAnimation;
+        [SerializeField] private Image _lGripImage;
+        [SerializeField] private Image _rTriggerImage;
 
         /// <summary>
         /// 初期化処理
@@ -34,7 +36,7 @@ namespace _VRArchery.Scripts.Runtime.Tutorial
         /// <returns>Yesボタンが押されたらtrue、Noボタンが押されたらfalse</returns>
         public async UniTask<bool> TryTutorialAsync(CancellationToken ct)
         {
-            _tutorialText.text = "チュートリアルを開始しますか？";
+            _tutorialText.text = "弓を はなつ 練習を \nはじめるか？";
             _tutorialText.transform.localScale = Vector3.one;
 
             //巻物を表示させる
@@ -66,7 +68,7 @@ namespace _VRArchery.Scripts.Runtime.Tutorial
         /// <param name="ct"></param>
         public async UniTask StartTutorialAsync(CancellationToken ct)
         {
-            _tutorialText.text = "今からチュートリアルを開始するよ";
+            _tutorialText.text = "これより 弓の 練習を \nはじめるぞ";
             await _tutorialText.transform.DOScale(Vector3.one, 0.3f).ToUniTask(cancellationToken: ct);
 
             _okButton.transform.DOScale(Vector3.one, 0.3f)
@@ -74,13 +76,23 @@ namespace _VRArchery.Scripts.Runtime.Tutorial
                 .Forget();
 
             await _okButton.OnClickAsync(ct);
-            _tutorialText.text = "左手のTriggerボタンを押すと弓を掴めるよ";
+            await _tutorialText.DOFade(0f, 0f);
+            _tutorialText.text = "弓は 左手の \n中指ボタンを \n押して つかむのだ";
+            _tutorialText.DOFade(1f, 0.3f);
+            _lGripImage.DOFade(1f, 0.3f).ToUniTask(cancellationToken: ct);
 
             await _okButton.OnClickAsync(ct);
-            _tutorialText.text = "右手のTriggerで弓を発射できるよ";
+            await _tutorialText.DOFade(0f, 0f);
+            _tutorialText.text = "右手の 人さし指の ボタンを \nおして 矢を つかみ、\nボタンを はなして \n矢を とばすのだ";
+            _lGripImage.DOFade(0f, 0.3f).ToUniTask(cancellationToken: ct);
+            _tutorialText.DOFade(1f, 0.3f);
+            _rTriggerImage.DOFade(1f, 0.3f).ToUniTask(cancellationToken: ct);
 
             await _okButton.OnClickAsync(ct);
-            _tutorialText.text = "これでチュートリアルを終了するよ";
+            await _tutorialText.DOFade(0f, 0f);
+            _tutorialText.text = "これにて、練習は \nおわりに するぞ";
+            _tutorialText.DOFade(1f, 0.3f);
+            _rTriggerImage.DOFade(0f, 0.3f).ToUniTask(cancellationToken: ct);
 
             await _okButton.OnClickAsync(ct);
         }
