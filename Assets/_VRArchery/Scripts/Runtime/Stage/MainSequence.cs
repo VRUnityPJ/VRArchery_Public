@@ -118,8 +118,9 @@ namespace _VRArchery.Scripts.Runtime.Stage
             //スコアを初期化
             _scoreHolder.InitializeScore();
 
+
             //現在のシーンを再読み込みする
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
         }
 
     }
