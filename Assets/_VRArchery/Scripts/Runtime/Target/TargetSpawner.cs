@@ -97,6 +97,7 @@ namespace _VRArchery.Scripts.Runtime.Target
         private async UniTask EffectPoolAsync(Vector3 position, CancellationToken token)
         {
             var effect = SharedGameObjectPool.Rent(_particleSystem, position, Quaternion.identity);
+            effect.transform.localScale = Vector3.one;
 
             try
             {
