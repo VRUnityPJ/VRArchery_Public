@@ -4306,7 +4306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _limitTimeSec:
-    value: 5
+    value: 90
 --- !u!1001 &1657743215
 PrefabInstance:
   m_ObjectHideFlags: 0
