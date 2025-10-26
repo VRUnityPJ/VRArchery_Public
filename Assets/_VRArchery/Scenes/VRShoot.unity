@@ -834,16 +834,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 308265773}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.83, y: 1.96, z: 1.96}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 16.603363}
+  m_LocalScale: {x: 1.603667, y: 1.110667, z: 1.110667}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2715155660284874821}
+  m_Father: {fileID: 8279138288057485053}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -226, y: -107}
+  m_AnchoredPosition: {x: 54.966858, y: -273.8}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &308265775
@@ -5514,16 +5514,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1798732119}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.83, y: 1.96, z: 1.96}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 16.603363}
+  m_LocalScale: {x: 1.603667, y: 1.110667, z: 1.110667}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2715155660284874821}
+  m_Father: {fileID: 8279138288057485053}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -226, y: -107}
+  m_AnchoredPosition: {x: 54.966858, y: -273.8}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1798732121
@@ -7456,8 +7456,6 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8279138288057485053}
-  - {fileID: 1798732120}
-  - {fileID: 308265774}
   m_Father: {fileID: 5357314592054935777}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -7581,9 +7579,17 @@ PrefabInstance:
       propertyPath: m_EnableFarCasting
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2787847538871034042, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
+      propertyPath: m_Move
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3406344995468409661, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_EnableStabilization
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3639148551234328385, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
+      propertyPath: m_MinMoveDistance
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4972139753948832970, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_LineType
@@ -9571,6 +9577,8 @@ RectTransform:
   m_LocalScale: {x: 1.7647055, y: 1.7647055, z: 1.7647055}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1798732120}
+  - {fileID: 308265774}
   - {fileID: 287688616710238348}
   - {fileID: 1024466073490649390}
   - {fileID: 5090355555232887356}

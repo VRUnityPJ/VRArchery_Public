@@ -48,80 +48,79 @@ namespace _VRArchery.Scripts.Runtime.Stage
         /// </summary>
         private async UniTask GameStartAsync()
         {
-            //ループ開始
-            while (!destroyCancellationToken.IsCancellationRequested)
+            using var cts = CancellationTokenSource.CreateLinkedTokenSource(destroyCancellationToken);
+
+            _audioPlayer.FadeInBGM(1);
+
+            //初期化処理
+            _startTargetController.Init();
+            _tutorialPresenter.Init();
+            _resultUIViewer.Init();
+            _bowActivator.Init();
+
+            _scorePresenter.gameObject.SetActive(false);
+            _timerText.SetActive(false);
+
+            //名前入力を行う
+            await SceneManager.LoadSceneAsync("FirstScene_Demo", LoadSceneMode.Additive)
+                .ToUniTask(cancellationToken: cts.Token);
+
+            var enterName = LifetimeScope.Find<KeyBoardLifetimeScope>().Container.Resolve<ICompletable>();
+
+            //入力が完了するまで待機
+            await enterName.OnComplete(cts.Token);
+
+            _scorePresenter.gameObject.SetActive(true);
+
+            await SceneManager.UnloadSceneAsync("FirstScene_Demo")
+                .ToUniTask(cancellationToken: cts.Token);
+
+            //チュートリアルを開始するか選択する
+            var isTutorialStart = await _tutorialPresenter.TryTutorialAsync(cts.Token);
+
+            if (isTutorialStart)
             {
-                using var cts = CancellationTokenSource.CreateLinkedTokenSource(destroyCancellationToken);
-
-                _audioPlayer.FadeInBGM(1);
-
-                //初期化処理
-                _startTargetController.Init();
-                _tutorialPresenter.Init();
-                _resultUIViewer.Init();
-                _bowActivator.Init();
-
-                _scorePresenter.gameObject.SetActive(false);
-                _timerText.SetActive(false);
-
-                //名前入力を行う
-                await SceneManager.LoadSceneAsync("FirstScene_Demo", LoadSceneMode.Additive)
-                    .ToUniTask(cancellationToken: cts.Token);
-
-                var enterName = LifetimeScope.Find<KeyBoardLifetimeScope>().Container.Resolve<ICompletable>();
-
-                //入力が完了するまで待機
-                await enterName.OnComplete(cts.Token);
-
-                _scorePresenter.gameObject.SetActive(true);
-
-                await SceneManager.UnloadSceneAsync("FirstScene_Demo")
-                    .ToUniTask(cancellationToken: cts.Token);
-
-                //チュートリアルを開始するか選択する
-                var isTutorialStart = await _tutorialPresenter.TryTutorialAsync(cts.Token);
-
-                if (isTutorialStart)
-                {
-                    //弓を出現させる
-                    await _bowActivator.ActivateBowAsync(cts.Token);
-                    // チュートリアルを開始する
-                    await _tutorialPresenter.StartTutorialAsync(cts.Token);
-                }
-
-                await _tutorialPresenter.HideTutorialAsync(cts.Token);
-
                 //弓を出現させる
                 await _bowActivator.ActivateBowAsync(cts.Token);
-
-
-                //チュートリアル用の的が討たれるまで待機
-                await _startTargetController.OnStartButtonClickedAsync(cts.Token);
-
-                _timerText.SetActive(true);
-
-                //的の生成開始
-                _targetSpawner.StartSpawnTargetAsync(cts.Token).Forget();
-
-                //タイマースタート
-                await _timeController.StartTimerAsync(cts.Token);
-
-                _timerText.SetActive(false);
-
-                CustomDebug.Log("ゲーム終了");
-                cts.Cancel();
-
-                _bowActivator.DeactivateBowAsync(destroyCancellationToken).Forget();
-
-                //リザルト画面を表示させる
-                await _scorePresenter.ShowScoreAnimationAsync(destroyCancellationToken);
-
-                //ランキングにスコアを登録する
-                _rankingScoreAdaptor.Register();
-                //スコアを初期化
-                _scoreHolder.InitializeScore();
-
+                // チュートリアルを開始する
+                await _tutorialPresenter.StartTutorialAsync(cts.Token);
             }
+
+            await _tutorialPresenter.HideTutorialAsync(cts.Token);
+
+            //弓を出現させる
+            await _bowActivator.ActivateBowAsync(cts.Token);
+
+
+            //チュートリアル用の的が討たれるまで待機
+            await _startTargetController.OnStartButtonClickedAsync(cts.Token);
+
+            _timerText.SetActive(true);
+
+            //的の生成開始
+            _targetSpawner.StartSpawnTargetAsync(cts.Token).Forget();
+
+            //タイマースタート
+            await _timeController.StartTimerAsync(cts.Token);
+
+            _timerText.SetActive(false);
+
+            CustomDebug.Log("ゲーム終了");
+            cts.Cancel();
+
+            _bowActivator.DeactivateBowAsync(destroyCancellationToken).Forget();
+
+            //リザルト画面を表示させる
+            await _scorePresenter.ShowScoreAnimationAsync(destroyCancellationToken);
+
+            //ランキングにスコアを登録する
+            _rankingScoreAdaptor.Register();
+            //スコアを初期化
+            _scoreHolder.InitializeScore();
+
+
+            //現在のシーンを再読み込みする
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
         }
 
     }
