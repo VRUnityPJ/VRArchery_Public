@@ -59,11 +59,11 @@ namespace RankingSystem.Scripts
             }
             for (int i = 0; i < rankingDatas.Length; i++)
             {
-                // if (data[i].GetData<Point>().IntValue != rankingDatas[i].GetData<Point>().IntValue)
-                // {
-                //     UpdateNowData(data);
-                //     return false;
-                // }
+                if (data[i].GetData<Score>().IntValue != rankingDatas[i].GetData<Score>().IntValue)
+                {
+                    UpdateNowData(data);
+                    return false;
+                }
             }
             return true;
         }
