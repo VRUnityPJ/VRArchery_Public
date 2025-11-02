@@ -26,6 +26,8 @@ namespace _VRArchery.Scripts.Runtime.Equipment
         private GameObject _bowObject;
         [SerializeField]
         private ArrowCounter _arrowCounter;
+        [SerializeField]
+        private DistanceHapticFeedback _distanceHapticFeedback;
 
         public Hand ArrowGrabHand;
 
@@ -65,6 +67,7 @@ namespace _VRArchery.Scripts.Runtime.Equipment
                 arrowVR.ArrowGrip = _bowObject;
                 arrowVR.ArrowCounter = _arrowCounter;
                 arrowVR.ArrowGrabber = this;
+                arrowVR.DistanceHapticFeedback = _distanceHapticFeedback;
             }
             XRGrabInteractable newInteractable = newArrowObj.GetComponent<XRGrabInteractable>();
 

@@ -4203,6 +4203,7 @@ GameObject:
   - component: {fileID: 1645173488}
   - component: {fileID: 1645173489}
   - component: {fileID: 1645173490}
+  - component: {fileID: 1645173491}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4307,6 +4308,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _limitTimeSec:
     value: 90
+--- !u!114 &1645173491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645173485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89b295a51dc4881438fb9607da4d1933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetA: {fileID: 2779669268269126899}
+  targetB: {fileID: 2779669268269126898}
+  interactorToVibrate: {fileID: 696530564}
+  isVibrationEnabled: 0
+  nearThreshold: 0.5
+  farThreshold: 1
+  nearMaxAmplitude: 0.15
+  farMaxAmplitude: 1
+  hapticDuration: 0.1
 --- !u!1001 &1657743215
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4488,6 +4510,7 @@ MonoBehaviour:
   _arrowPrefab: {fileID: 2595377709587373617, guid: 65f76eb9f0f4af64f98127793e5bcb29, type: 3}
   _bowObject: {fileID: 1631800077}
   _arrowCounter: {fileID: 1674518433}
+  _distanceHapticFeedback: {fileID: 1645173491}
   ArrowGrabHand: 0
 --- !u!4 &1674518432
 Transform:
@@ -7063,6 +7086,7 @@ MonoBehaviour:
   ArrowGrip: {fileID: 0}
   ArrowCounter: {fileID: 0}
   ArrowGrabber: {fileID: 0}
+  DistanceHapticFeedback: {fileID: 0}
 --- !u!1001 &1460562819199558690
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7813,6 +7837,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
+--- !u!4 &2779669268269126898 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7277802327528778794, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
+  m_PrefabInstance: {fileID: 2779669268269126897}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2779669268269126899 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7277802326798953675, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
+  m_PrefabInstance: {fileID: 2779669268269126897}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2815435759323392361
 GameObject:
   m_ObjectHideFlags: 0

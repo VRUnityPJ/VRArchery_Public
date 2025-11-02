@@ -189,7 +189,7 @@ namespace _VRArchery.Scripts.Runtime.UI
             .SetEase(Ease.OutBack)
             .ToUniTask(cancellationToken: token);
 
-            await UniTask.Delay(TimeSpan.FromSeconds(15f), cancellationToken: token);
+            await UniTask.Delay(TimeSpan.FromSeconds(7f), cancellationToken: token);
         }
     }
 }
