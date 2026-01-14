@@ -67,19 +67,18 @@ namespace _VRArchery.Scripts.Runtime.Stage
             await _titlePresenter.OnClickStartButtonAsync(cts.Token);
             await _titlePresenter.OpenShojiAnimationAsync(cts.Token);
 
-             //名前入力を行う
-             await SceneManager.LoadSceneAsync("FirstScene_Demo", LoadSceneMode.Additive)
-                 .ToUniTask(cancellationToken: cts.Token);
-
-             var enterName = LifetimeScope.Find<KeyBoardLifetimeScope>().Container.Resolve<ICompletable>();
-
-             //入力が完了するまで待機
-             await enterName.OnComplete(cts.Token);
+             // //名前入力を行う
+             // await SceneManager.LoadSceneAsync("FirstScene_Demo", LoadSceneMode.Additive)
+             //     .ToUniTask(cancellationToken: cts.Token);
+             //
+             // var enterName = LifetimeScope.Find<KeyBoardLifetimeScope>().Container.Resolve<ICompletable>();
+             //
+             // //入力が完了するまで待機
+             // await enterName.OnComplete(cts.Token);
+            // await SceneManager.UnloadSceneAsync("FirstScene_Demo")
+            //     .ToUniTask(cancellationToken: cts.Token);
 
             _scorePresenter.gameObject.SetActive(true);
-
-            await SceneManager.UnloadSceneAsync("FirstScene_Demo")
-                .ToUniTask(cancellationToken: cts.Token);
 
             //チュートリアルを開始するか選択する
             var isTutorialStart = await _tutorialPresenter.TryTutorialAsync(cts.Token);

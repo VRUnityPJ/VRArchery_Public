@@ -20,13 +20,12 @@ namespace _VRArchery.Scripts.Runtime.Tutorial
 
         private Vector2 _originalCloudScale;
         private Vector3 _originalMakimonoScale;
-        private UiAudioPlayer  _audioPlayer;
+        private UiAudioPlayer _audioPlayer;
 
-        private void Start()
+        private void Awake()
         {
             _makimonoPrefab.SetActive(false);
             _originalMakimonoScale = _makimonoPrefab.transform.localScale;
-            _audioPlayer = Locator.Resolve<UiAudioPlayer>();
         }
 
         public void Init()
@@ -42,6 +41,7 @@ namespace _VRArchery.Scripts.Runtime.Tutorial
         /// </summary>
         public async UniTask ShowScrollAnimationAsync(CancellationToken ct)
         {
+            _audioPlayer = Locator.Resolve<UiAudioPlayer>();
             _makimonoPrefab.SetActive(true);
             _makimonoPrefab.transform.localScale = Vector3.zero;
             _audioPlayer.PlayScrollStartSound();
