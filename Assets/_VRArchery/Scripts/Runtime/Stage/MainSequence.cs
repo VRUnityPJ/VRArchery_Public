@@ -30,6 +30,7 @@ namespace _VRArchery.Scripts.Runtime.Stage
         [SerializeField] private GameObject _timerText;
         [SerializeField] private UiAudioPlayer  _audioPlayer;
         [SerializeField] private BowActivator _bowActivator;
+        [SerializeField] private TitlePresenter _titlePresenter;
 
         private ScoreHolder _scoreHolder;
         private RankingScoreAdaptor _rankingScoreAdaptor;
@@ -61,14 +62,14 @@ namespace _VRArchery.Scripts.Runtime.Stage
             _scorePresenter.gameObject.SetActive(false);
             _timerText.SetActive(false);
 
-            //名前入力を行う
-            await SceneManager.LoadSceneAsync("FirstScene_Demo", LoadSceneMode.Additive)
-                .ToUniTask(cancellationToken: cts.Token);
+             //名前入力を行う
+             await SceneManager.LoadSceneAsync("FirstScene_Demo", LoadSceneMode.Additive)
+                 .ToUniTask(cancellationToken: cts.Token);
 
-            var enterName = LifetimeScope.Find<KeyBoardLifetimeScope>().Container.Resolve<ICompletable>();
+             var enterName = LifetimeScope.Find<KeyBoardLifetimeScope>().Container.Resolve<ICompletable>();
 
-            //入力が完了するまで待機
-            await enterName.OnComplete(cts.Token);
+             //入力が完了するまで待機
+             await enterName.OnComplete(cts.Token);
 
             _scorePresenter.gameObject.SetActive(true);
 
@@ -118,9 +119,10 @@ namespace _VRArchery.Scripts.Runtime.Stage
             //スコアを初期化
             _scoreHolder.InitializeScore();
 
-
             //現在のシーンを再読み込みする
-            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name)
+                .ToUniTask(cancellationToken: cts.Token)
+                .Forget();
         }
 
     }
