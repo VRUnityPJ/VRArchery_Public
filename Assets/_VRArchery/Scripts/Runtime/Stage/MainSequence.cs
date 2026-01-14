@@ -62,6 +62,11 @@ namespace _VRArchery.Scripts.Runtime.Stage
             _scorePresenter.gameObject.SetActive(false);
             _timerText.SetActive(false);
 
+            //タイトル画面を表示する
+            _titlePresenter.TitleUIAnimationAsync(cts.Token).Forget();
+            await _titlePresenter.OnClickStartButtonAsync(cts.Token);
+            await _titlePresenter.OpenShojiAnimationAsync(cts.Token);
+
              //名前入力を行う
              await SceneManager.LoadSceneAsync("FirstScene_Demo", LoadSceneMode.Additive)
                  .ToUniTask(cancellationToken: cts.Token);

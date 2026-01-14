@@ -4577,7 +4577,7 @@ MonoBehaviour:
   _timerText: {fileID: 2648314723002684938}
   _audioPlayer: {fileID: 925699331}
   _bowActivator: {fileID: 1105260043}
-  _titlePresenter: {fileID: 0}
+  _titlePresenter: {fileID: 8603791136932056614}
 --- !u!4 &1645173487
 Transform:
   m_ObjectHideFlags: 0
@@ -9987,7 +9987,7 @@ GameObject:
   - component: {fileID: 5868839559553298718}
   - component: {fileID: 8603791136932056611}
   - component: {fileID: 8603791136932056612}
-  - component: {fileID: 8603791136932056613}
+  - component: {fileID: 8603791136932056614}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -10271,7 +10271,7 @@ MonoBehaviour:
   _cloudMoveValue: 10
   _cloudShowTime: 1
   _cloudHideTime: 1
---- !u!114 &8603791136932056613
+--- !u!114 &8603791136932056614
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10287,10 +10287,9 @@ MonoBehaviour:
   _outRightShoji: {fileID: 1943145982}
   _leftShoji: {fileID: 1653779178}
   _outLeftShoji: {fileID: 1576290038}
-  _moveDistance: 3
+  _moveDistance: 10
   _moveDuration: 2
   _titleUI: {fileID: 907227300}
-  _xrInputAction: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!114 &8674313486615815138
 MonoBehaviour:
   m_ObjectHideFlags: 0

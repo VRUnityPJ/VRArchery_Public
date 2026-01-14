@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
@@ -37,11 +38,12 @@ namespace _VRArchery.Scripts.Runtime.UI
         /// <summary>
         /// XR入力アクション
         /// </summary>
-        [SerializeField] private InputActionAsset _xrInputAction;
+        private XRIDefaultInputActions _xrInputAction;
 
-        private async UniTaskVoid Start()
+        private void Awake()
         {
-            TitleUIAnimationAsync(destroyCancellationToken).Forget();
+            _xrInputAction = new XRIDefaultInputActions();
+            _xrInputAction.Enable();
         }
 
         /// <summary>
@@ -61,13 +63,30 @@ namespace _VRArchery.Scripts.Runtime.UI
                 .ToUniTask(cancellationToken: token).Forget();
         }
 
-        private async UniTask TitleUIAnimationAsync(CancellationToken token)
+        /// <summary>
+        /// タイトルUIのアニメーションを再生する
+        /// </summary>
+        /// <param name="token"></param>
+        public async UniTask TitleUIAnimationAsync(CancellationToken token)
         {
             await DOTween.Sequence()
                 .Append(_titleUI.transform.DOLocalMoveY(0.5f, 2f))
                 .SetRelative(true)
                 .SetLoops(-1, LoopType.Yoyo)
                 .ToUniTask(cancellationToken: token);
+        }
+
+        /// <summary>
+        /// スタートボタンが押されるまで待機する
+        /// </summary>
+        /// <param name="token"></param>
+        public async UniTask OnClickStartButtonAsync(CancellationToken token)
+        {
+            await UniTask.WaitUntil( () =>
+            {
+                var rightTrigger = _xrInputAction.XRIRightInteraction.ActivateValue.ReadValue<float>();
+                return rightTrigger > 0.1f;
+            }, cancellationToken: token);
         }
     }
 }
