@@ -76,25 +76,26 @@ namespace _VRArchery.Scripts.Runtime.Tutorial
                 .ToUniTask(cancellationToken: ct)
                 .Forget();
 
-            await _okButton.OnClickAsync(ct);
+            await UniTask.WhenAny(_okButton.OnClickAsync(ct), UniTask.Delay(TimeSpan.FromSeconds(10), cancellationToken: ct));
+
             await _tutorialText.DOFade(0f, 0f);
             _tutorialText.text = "弓は 左手の \n中指ボタンを \n押して つかむのだ";
             _tutorialText.DOFade(1f, 0.3f);
             _lGripImage.DOFade(1f, 0.3f).ToUniTask(cancellationToken: ct);
-            await _okButton.OnClickAsync(ct);
+            await UniTask.WhenAny(_okButton.OnClickAsync(ct), UniTask.Delay(TimeSpan.FromSeconds(10), cancellationToken: ct));
             await _tutorialText.DOFade(0f, 0f);
             _tutorialText.text = "右手の 人さし指の ボタンを \nおして 矢を つかみ、\nボタンを はなして \n矢を とばすのだ";
             _lGripImage.DOFade(0f, 0.3f).ToUniTask(cancellationToken: ct);
             _tutorialText.DOFade(1f, 0.3f);
             _rTriggerImage.DOFade(1f, 0.3f).ToUniTask(cancellationToken: ct);
 
-            await _okButton.OnClickAsync(ct);
+            await UniTask.WhenAny(_okButton.OnClickAsync(ct), UniTask.Delay(TimeSpan.FromSeconds(10), cancellationToken: ct));
             await _tutorialText.DOFade(0f, 0f);
             _tutorialText.text = "これにて、練習は \nおわりに するぞ";
             _tutorialText.DOFade(1f, 0.3f);
             _rTriggerImage.DOFade(0f, 0.3f).ToUniTask(cancellationToken: ct);
 
-            await _okButton.OnClickAsync(ct);
+            await UniTask.WhenAny(_okButton.OnClickAsync(ct), UniTask.Delay(TimeSpan.FromSeconds(10), cancellationToken: ct));
         }
 
         public async UniTask HideTutorialAsync(CancellationToken ct) => await _scrollAnimation.HideScrollAnimation(ct);
