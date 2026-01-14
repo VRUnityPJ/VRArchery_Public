@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
@@ -80,7 +81,6 @@ namespace _VRArchery.Scripts.Runtime.Tutorial
             _tutorialText.text = "弓は 左手の \n中指ボタンを \n押して つかむのだ";
             _tutorialText.DOFade(1f, 0.3f);
             _lGripImage.DOFade(1f, 0.3f).ToUniTask(cancellationToken: ct);
-
             await _okButton.OnClickAsync(ct);
             await _tutorialText.DOFade(0f, 0f);
             _tutorialText.text = "右手の 人さし指の ボタンを \nおして 矢を つかみ、\nボタンを はなして \n矢を とばすのだ";
