@@ -31,6 +31,8 @@ namespace _VRArchery.Scripts.Runtime.Stage
         [SerializeField] private UiAudioPlayer  _audioPlayer;
         [SerializeField] private BowActivator _bowActivator;
         [SerializeField] private TitlePresenter _titlePresenter;
+        [SerializeField] private AutoGrabController _autoGrabController;
+        [SerializeField] private InteractorToggler _interactorToggler;
 
         private ScoreHolder _scoreHolder;
         private RankingScoreAdaptor _rankingScoreAdaptor;
@@ -80,6 +82,8 @@ namespace _VRArchery.Scripts.Runtime.Stage
 
             _scorePresenter.gameObject.SetActive(true);
 
+            _interactorToggler.SetInput(true);
+
             //チュートリアルを開始するか選択する
             var isTutorialStart = await _tutorialPresenter.TryTutorialAsync(cts.Token);
 
@@ -96,6 +100,10 @@ namespace _VRArchery.Scripts.Runtime.Stage
             //弓を出現させる
             await _bowActivator.ActivateBowAsync(cts.Token);
 
+            //弓を掴ませる
+            await _autoGrabController.ForceGrab(cts.Token);
+
+            _interactorToggler.SetInput(false);
 
             //チュートリアル用の的が討たれるまで待機
             await _startTargetController.OnStartButtonClickedAsync(cts.Token);
@@ -112,6 +120,9 @@ namespace _VRArchery.Scripts.Runtime.Stage
 
             CustomDebug.Log("ゲーム終了");
             cts.Cancel();
+
+            //弓を離させる
+            await _autoGrabController.ForceRelease(cts.Token);
 
             _bowActivator.DeactivateBowAsync(destroyCancellationToken).Forget();
 
