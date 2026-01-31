@@ -5,6 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 
+/// <summary> 特定オブフェクトを特定コントローラーに掴ませるスクリプト </summary>
 public class AutoGrabController : MonoBehaviour
 {
     [Header("Controller Settings")]

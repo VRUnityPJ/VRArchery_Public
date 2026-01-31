@@ -4,6 +4,7 @@ using UnityEngine.InputSystem; // Input System必須
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
+/// <summary> 指定したInputActionの操作の有効化/無効化を切り替えるスクリプト </summary>
 public class InteractorToggler : MonoBehaviour
 {
     [Header("Input Actions to Block")]
