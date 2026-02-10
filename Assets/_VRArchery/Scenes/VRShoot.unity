@@ -4688,7 +4688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentReference:
-    TypeName: KeyBoard.KeyBoardLifetimeScope
+    TypeName: 
   autoRun: 1
   autoInjectGameObjects: []
   _targetSpawner: {fileID: 1645173489}

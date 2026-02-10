@@ -29,7 +29,7 @@ namespace _VRArchery.Scripts.Runtime.Target
         /// </summary>
         [SerializeField] private GameObject _particleSystem;
 
-        [Inject] private IObjectResolver _objectResolver;
+        private IObjectResolver _objectResolver;
 
         /// <summary>
         /// レア的の出現間隔（秒）Inspectorで調整
@@ -39,6 +39,12 @@ namespace _VRArchery.Scripts.Runtime.Target
         private void Start()
         {
             SharedGameObjectPool.Prewarm(_particleSystem, 4);
+        }
+
+        [Inject]
+        private void Construct(IObjectResolver resolver)
+        {
+            _objectResolver = resolver;
         }
 
         /// <summary>
