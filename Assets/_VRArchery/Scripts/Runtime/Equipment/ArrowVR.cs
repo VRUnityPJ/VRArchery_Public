@@ -162,7 +162,7 @@ namespace _VRArchery.Scripts.Runtime.Equipment
             }
             CustomDebug.Log("An Arrow Is Nocking");
             _isNocking = true;
-            DistanceHapticFeedback.isVibrationEnabled = true;
+            DistanceHapticFeedback.IsVibrationEnabled = true;
             _grabInteract.trackRotation = false;
             _rb.useGravity = false;
             _isFlying = false;
@@ -179,7 +179,7 @@ namespace _VRArchery.Scripts.Runtime.Equipment
                 CustomDebug.Log("An Arrow is Shot");
                 _grabInteract.trackRotation = true;
                 _isNocking = false;
-                DistanceHapticFeedback.isVibrationEnabled = false;
+                DistanceHapticFeedback.IsVibrationEnabled = false;
                 ForceRelease();
                 _arrowFaceMovement.IsFlying = true;
                 _rb.useGravity = true;

@@ -9,14 +9,14 @@ public class InteractorToggler : MonoBehaviour
 {
     [Header("Input Actions to Block")]
     [Tooltip("無効化したい入力アクション（Selectなど）をここに登録してください")]
-    [SerializeField] private List<InputActionReference> targetActions = new List<InputActionReference>();
+    [SerializeField] private List<InputActionReference> _targetActions = new List<InputActionReference>();
 
     [Header("Safety Settings")]
     [Tooltip("何かを掴んでいる間は、無効化を禁止するか")]
-    [SerializeField] private bool preventDisableWhileGrabbing = true;
+    [SerializeField] private bool _preventDisableWhileGrabbing = true;
 
     [Tooltip("掴んでいるかチェックするためのInteractor（任意）")]
-    [SerializeField] private List<XRBaseInteractor> interactorsToCheck = new List<XRBaseInteractor>();
+    [SerializeField] private List<XRBaseInteractor> _interactorsToCheck = new List<XRBaseInteractor>();
 
     // 現在の状態
     public bool IsInputEnabled { get; private set; } = true;
@@ -24,10 +24,10 @@ public class InteractorToggler : MonoBehaviour
     private void Start()
     {
         // Interactorが空なら、このオブジェクトや子から自動で探しておく（安全策）
-        if (interactorsToCheck.Count == 0)
+        if (_interactorsToCheck.Count == 0)
         {
             var found = GetComponentsInChildren<XRBaseInteractor>();
-            interactorsToCheck.AddRange(found);
+            _interactorsToCheck.AddRange(found);
         }
     }
 
@@ -45,7 +45,7 @@ public class InteractorToggler : MonoBehaviour
     public void SetInput(bool enable)
     {
         // OFFにしようとした時、物を掴んでいたら中止するチェック
-        if (!enable && IsInputEnabled && preventDisableWhileGrabbing)
+        if (!enable && IsInputEnabled && _preventDisableWhileGrabbing)
         {
             if (IsGrabbingAny())
             {
@@ -60,7 +60,7 @@ public class InteractorToggler : MonoBehaviour
 
     private void ApplyState()
     {
-        foreach (var actionRef in targetActions)
+        foreach (var actionRef in _targetActions)
         {
             if (actionRef != null && actionRef.action != null)
             {
@@ -81,7 +81,7 @@ public class InteractorToggler : MonoBehaviour
 
     private bool IsGrabbingAny()
     {
-        foreach (var interactor in interactorsToCheck)
+        foreach (var interactor in _interactorsToCheck)
         {
             if (interactor != null && interactor.hasSelection)
             {
@@ -94,7 +94,7 @@ public class InteractorToggler : MonoBehaviour
     // アプリケーション終了時などに、入力が無効のままだと困るので戻しておく
     private void OnDisable()
     {
-        foreach (var actionRef in targetActions)
+        foreach (var actionRef in _targetActions)
         {
             if (actionRef != null && actionRef.action != null)
             {
