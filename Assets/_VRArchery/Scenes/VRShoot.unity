@@ -2008,6 +2008,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25a07ef133a37d140a87cdf1f1c75fdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &805905571 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8184698655531348859, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
+  m_PrefabInstance: {fileID: 2779669268269126897}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &819550365
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3841,6 +3846,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1367771869 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4981773951985281828, guid: ab471258fa6a5db4eb5765d02a18c977, type: 3}
+  m_PrefabInstance: {fileID: 7426194129512526676}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fa577b1cf5fa4e4ba48d01d9e683b86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1396807698 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cf2955c704190f6418ad8e38af1d6a81, type: 3}
@@ -4924,6 +4940,7 @@ MonoBehaviour:
   _arrowPrefab: {fileID: 2595377709587373617, guid: 65f76eb9f0f4af64f98127793e5bcb29, type: 3}
   _bowObject: {fileID: 1631800077}
   _arrowCounter: {fileID: 1674518433}
+  _hapticFeedback: {fileID: 1367771869}
   ArrowGrabHand: 0
 --- !u!4 &1674518432
 Transform:
@@ -5929,6 +5946,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1777700736}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1783200791 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1190469456678301156, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
+  m_PrefabInstance: {fileID: 2779669268269126897}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1798732119
 GameObject:
   m_ObjectHideFlags: 0
@@ -7699,6 +7721,7 @@ MonoBehaviour:
   ArrowGrip: {fileID: 0}
   ArrowCounter: {fileID: 0}
   ArrowGrabber: {fileID: 0}
+  DistanceHapticFeedback: {fileID: 0}
 --- !u!1001 &1460562819199558690
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10162,6 +10185,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4981773951985281828, guid: ab471258fa6a5db4eb5765d02a18c977, type: 3}
+      propertyPath: targetA
+      value: 
+      objectReference: {fileID: 805905571}
+    - target: {fileID: 4981773951985281828, guid: ab471258fa6a5db4eb5765d02a18c977, type: 3}
+      propertyPath: targetB
+      value: 
+      objectReference: {fileID: 1783200791}
+    - target: {fileID: 4981773951985281828, guid: ab471258fa6a5db4eb5765d02a18c977, type: 3}
+      propertyPath: interactorToVibrate
+      value: 
+      objectReference: {fileID: 696530564}
     - target: {fileID: 5363036201520807440, guid: ab471258fa6a5db4eb5765d02a18c977, type: 3}
       propertyPath: m_Name
       value: "\u5F13_Grabbable"
