@@ -23,7 +23,7 @@ namespace _VRArchery.Scripts.Runtime.UI
             _timeController.LimitTimeSec
                 .Subscribe(_timeText, static (value, timeText) =>
                 {
-                    timeText.text = $"Time : {value:N1}";
+                    timeText.text = $"制限時間 : {value:N1}";
                 })
                 .AddTo(destroyCancellationToken);
         }
