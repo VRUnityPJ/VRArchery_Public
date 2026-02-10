@@ -33,8 +33,8 @@ namespace _VRArchery.Scripts.Runtime.Equipment
         /// </summary>
         public GameObject ArrowGrip;
         public ArrowCounter ArrowCounter;
-
         public ArrowGrabber ArrowGrabber;
+        public DistanceHapticFeedback DistanceHapticFeedback;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Awake()
         {
@@ -162,6 +162,7 @@ namespace _VRArchery.Scripts.Runtime.Equipment
             }
             CustomDebug.Log("An Arrow Is Nocking");
             _isNocking = true;
+            DistanceHapticFeedback.isVibrationEnabled = true;
             _grabInteract.trackRotation = false;
             _rb.useGravity = false;
             _isFlying = false;
@@ -178,6 +179,7 @@ namespace _VRArchery.Scripts.Runtime.Equipment
                 CustomDebug.Log("An Arrow is Shot");
                 _grabInteract.trackRotation = true;
                 _isNocking = false;
+                DistanceHapticFeedback.isVibrationEnabled = false;
                 ForceRelease();
                 _arrowFaceMovement.IsFlying = true;
                 _rb.useGravity = true;
