@@ -48,7 +48,6 @@ namespace _VRArchery.Scripts.Runtime.Equipment
             effect.transform.localScale = Vector3.one * 0.1f;
             await _bow.DOScale(_originalScale, _showDuration)
                 .ToUniTask(cancellationToken: token);
-            await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: token);
             effect.transform.localScale = Vector3.one;
             SharedGameObjectPool.Return(effect);
         }
