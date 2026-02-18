@@ -45,12 +45,12 @@ namespace _VRArchery.Scripts.Runtime.Equipment
                 Debug.Log("nock arrow attached");
                 if (_nockAction == null)
                 {
-                    Debug.LogError("Cannot find nock arrow");
+                    CustomDebug.LogError("Cannot find nock arrow");
                 }
             }
             else
             {
-                Debug.LogError("No action asset found");
+                CustomDebug.LogError("No action asset found");
             }
         }
         private void Start()
