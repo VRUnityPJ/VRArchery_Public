@@ -129,12 +129,11 @@ namespace _VRArchery.Scripts.Runtime.Equipment
                     _rb.useGravity = false;
                     CustomDebug.Log($"刺さった:{_rb.isKinematic}");
                 }
-                gameObject.SetActive(false);
-                //_boxCollider.isTrigger = true;
+                Destroy(gameObject);
             }
             else if (other.gameObject.CompareTag("Stage"))
             {
-                DelayDestroyAsync().Forget();
+                Destroy(gameObject);
             }
             if (other.gameObject.TryGetComponent(out IBow bow))
             {
@@ -212,23 +211,5 @@ namespace _VRArchery.Scripts.Runtime.Equipment
             ArrowGrabber.GrabArrow(ArrowGrabber.ArrowGrabHand);
         }
 
-        private async UniTask DelayDestroyAsync()
-        {
-            if(_rb == null) return;
-
-            _rb.isKinematic = true;
-            _boxCollider.enabled = false;
-
-            // CancellationToken を取得
-            var token = this.GetCancellationTokenOnDestroy();
-
-            // 2秒待つ。ただし、待っている間にオブジェクトが破壊されたら、
-            // 例外を発生させて処理を中断する
-            await UniTask.Delay(TimeSpan.FromSeconds(0.05f), cancellationToken: token);
-
-            // このオブジェクトがまだ存在していれば破壊する
-            // (awaitで例外が投げられた場合、ここには到達しない)
-            gameObject.SetActive(false);
-        }
     }
 }
