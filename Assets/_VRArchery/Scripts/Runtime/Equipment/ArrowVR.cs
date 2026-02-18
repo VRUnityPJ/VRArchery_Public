@@ -112,7 +112,7 @@ namespace _VRArchery.Scripts.Runtime.Equipment
 
         }
 
-        private async void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag("Nock"))
             {
@@ -123,10 +123,13 @@ namespace _VRArchery.Scripts.Runtime.Equipment
             {
                 //GameManager.instance.SetTargetModleMarker(collision.GetContact(0).point - collision.transform.position);
                 _isFlying = false;
-                _rb.isKinematic = true;
-                _rb.useGravity = false;
-                CustomDebug.Log($"刺さった:{_rb.isKinematic}");
-                await DelayDestroyAsync();
+                if (_rb)
+                {
+                    _rb.isKinematic = true;
+                    _rb.useGravity = false;
+                    CustomDebug.Log($"刺さった:{_rb.isKinematic}");
+                }
+                gameObject.SetActive(false);
                 //_boxCollider.isTrigger = true;
             }
             else if (other.gameObject.CompareTag("Stage"))
@@ -225,7 +228,7 @@ namespace _VRArchery.Scripts.Runtime.Equipment
 
             // このオブジェクトがまだ存在していれば破壊する
             // (awaitで例外が投げられた場合、ここには到達しない)
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }
