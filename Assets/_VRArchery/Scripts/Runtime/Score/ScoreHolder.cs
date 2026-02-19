@@ -2,7 +2,7 @@ using System;
 using R3;
 using RankingSystem.Scripts;
 using UnityEngine;
-
+using _VRArchery.Scripts.Utility;
 namespace _VRArchery.Scripts.Runtime.Score
 {
     /// <summary>
@@ -59,10 +59,27 @@ namespace _VRArchery.Scripts.Runtime.Score
         /// <param name="targetPos"></param>
         /// <param name="playerPos"></param>
         /// <returns></returns>
-        public int CalculateAddScore(Vector3 targetPos, Vector3 allowPos,float speedBonus)
+        public int CalculateAddScore(Vector3 targetPos, Vector3 arrowPos,float speedBonus)
         {
+            float result = 0;
             //現在プレイヤーと的の距離で得点を決定、それを生成されてからの時間、矢の命中座標、的の命中座標で計算
-            var result = (targetPos - allowPos).sqrMagnitude*speedBonus;
+            var acc = (targetPos - arrowPos).sqrMagnitude;
+            if(acc<2f)
+            {
+                CustomDebug.Log("ドンピシャ");
+                result = 200f;
+            }
+            else if(acc<5f)
+            {
+                CustomDebug.Log("まあまあ真ん中");
+                result = 150f;
+            }
+            else
+            {
+                result = 100f;
+            }
+            result *= speedBonus;
+            CustomDebug.Log("ボーナス"+speedBonus+"ポイント"+result+"ACC"+acc);
             return (int)result;
         }
 
