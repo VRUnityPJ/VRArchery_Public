@@ -59,9 +59,10 @@ namespace _VRArchery.Scripts.Runtime.Score
         /// <param name="targetPos"></param>
         /// <param name="playerPos"></param>
         /// <returns></returns>
-        public int CalculateAddScore(Vector3 targetPos, Vector3 playerPos)
+        public int CalculateAddScore(Vector3 targetPos, Vector3 allowPos,float speedBonus)
         {
-            var result = (targetPos - playerPos).sqrMagnitude;
+            //現在プレイヤーと的の距離で得点を決定、それを生成されてからの時間、矢の命中座標、的の命中座標で計算
+            var result = (targetPos - allowPos).sqrMagnitude*speedBonus;
             return (int)result;
         }
 
