@@ -5289,8 +5289,8 @@ MonoBehaviour:
   - {fileID: 1477939472}
   _timeController: {fileID: 1645173490}
   _particleSystem: {fileID: 4809171458859421548, guid: 4e91ed1a8efe7044785b9bd97a47d87f, type: 3}
-  _normalSpawnIntervalMin: 0.1
-  _normalSpawnIntervalMax: 5
+  _normalSpawnIntervalMin: 3
+  _normalSpawnIntervalMax: 7
   _rareSpawnInterval: 17
 --- !u!114 &1645173490
 MonoBehaviour:
@@ -9270,6 +9270,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
+--- !u!4 &2779669268269126898 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7277802327528778794, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
+  m_PrefabInstance: {fileID: 2779669268269126897}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2779669268269126899 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7277802326798953675, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
+  m_PrefabInstance: {fileID: 2779669268269126897}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2815435759323392361
 GameObject:
   m_ObjectHideFlags: 0
@@ -10976,7 +10986,23 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1783200791}
     - target: {fileID: 4981773951985281828, guid: ab471258fa6a5db4eb5765d02a18c977, type: 3}
+      propertyPath: _targetA
+      value: 
+      objectReference: {fileID: 2779669268269126899}
+    - target: {fileID: 4981773951985281828, guid: ab471258fa6a5db4eb5765d02a18c977, type: 3}
+      propertyPath: _targetB
+      value: 
+      objectReference: {fileID: 2779669268269126898}
+    - target: {fileID: 4981773951985281828, guid: ab471258fa6a5db4eb5765d02a18c977, type: 3}
+      propertyPath: IsVibrationEnabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4981773951985281828, guid: ab471258fa6a5db4eb5765d02a18c977, type: 3}
       propertyPath: interactorToVibrate
+      value: 
+      objectReference: {fileID: 696530564}
+    - target: {fileID: 4981773951985281828, guid: ab471258fa6a5db4eb5765d02a18c977, type: 3}
+      propertyPath: _interactorToVibrate
       value: 
       objectReference: {fileID: 696530564}
     - target: {fileID: 5363036201520807440, guid: ab471258fa6a5db4eb5765d02a18c977, type: 3}
@@ -11022,6 +11048,10 @@ PrefabInstance:
     - target: {fileID: 9000862038271903525, guid: ab471258fa6a5db4eb5765d02a18c977, type: 3}
       propertyPath: m_IsKinematic
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9015911217663954745, guid: ab471258fa6a5db4eb5765d02a18c977, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
