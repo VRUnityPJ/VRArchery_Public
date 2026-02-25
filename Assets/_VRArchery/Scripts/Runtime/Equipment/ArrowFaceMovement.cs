@@ -21,7 +21,6 @@ namespace _VRArchery.Scripts.Runtime.Equipment
                 Vector3 velocity = transform.position - _prePosition;
                 if(velocity.magnitude > 0.01f)
                 {
-                    Debug.Log("flying away");
                     transform.rotation = Quaternion.LookRotation(velocity);
                 }
                 _prePosition = transform.position;

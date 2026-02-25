@@ -41,7 +41,7 @@ namespace _VRArchery.Scripts.Runtime.Equipment
             if (actionMap != null)
             {
                 _nockAction = actionMap.FindAction("nockArrow", true);
-                Debug.Log("nock arrow attached");
+                CustomDebug.Log("nock arrow attached");
                 if (_nockAction == null)
                 {
                     CustomDebug.LogError("Cannot find nock arrow");
@@ -103,7 +103,6 @@ namespace _VRArchery.Scripts.Runtime.Equipment
                 if (_bowString)
                 {
                     _bowString.transform.position = _arrowFeatherPoint.transform.position;
-                    CustomDebug.Log("つかみ中！");
                 }
             }
         }
