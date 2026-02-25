@@ -26,8 +26,8 @@ namespace _VRArchery.Scripts.Runtime.Target
             //配列の0番目はスコア表示用のテキストなので、そこにスコアを表示する
             scoreText[0].text = "+ " + score + "点";
 
-            if(isJustHit){
-
+            if(isJustHit)
+            {
                 //配列の1番目はジャストヒット表示用のテキスト
                 scoreText[1].rectTransform.localScale = Vector3.zero;
                 scoreText[1].alpha = 1f;
