@@ -18,6 +18,13 @@ namespace _VRArchery.Scripts.Runtime.Score
         private const int SRankThreshold = 17000;
         private const int ARankThreshold = 10000;
         private const int BRankThreshold = 6000;
+        // 最初の的の中心からの距離のしきい値
+        private const float FirstTargetDistance = 2f;
+        private const float SecondTargetDistance = 5f;
+        // 最初の的の中心からの距離に応じた得点
+        private const int FirstTargetScore = 200;
+        private const int SecondTargetScore = 150;
+        private const int NormalTargetScore = 100;
         private Rank _currentRank;
 
         private readonly ReactiveProperty<int> _score = new();
@@ -64,23 +71,23 @@ namespace _VRArchery.Scripts.Runtime.Score
         {
             float result = 0;
             //現在プレイヤーと的の距離で得点を決定、それを生成されてからの時間、矢の命中座標、的の命中座標で計算
-            var acc = (targetPos - arrowPos).sqrMagnitude;
-            if (acc < 2f)
+            var distance = (targetPos - arrowPos).sqrMagnitude;
+            if (distance < FirstTargetDistance)
             {
                 CustomDebug.Log("ドンピシャ");
-                result = 200f;
+                result = FirstTargetScore;
             }
-            else if (acc < 5f)
+            else if (distance < SecondTargetDistance)
             {
                 CustomDebug.Log("まあまあ真ん中");
-                result = 150f;
+                result = SecondTargetScore;
             }
             else
             {
-                result = 100f;
+                result = NormalTargetScore;
             }
             result *= speedBonus;
-            CustomDebug.Log("ボーナス" + speedBonus + "ポイント" + result + "ACC" + acc);
+            CustomDebug.Log("ボーナス" + speedBonus + "ポイント" + result + "中心からの距離" + distance);
             return (int)result;
         }
 
