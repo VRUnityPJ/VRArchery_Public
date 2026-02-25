@@ -9,6 +9,7 @@ TagManager:
   - Target
   - Arrow
   - Stage
+  - Nocker
   layers:
   - Default
   - TransparentFX
