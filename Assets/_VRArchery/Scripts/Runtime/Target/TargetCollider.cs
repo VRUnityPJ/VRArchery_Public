@@ -31,6 +31,7 @@ namespace _VRArchery.Scripts.Runtime.Target
         private TargetMover _targetMover;
         private TargetTimeCounter _targetTimeCounter;
         private TargetScoreViewer _targetScoreViewer;
+        private bool _isAlreadyHit = false;
 
         private void Start()
         {
@@ -52,6 +53,12 @@ namespace _VRArchery.Scripts.Runtime.Target
             //敵にぶつかったとき
             if (other.gameObject.CompareTag("Arrow"))
             {
+                if(_isAlreadyHit)
+                {
+                    Destroy(gameObject);
+                    return;
+                }
+                _isAlreadyHit = true;
                 //距離に応じて加算するポイントを計算する
                 var addPoint = _scoreHolder.CalculateAddScore(transform.position, other.gameObject.transform.position, _targetTimeCounter.GetBonusRate()) * _getPointCorrection;
                 _scoreHolder.AddScore(addPoint);

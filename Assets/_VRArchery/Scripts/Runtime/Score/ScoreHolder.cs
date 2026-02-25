@@ -19,8 +19,8 @@ namespace _VRArchery.Scripts.Runtime.Score
         private const int ARankThreshold = 4500;
         private const int BRankThreshold = 2000;
         // 最初の的の中心からの距離のしきい値
-        private const float FirstTargetDistance = 2f;
-        private const float SecondTargetDistance = 5f;
+        private const float FirstTargetDistance = 0.55f;
+        private const float SecondTargetDistance = 1f;
         // 最初の的の中心からの距離に応じた得点
         private const int FirstTargetScore = 200;
         private const int SecondTargetScore = 150;
@@ -70,6 +70,8 @@ namespace _VRArchery.Scripts.Runtime.Score
         public int CalculateAddScore(Vector3 targetPos, Vector3 arrowPos, float speedBonus)
         {
             float result = 0;
+            targetPos.z = 0;
+            arrowPos.z = 0;
             //現在プレイヤーと的の距離で得点を決定、それを生成されてからの時間、矢の命中座標、的の命中座標で計算
             var distance = (targetPos - arrowPos).sqrMagnitude;
             if (distance < FirstTargetDistance)
