@@ -1,4 +1,5 @@
 using System;
+using _VRArchery.Scripts.Runtime.Target;
 using R3;
 using RankingSystem.Scripts;
 using UnityEngine;
@@ -91,6 +92,27 @@ namespace _VRArchery.Scripts.Runtime.Score
             result *= speedBonus;
             CustomDebug.Log("ボーナス" + speedBonus + "ポイント" + result + "中心からの距離" + distance);
             return (int)result;
+        }
+
+         /// <summary>
+         /// 的に当たったときのヒットタイプを取得する
+         /// </summary>
+         /// <param name="targetPos"></param>
+         /// <param name="arrowPos"></param>
+         /// <returns></returns>
+        public HitType GetHitType(Vector3 targetPos, Vector3 arrowPos)
+        {
+            targetPos.z = 0;
+            arrowPos.z = 0;
+            var distance = (targetPos - arrowPos).sqrMagnitude;
+            if (distance < FirstTargetDistance)
+            {
+                return HitType.JustHit;
+            }
+            else
+            {
+                return HitType.NormalHit;
+            }
         }
 
         /// <summary>

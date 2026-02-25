@@ -62,7 +62,8 @@ namespace _VRArchery.Scripts.Runtime.Target
                 //距離に応じて加算するポイントを計算する
                 var addPoint = _scoreHolder.CalculateAddScore(transform.position, other.gameObject.transform.position, _targetTimeCounter.GetBonusRate()) * _getPointCorrection;
                 _scoreHolder.AddScore(addPoint);
-                _targetScoreViewer.ShowGetScoreAsync(addPoint, transform, destroyCancellationToken).Forget();
+                var isJust = _scoreHolder.GetHitType(transform.position, other.gameObject.transform.position) == HitType.JustHit;
+                _targetScoreViewer.ShowGetScoreAsync(addPoint, transform, isJust, destroyCancellationToken).Forget();
 
                 HitStopManager.Apply(_hitStopDuration, _hitStopTimeScale);
                 CustomDebug.Log(_scoreHolder.Score);
