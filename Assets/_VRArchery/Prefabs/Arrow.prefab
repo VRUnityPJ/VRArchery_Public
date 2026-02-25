@@ -100,6 +100,7 @@ MonoBehaviour:
   _arrowFaceMovement: {fileID: 68846529471585332}
   _actionAsset: {fileID: -944628639613478452, guid: 4a223f89f8b456d4ab0d3c07be765882, type: 3}
   _grabInteract: {fileID: 8194743572323301917}
+  _arrowNocker: {fileID: 2522720027838603452}
   ArrowGrip: {fileID: 0}
   ArrowCounter: {fileID: 0}
   ArrowGrabber: {fileID: 0}
@@ -477,7 +478,7 @@ GameObject:
   - component: {fileID: 3231899597107280686}
   - component: {fileID: 8362281810848269611}
   - component: {fileID: 1434666089524079533}
-  - component: {fileID: 2244822084769370136}
+  - component: {fileID: 2522720027838603452}
   m_Layer: 7
   m_Name: NockRange
   m_TagString: Arrow
@@ -574,28 +575,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.50000006
   m_Center: {x: 0.00000011920926, y: -0.00000011920928, z: 0}
---- !u!114 &2244822084769370136
+--- !u!114 &2522720027838603452
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4512471796773412548}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 028c8b79e53048f4eadffce0faf03bf6, type: 3}
+  m_Script: {fileID: 11500000, guid: 26e46dfaf48769043b135deac61678db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _arrow: {fileID: 6104487565087410486}
-  _speed: 5
-  _arrowFeatherPoint: {fileID: 0}
-  _arrowFaceMovement: {fileID: 0}
-  _actionAsset: {fileID: -944628639613478452, guid: 4a223f89f8b456d4ab0d3c07be765882, type: 3}
-  _grabInteract: {fileID: 0}
-  ArrowGrip: {fileID: 0}
-  ArrowCounter: {fileID: 0}
-  ArrowGrabber: {fileID: 0}
-  DistanceHapticFeedback: {fileID: 0}
+  _collider: {fileID: 1434666089524079533}
 --- !u!1 &6104487565087410486
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,8 +599,6 @@ GameObject:
   - component: {fileID: 5302667747962408324}
   - component: {fileID: 4078193924255941464}
   - component: {fileID: 3163465316188016228}
-  - component: {fileID: 9206853495990351115}
-  - component: {fileID: 6561218450549625315}
   m_Layer: 7
   m_Name: "\u77E2_Grabbable (1)"
   m_TagString: Arrow
@@ -690,37 +680,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &9206853495990351115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6104487565087410486}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ad753ad3172ca047bb74f1b440da81e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6561218450549625315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6104487565087410486}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 028c8b79e53048f4eadffce0faf03bf6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _arrow: {fileID: 2595377709587373617}
-  _speed: 55
-  _arrowFeatherPoint: {fileID: 931186616556519366}
-  _arrowFaceMovement: {fileID: 0}
-  _actionAsset: {fileID: -944628639613478452, guid: 4a223f89f8b456d4ab0d3c07be765882, type: 3}
-  _grabInteract: {fileID: 0}
-  ArrowGrip: {fileID: 0}
-  ArrowCounter: {fileID: 0}
-  ArrowGrabber: {fileID: 0}
-  DistanceHapticFeedback: {fileID: 0}
