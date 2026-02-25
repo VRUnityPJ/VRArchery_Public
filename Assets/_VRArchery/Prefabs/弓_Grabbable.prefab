@@ -293,6 +293,7 @@ GameObject:
   - component: {fileID: 9015911217663954745}
   - component: {fileID: 1427792309013563790}
   - component: {fileID: 4981773951985281828}
+  - component: {fileID: 2288804420856658622}
   m_Layer: 6
   m_Name: "\u5F13_Grabbable"
   m_TagString: Untagged
@@ -515,15 +516,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa577b1cf5fa4e4ba48d01d9e683b86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetA: {fileID: 0}
-  targetB: {fileID: 0}
-  interactorToVibrate: {fileID: 0}
-  isVibrationEnabled: 0
-  nearThreshold: 0.5
-  farThreshold: 1
-  nearMaxAmplitude: 0.2
-  farMaxAmplitude: 1
-  hapticDuration: 0.1
+  _targetA: {fileID: 0}
+  _targetB: {fileID: 0}
+  _interactorToVibrate: {fileID: 0}
+  IsVibrationEnabled: 1
+  _nearThreshold: 0.5
+  _farThreshold: 1
+  _nearMaxAmplitude: 0.2
+  _farMaxAmplitude: 1
+  _hapticDuration: 0.1
+--- !u!114 &2288804420856658622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5363036201520807440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9092a3149803f474e8a3ee9277b79131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enterAmplitude: 0.5
+  enterDuration: 0.1
+  exitStartAmplitude: 0.5
+  exitFadeDuration: 0.3
 --- !u!1 &5450314065810793998
 GameObject:
   m_ObjectHideFlags: 0

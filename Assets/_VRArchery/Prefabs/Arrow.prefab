@@ -94,7 +94,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 028c8b79e53048f4eadffce0faf03bf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _arrow: {fileID: 2595377709587373617}
   _speed: 70
   _arrowFeatherPoint: {fileID: 931186616556519366}
   _arrowFaceMovement: {fileID: 68846529471585332}
@@ -481,7 +480,7 @@ GameObject:
   - component: {fileID: 2522720027838603452}
   m_Layer: 7
   m_Name: NockRange
-  m_TagString: Arrow
+  m_TagString: Nocker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
