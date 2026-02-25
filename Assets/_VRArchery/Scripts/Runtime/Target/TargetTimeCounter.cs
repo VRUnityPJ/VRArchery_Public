@@ -1,8 +1,3 @@
-using System;
-using System.Threading;
-using _VRArchery.Scripts.Utility;
-using Cysharp.Threading.Tasks;
-using DG.Tweening;
 using UnityEngine;
 
 namespace _VRArchery.Scripts.Runtime.Target
