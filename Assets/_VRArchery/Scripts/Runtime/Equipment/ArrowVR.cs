@@ -128,10 +128,6 @@ namespace _VRArchery.Scripts.Runtime.Equipment
                 _bow = bow;
                 CustomDebug.Log("つかみ中！");
             }
-            if (!_isFlying)
-            {
-                return;
-            }
             if (other.gameObject.CompareTag("Target"))
             {
                 //GameManager.instance.SetTargetModleMarker(collision.GetContact(0).point - collision.transform.position);
@@ -144,7 +140,7 @@ namespace _VRArchery.Scripts.Runtime.Equipment
                 }
                 Destroy(gameObject);
             }
-            else if (other.gameObject.CompareTag("Stage"))
+            else if (other.gameObject.CompareTag("Stage") && _isFlying)
             {
                 Destroy(gameObject);
             }

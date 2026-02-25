@@ -65,8 +65,7 @@ namespace _VRArchery.Scripts.Runtime.Target
 
                 Destroy(gameObject);
             }
-
-            if (other.gameObject.CompareTag("Stage"))
+            else if (other.gameObject.CompareTag("Stage"))
             {
                 _effect.OnStartParticle();
                 Destroy(gameObject);
