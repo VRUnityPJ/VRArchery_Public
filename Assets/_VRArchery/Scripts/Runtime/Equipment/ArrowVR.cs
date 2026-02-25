@@ -11,16 +11,14 @@ namespace _VRArchery.Scripts.Runtime.Equipment
 {
     public class ArrowVR : MonoBehaviour
     {
-        [SerializeField] private GameObject _arrow;
         [SerializeField] private float _speed = 40;
         [SerializeField] private GameObject _arrowFeatherPoint;
         [SerializeField] private ArrowFaceMovement _arrowFaceMovement;
         [SerializeField] private InputActionAsset _actionAsset;
         [SerializeField] private XRGrabInteractable _grabInteract;
+        [SerializeField] private ArrowNocker _arrowNocker;
         private bool _isFlying;
         private bool _isNocking = false;
-        private bool _canNock = false;
-        private Vector3 _prePosition;
         private Rigidbody _rb;
         private BoxCollider _boxCollider;
         private InputAction _nockAction;
@@ -28,6 +26,7 @@ namespace _VRArchery.Scripts.Runtime.Equipment
         private IBow _bow;
         private ArrowEffectController _arrowEffectController;
         private UiAudioPlayer  _uiAudioPlayer;
+        // private ArrowNocker _arrowNocker;
         /// <summary>
         /// 矢をつがえる位置の当たり判定
         /// </summary>
@@ -94,14 +93,6 @@ namespace _VRArchery.Scripts.Runtime.Equipment
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.CompareTag("Target"))
-            {
-                //GameManager.instance.SetTargetModleMarker(collision.GetContact(0).point - collision.transform.position);
-            }
-            else
-            {
-                //GameManager.instance.SetTargetModleMarker(Vector3.one * -1);
-            }
             if (collision.gameObject.TryGetComponent(out IBow bow))
             {
                 _bowString = bow.GetWirePointObject();
@@ -114,12 +105,7 @@ namespace _VRArchery.Scripts.Runtime.Equipment
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.CompareTag("Nock"))
-            {
-                CustomDebug.Log(" Can Nock");
-                _canNock = true;
-            }
-            else if (other.gameObject.CompareTag("Target"))
+            if (other.gameObject.CompareTag("Target"))
             {
                 //GameManager.instance.SetTargetModleMarker(collision.GetContact(0).point - collision.transform.position);
                 _isFlying = false;
@@ -142,23 +128,13 @@ namespace _VRArchery.Scripts.Runtime.Equipment
                 CustomDebug.Log("つかみ中！");
             }
         }
-
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.gameObject.CompareTag("Nock"))
-            {
-                CustomDebug.Log("Cannot Nock");
-                _canNock = false;
-                //_grabInteract.trackRotation = true;
-            }
-        }
         /// <summary>
         /// 矢をつがえる処理
         /// </summary>
         private void NockArrow(InputAction.CallbackContext ctx)
         {
             CustomDebug.Log("OnTriggerRightPressed");
-            if (!_canNock)
+            if (!_arrowNocker.IsNock())
             {
                 return;
             }
