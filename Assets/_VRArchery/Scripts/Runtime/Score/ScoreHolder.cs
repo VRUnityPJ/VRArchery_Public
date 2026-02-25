@@ -56,20 +56,21 @@ namespace _VRArchery.Scripts.Runtime.Score
         /// <summary>
         /// 加算するスコアを計算する
         /// </summary>
-        /// <param name="targetPos"></param>
-        /// <param name="playerPos"></param>
-        /// <returns></returns>
-        public int CalculateAddScore(Vector3 targetPos, Vector3 arrowPos,float speedBonus)
+        /// <param name="targetPos"> 的の座標 </param>
+        /// <param name="arrowPos"> 矢の座標 </param>
+        /// <param name="speedBonus"> 速度ボーナス係数 </param>
+        /// <returns> 加算するスコア </returns>
+        public int CalculateAddScore(Vector3 targetPos, Vector3 arrowPos, float speedBonus)
         {
             float result = 0;
             //現在プレイヤーと的の距離で得点を決定、それを生成されてからの時間、矢の命中座標、的の命中座標で計算
             var acc = (targetPos - arrowPos).sqrMagnitude;
-            if(acc<2f)
+            if (acc < 2f)
             {
                 CustomDebug.Log("ドンピシャ");
                 result = 200f;
             }
-            else if(acc<5f)
+            else if (acc < 5f)
             {
                 CustomDebug.Log("まあまあ真ん中");
                 result = 150f;
@@ -79,7 +80,7 @@ namespace _VRArchery.Scripts.Runtime.Score
                 result = 100f;
             }
             result *= speedBonus;
-            CustomDebug.Log("ボーナス"+speedBonus+"ポイント"+result+"ACC"+acc);
+            CustomDebug.Log("ボーナス" + speedBonus + "ポイント" + result + "ACC" + acc);
             return (int)result;
         }
 
