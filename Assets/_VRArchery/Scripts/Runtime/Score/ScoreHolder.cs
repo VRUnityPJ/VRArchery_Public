@@ -15,9 +15,9 @@ namespace _VRArchery.Scripts.Runtime.Score
         /// </summary>
         public Rank CurrentRank => _currentRank;
 
-        private const int SRankThreshold = 17000;
-        private const int ARankThreshold = 10000;
-        private const int BRankThreshold = 6000;
+        private const int SRankThreshold = 7000;
+        private const int ARankThreshold = 4500;
+        private const int BRankThreshold = 2000;
         // 最初の的の中心からの距離のしきい値
         private const float FirstTargetDistance = 2f;
         private const float SecondTargetDistance = 5f;
