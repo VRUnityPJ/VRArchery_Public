@@ -17,14 +17,14 @@ namespace _VRArchery.Scripts.Runtime.Target
         /// 的のアニメーションを行う
         /// </summary>
         /// <param name="token"></param>
-        public async UniTask MoveAsync(TargetType targetType,CancellationToken token)
+        public async UniTask MoveAsync(TargetType targetType, CancellationToken token)
         {
             //受け取ったキャンセルトークンとdestroyCancellationTokenをくっつけて
             //どちらかがキャンセルされたら発火するキャンセルトークンを新たに生成
             using var cts = CancellationTokenSource.CreateLinkedTokenSource(token, destroyCancellationToken);
-            
 
-            if(targetType == TargetType.Forward)
+
+            if (targetType == TargetType.Forward)
             {
                 try
                 {
@@ -42,13 +42,13 @@ namespace _VRArchery.Scripts.Runtime.Target
                 finally
                 {
                     CustomDebug.Log("動作停止");
-                    if(gameObject != null)
+                    if (gameObject != null)
                     {
                         Destroy(gameObject);
                     }
                 }
             }
-            else if(targetType == TargetType.SlideLeft)
+            else if (targetType == TargetType.SlideLeft)
             {
                 try
                 {
@@ -66,13 +66,13 @@ namespace _VRArchery.Scripts.Runtime.Target
                 finally
                 {
                     CustomDebug.Log("動作停止");
-                    if(gameObject != null)
+                    if (gameObject != null)
                     {
                         Destroy(gameObject);
                     }
                 }
             }
-            else if(targetType == TargetType.SlideRight)
+            else if (targetType == TargetType.SlideRight)
             {
                 try
                 {
@@ -90,13 +90,13 @@ namespace _VRArchery.Scripts.Runtime.Target
                 finally
                 {
                     CustomDebug.Log("動作停止");
-                    if(gameObject != null)
+                    if (gameObject != null)
                     {
                         Destroy(gameObject);
                     }
                 }
             }
-            else if(targetType == TargetType.FallDown)
+            else if (targetType == TargetType.FallDown)
             {
                 try
                 {
@@ -113,7 +113,7 @@ namespace _VRArchery.Scripts.Runtime.Target
                 finally
                 {
                     CustomDebug.Log("動作停止");
-                    if(gameObject != null)
+                    if (gameObject != null)
                     {
                         Destroy(gameObject);
                     }
