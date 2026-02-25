@@ -12,6 +12,16 @@ namespace _VRArchery.Scripts.Runtime.Target
         [SerializeField] private float _lifeTimeSec = 10f;
 
         private float timeCounter = 0f;
+        // 最初の的の時間ボーナスのしきい値
+        [SerializeField] private float _firstBonusTime = 3f;
+        // 2番目の的の時間ボーナスのしきい値
+        [SerializeField] private float _secondBonusTime = 6f;
+        // 最初の的の時間ボーナスの倍率
+        [SerializeField] private float _firstBonusRate = 1.5f;
+        // 2番目の的の時間ボーナスの倍率
+        [SerializeField] private float _secondBonusRate = 1.3f;
+        // 的の時間ボーナスの通常倍率
+        [SerializeField] private float _normalRate = 1f;
 
         /// <summary>
         /// 的の制限時間をカウント
@@ -19,7 +29,7 @@ namespace _VRArchery.Scripts.Runtime.Target
         private void Update()
         {
             timeCounter += Time.deltaTime;
-            if(timeCounter>_lifeTimeSec)
+            if (timeCounter > _lifeTimeSec)
             {
                 Destroy(gameObject);
             }
@@ -27,17 +37,17 @@ namespace _VRArchery.Scripts.Runtime.Target
         /// <summary>
         /// 的の現在の時間に応じてバフをもらう
         /// </summary>
-        public float GetBunusPoint()
+        public float GetBonusRate()
         {
-            if(timeCounter<3f)
+            if (timeCounter < _firstBonusTime)
             {
-                return 1.5f;
+                return _firstBonusRate;
             }
-            else if(timeCounter<6f)
+            else if (timeCounter < _secondBonusTime)
             {
-                return 1.3f;
+                return _secondBonusRate;
             }
-            return 1f;
+            return _normalRate;
         }
     }
 }
