@@ -11043,6 +11043,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2288804420856658622, guid: ab471258fa6a5db4eb5765d02a18c977, type: 3}
+      propertyPath: _interactor
+      value: 
+      objectReference: {fileID: 696530564}
     - target: {fileID: 2523593718462245370, guid: ab471258fa6a5db4eb5765d02a18c977, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.06
