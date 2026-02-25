@@ -68,9 +68,26 @@ namespace _VRArchery.Scripts.Runtime.Equipment
             _nockAction.Enable();
 
             _nockAction.performed += NockArrow;
-            _nockAction.canceled += context => _ = ShootArrowAsync(context);
+            // ラムダ式をやめて、通常のメソッド呼び出しに変更します
+            _nockAction.canceled += OnNockCanceled;
 
             CustomDebug.Log("nockAction enabled");
+        }
+
+        // ▼ 追加: イベントを安全に解除するための処理
+        private void OnDisable()
+        {
+            if (_nockAction == null)
+                return;
+            
+            _nockAction.performed -= NockArrow;
+            _nockAction.canceled -= OnNockCanceled;
+        }
+
+        // ▼ 追加: canceledイベントから呼ばれる中継メソッド
+        private void OnNockCanceled(InputAction.CallbackContext context)
+        {
+            _ = ShootArrowAsync(context);
         }
 
         // Update is called once per frame
@@ -105,6 +122,16 @@ namespace _VRArchery.Scripts.Runtime.Equipment
 
         private void OnTriggerEnter(Collider other)
         {
+            if (other.gameObject.TryGetComponent(out IBow bow))
+            {
+                _bowString = bow.GetWirePointObject();
+                _bow = bow;
+                CustomDebug.Log("つかみ中！");
+            }
+            if (!_isFlying)
+            {
+                return;
+            }
             if (other.gameObject.CompareTag("Target"))
             {
                 //GameManager.instance.SetTargetModleMarker(collision.GetContact(0).point - collision.transform.position);
@@ -121,12 +148,7 @@ namespace _VRArchery.Scripts.Runtime.Equipment
             {
                 Destroy(gameObject);
             }
-            if (other.gameObject.TryGetComponent(out IBow bow))
-            {
-                _bowString = bow.GetWirePointObject();
-                _bow = bow;
-                CustomDebug.Log("つかみ中！");
-            }
+
         }
         /// <summary>
         /// 矢をつがえる処理
