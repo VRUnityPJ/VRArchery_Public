@@ -130,7 +130,7 @@ namespace _VRArchery.Scripts.Runtime.Stage
             await _scorePresenter.ShowScoreAnimationAsync(destroyCancellationToken);
 
             //ランキングにスコアを登録する
-            _rankingScoreAdaptor.Register();
+            // _rankingScoreAdaptor.Register();
             //スコアを初期化
             _scoreHolder.InitializeScore();
 

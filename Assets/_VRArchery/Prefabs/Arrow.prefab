@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _arrow: {fileID: 2595377709587373617}
-  _speed: 55
+  _speed: 70
   _arrowFeatherPoint: {fileID: 931186616556519366}
   _arrowFaceMovement: {fileID: 68846529471585332}
   _actionAsset: {fileID: -944628639613478452, guid: 4a223f89f8b456d4ab0d3c07be765882, type: 3}
@@ -103,6 +103,7 @@ MonoBehaviour:
   ArrowGrip: {fileID: 0}
   ArrowCounter: {fileID: 0}
   ArrowGrabber: {fileID: 0}
+  DistanceHapticFeedback: {fileID: 0}
 --- !u!65 &7366904164874558922
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -594,6 +595,7 @@ MonoBehaviour:
   ArrowGrip: {fileID: 0}
   ArrowCounter: {fileID: 0}
   ArrowGrabber: {fileID: 0}
+  DistanceHapticFeedback: {fileID: 0}
 --- !u!1 &6104487565087410486
 GameObject:
   m_ObjectHideFlags: 0
@@ -721,3 +723,4 @@ MonoBehaviour:
   ArrowGrip: {fileID: 0}
   ArrowCounter: {fileID: 0}
   ArrowGrabber: {fileID: 0}
+  DistanceHapticFeedback: {fileID: 0}

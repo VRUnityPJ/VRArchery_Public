@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8261275753270007934}
   - component: {fileID: 3681233182519415035}
   - component: {fileID: 5695078459321583739}
+  - component: {fileID: 7426630080966412340}
   m_Layer: 0
   m_Name: Target
   m_TagString: Target
@@ -197,3 +198,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _destroyAnimationTime: 0.05
+--- !u!114 &7426630080966412340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7846117325604094452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 035cc402aaff96048bdf954b3b7241e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lifeTimeSec: 10

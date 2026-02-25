@@ -9590,6 +9590,7 @@ GameObject:
   - component: {fileID: -4814455435625658438}
   - component: {fileID: -9083040487299310100}
   - component: {fileID: 7335903926112550208}
+  - component: {fileID: 1845036467847541781}
   m_Layer: 0
   m_Name: RareTarget
   m_TagString: Target
@@ -9771,6 +9772,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1845036467847541781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2498224040202285368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 035cc402aaff96048bdf954b3b7241e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lifeTimeSec: 10
 --- !u!1 &3553315937022738661
 GameObject:
   m_ObjectHideFlags: 0

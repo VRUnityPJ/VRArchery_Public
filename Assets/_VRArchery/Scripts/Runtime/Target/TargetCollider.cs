@@ -29,15 +29,19 @@ namespace _VRArchery.Scripts.Runtime.Target
         private Transform _playerPos;
         private ScoreHolder _scoreHolder;
         private TargetMover _targetMover;
+        private TargetTimeCounter _targetTimeCounter;
         private TargetScoreViewer _targetScoreViewer;
 
-        private void Start() => TryGetComponent(out _targetMover);
-
+        private void Start()
+        {
+            TryGetComponent(out _targetMover);
+            TryGetComponent(out _targetTimeCounter);
+        }
         [Inject]
         public void Construct(ScoreHolder scoreHolder, Transform playerTransform, TargetScoreViewer targetScoreViewer)
         {
             _scoreHolder = scoreHolder;
-            _playerPos  = playerTransform;
+            _playerPos = playerTransform;
             _targetScoreViewer = targetScoreViewer;
         }
 
@@ -49,7 +53,7 @@ namespace _VRArchery.Scripts.Runtime.Target
             if (other.gameObject.CompareTag("Arrow"))
             {
                 //距離に応じて加算するポイントを計算する
-                var addPoint = _scoreHolder.CalculateAddScore(transform.position, _playerPos.position) * _getPointCorrection;
+                var addPoint = _scoreHolder.CalculateAddScore(transform.position, other.gameObject.transform.position, _targetTimeCounter.GetBonusRate()) * _getPointCorrection;
                 _scoreHolder.AddScore(addPoint);
                 _targetScoreViewer.ShowGetScoreAsync(addPoint, transform, destroyCancellationToken).Forget();
 

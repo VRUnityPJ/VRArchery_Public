@@ -2,7 +2,7 @@ using System;
 using R3;
 using RankingSystem.Scripts;
 using UnityEngine;
-
+using _VRArchery.Scripts.Utility;
 namespace _VRArchery.Scripts.Runtime.Score
 {
     /// <summary>
@@ -18,6 +18,13 @@ namespace _VRArchery.Scripts.Runtime.Score
         private const int SRankThreshold = 17000;
         private const int ARankThreshold = 10000;
         private const int BRankThreshold = 6000;
+        // 最初の的の中心からの距離のしきい値
+        private const float FirstTargetDistance = 2f;
+        private const float SecondTargetDistance = 5f;
+        // 最初の的の中心からの距離に応じた得点
+        private const int FirstTargetScore = 200;
+        private const int SecondTargetScore = 150;
+        private const int NormalTargetScore = 100;
         private Rank _currentRank;
 
         private readonly ReactiveProperty<int> _score = new();
@@ -56,12 +63,31 @@ namespace _VRArchery.Scripts.Runtime.Score
         /// <summary>
         /// 加算するスコアを計算する
         /// </summary>
-        /// <param name="targetPos"></param>
-        /// <param name="playerPos"></param>
-        /// <returns></returns>
-        public int CalculateAddScore(Vector3 targetPos, Vector3 playerPos)
+        /// <param name="targetPos"> 的の座標 </param>
+        /// <param name="arrowPos"> 矢の座標 </param>
+        /// <param name="speedBonus"> 速度ボーナス係数 </param>
+        /// <returns> 加算するスコア </returns>
+        public int CalculateAddScore(Vector3 targetPos, Vector3 arrowPos, float speedBonus)
         {
-            var result = (targetPos - playerPos).sqrMagnitude;
+            float result = 0;
+            //現在プレイヤーと的の距離で得点を決定、それを生成されてからの時間、矢の命中座標、的の命中座標で計算
+            var distance = (targetPos - arrowPos).sqrMagnitude;
+            if (distance < FirstTargetDistance)
+            {
+                CustomDebug.Log("ドンピシャ");
+                result = FirstTargetScore;
+            }
+            else if (distance < SecondTargetDistance)
+            {
+                CustomDebug.Log("まあまあ真ん中");
+                result = SecondTargetScore;
+            }
+            else
+            {
+                result = NormalTargetScore;
+            }
+            result *= speedBonus;
+            CustomDebug.Log("ボーナス" + speedBonus + "ポイント" + result + "中心からの距離" + distance);
             return (int)result;
         }
 
